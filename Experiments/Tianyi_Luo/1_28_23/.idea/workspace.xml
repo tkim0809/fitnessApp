@@ -4,55 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e83f8d98-f496-440e-b424-bf41502b2b88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/androidTest/java/com/example/dicerollexp/ExampleInstrumentedTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/java/com/example/dicerollexp/MainActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/drawable-nowidecg/blank_dice_th.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-anydpi-v33/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/app/src/test/java/com/example/dicerollexp/ExampleUnitTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DiceRollExp/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Tianyi_Luo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DiceRollExp/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e83f8d98-f496-440e-b424-bf41502b2b88" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
