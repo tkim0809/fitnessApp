@@ -37,10 +37,10 @@
         tools:layout_editor_absoluteY="198dp">
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/recordBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Record" />
 
         <Button
             android:id="@+id/button7"
@@ -68,5 +68,15 @@
             android:layout_height="wrap_content"
             android:text="Button" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="91dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="20dp"
+        android:text="Log Out"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
