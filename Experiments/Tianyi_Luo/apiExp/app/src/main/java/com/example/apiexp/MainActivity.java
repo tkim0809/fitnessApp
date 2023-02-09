@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView apitext = findViewById(R.id.apiText);
+        TextView bodytext = findViewById(R.id.apiText);
+        TextView textId = findViewById(R.id.textId);
+        TextView textTitle = findViewById(R.id.textTitle);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
@@ -32,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         apiClient.getFirstPost().enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
-                apitext.setText(response.body().getText());
+                bodytext.setText(response.body().getText());
+
             }
 
             @Override
