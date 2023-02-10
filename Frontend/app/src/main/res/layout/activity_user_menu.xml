@@ -43,24 +43,24 @@
             android:text="Record" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/friendsBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Friends" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/milestoneBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="Milestone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/chatBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="chat" />
 
         <Button
             android:id="@+id/button10"

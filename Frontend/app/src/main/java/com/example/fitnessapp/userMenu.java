@@ -25,8 +25,32 @@ public class userMenu extends AppCompatActivity {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toRecord = new Intent(userMenu.this, record.class);
+                Intent toRecord = new Intent(userMenu.this, recordPage.class);
                 startActivity(toRecord);
+            }
+        });
+        Button friendsBtn = findViewById(R.id.friendsBtn);
+        friendsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toFriends = new Intent(userMenu.this, friendsPage.class);
+                startActivity(toFriends);
+            }
+        });
+        Button milestoneBtn = findViewById(R.id.milestoneBtn);
+        milestoneBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toMilestone = new Intent(userMenu.this, milestonePage.class);
+                startActivity(toMilestone);
+            }
+        });
+        Button chatBtn = findViewById(R.id.chatBtn);
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toChat = new Intent(userMenu.this, chatPage.class);
+                startActivity(toChat);
             }
         });
     }
