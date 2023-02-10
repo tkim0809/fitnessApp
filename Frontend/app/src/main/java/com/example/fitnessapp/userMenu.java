@@ -53,5 +53,13 @@ public class userMenu extends AppCompatActivity {
                 startActivity(toChat);
             }
         });
+        Button profileBtn = findViewById(R.id.profileButton);
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toProfile = new Intent(userMenu.this, profilePage.class);
+                startActivity(toProfile);
+            }
+        });
     }
 }
