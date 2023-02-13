@@ -2,6 +2,7 @@ package com.example.dicerollexp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +19,19 @@ public class MainActivity extends AppCompatActivity {
         Button rollButton = findViewById(R.id.rollButton);
         TextView textNumber = findViewById(R.id.textNumber);
 
+        String roll;
+
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int rand = new Random().nextInt(6) + 1;
                 textNumber.setText(" " + String.valueOf(rand));
+                Intent i = new Intent(MainActivity.this, MainActivity2.class);
+                i.putExtra("roll1", String.valueOf(rand));
+                startActivity(i);
+
             }
         });
+
     }
 }
