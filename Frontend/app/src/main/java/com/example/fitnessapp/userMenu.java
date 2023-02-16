@@ -17,7 +17,7 @@ public class userMenu extends AppCompatActivity {
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent logOut = new Intent(userMenu.this, MainActivity.class);
+                Intent logOut = new Intent(userMenu.this, LoginPage.class);
                 startActivity(logOut);
             }
         });
@@ -25,7 +25,7 @@ public class userMenu extends AppCompatActivity {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toRecord = new Intent(userMenu.this, recordPage.class);
+                Intent toRecord = new Intent(userMenu.this, statsPage.class);
                 startActivity(toRecord);
             }
         });
