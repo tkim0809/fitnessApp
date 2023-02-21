@@ -8,8 +8,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.AppController;
 
 import org.json.JSONObject;
-//todo
-public class upDateStatsRequest implements IServerRequest{
+
+public class StatsRequests implements IServerRequest{
     private IVolleyListener l;
     @Override
     public void sendToServer(String url, JSONObject jsObject, String method) {
@@ -25,14 +25,15 @@ public class upDateStatsRequest implements IServerRequest{
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                    //todo
+                        //depend on the string send back from the back end
 
                     }},
 
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                    //todo
                     }
                 }
         );

@@ -8,15 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fitnessapp.Logic.IVolleyListener;
 import com.example.fitnessapp.Logic.StatsUpdateLogic;
 import com.example.fitnessapp.Network.IServerRequest;
-import com.example.fitnessapp.Network.upDateStatsRequest;
+import com.example.fitnessapp.Network.StatsRequests;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
-//todo
+//Edit the exercises "name", "rep" and "max" and send it to the backend.
 public class statsEdit extends AppCompatActivity implements IView{
     TextView exName;
     TextView exRep;
@@ -31,7 +29,7 @@ public class statsEdit extends AppCompatActivity implements IView{
         exRep = findViewById(R.id.ex1RepTxt);
         exMax = findViewById(R.id.ex1MaxTxt);
         saveBtn = findViewById(R.id.saveExBtn);
-        IServerRequest upDateStatsRQ = new upDateStatsRequest();
+        IServerRequest upDateStatsRQ = new StatsRequests();
         final StatsUpdateLogic statsLogic = new StatsUpdateLogic(this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
