@@ -2,8 +2,6 @@ package com.example.fitnessapp.Logic;
 
 
 
-import android.widget.Toast;
-
 import com.example.fitnessapp.IView;
 import com.example.fitnessapp.Network.IServerRequest;
 
@@ -28,7 +26,7 @@ public class StatsUpdateLogic implements IVolleyListener {
 //}
 
     public void addExercise(String name, String rep, String max) throws JSONException {
-        final String url = "TBD";
+        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/exe";
         JSONObject newExercise = new JSONObject();
         newExercise.put("name",name);
         newExercise.put("rep",rep);

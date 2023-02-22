@@ -9,7 +9,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="174d6bec-ca63-46e9-a5a3-655ce9d56233" name="Changes" comment="2/11" />
+    <list default="true" id="174d6bec-ca63-46e9-a5a3-655ce9d56233" name="Changes" comment="2/11">
+      <change afterPath="$PROJECT_DIR$/../../../Frontend/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Logic/getStatsLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Network/getStatsRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Frontend/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Logic/StatsUpdateLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Logic/StatsUpdateLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Network/IServerRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Network/IServerRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Network/StatsRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/Network/updateStatsRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/statsEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/statsEdit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/statsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Frontend/app/src/main/java/com/example/fitnessapp/statsPage.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +31,44 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GetValueExp" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GetValueExp" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GetValueExp" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GetValueExp" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
@@ -46,7 +95,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "SHOW_ALL_PROCESSES": "false",
-    "cidr.known.project.marker": "true"
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "E:/CS309/1_an_4/Experiments/Tianyi_Luo/GetValueExp"
   }
 }]]></component>
   <component name="RunManager">

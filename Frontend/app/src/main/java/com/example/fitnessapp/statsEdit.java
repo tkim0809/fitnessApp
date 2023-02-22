@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.fitnessapp.Logic.StatsUpdateLogic;
 import com.example.fitnessapp.Network.IServerRequest;
-import com.example.fitnessapp.Network.StatsRequests;
+import com.example.fitnessapp.Network.updateStatsRequests;
 
 import org.json.JSONException;
 
@@ -25,11 +25,11 @@ public class statsEdit extends AppCompatActivity implements IView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats_edit);
-        exName = findViewById(R.id.ex1Txt);
-        exRep = findViewById(R.id.ex1RepTxt);
-        exMax = findViewById(R.id.ex1MaxTxt);
+        exName = findViewById(R.id.exciseNameTxt);
+        exRep = findViewById(R.id.exciseMaxTxt);
+        exMax = findViewById(R.id.exciseRepTxt);
         saveBtn = findViewById(R.id.saveExBtn);
-        IServerRequest upDateStatsRQ = new StatsRequests();
+        IServerRequest upDateStatsRQ = new updateStatsRequests();
         final StatsUpdateLogic statsLogic = new StatsUpdateLogic(this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
