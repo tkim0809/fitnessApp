@@ -2,6 +2,7 @@ package com.example.fitnessapp.Network;
 
 import android.util.Log;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -18,6 +19,7 @@ public class updateStatsRequests implements IServerRequest{
     @Override
     public void sendToServer(String url, JSONObject jsObject, String method) {
         int meth;
+
         if(method == "Post"){
             meth = Request.Method.POST;
         }
@@ -42,6 +44,7 @@ public class updateStatsRequests implements IServerRequest{
                 }
         );
         AppController.getInstance().addToRequestQueue(request);
+
 
 
     }

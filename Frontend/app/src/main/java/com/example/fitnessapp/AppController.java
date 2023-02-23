@@ -2,11 +2,14 @@ package com.example.fitnessapp;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 public class AppController extends Application {
+    public static final String TAG = AppController.class.getSimpleName();
     private RequestQueue requestQueue;
     private static AppController theInstance;
 
@@ -17,7 +20,7 @@ public class AppController extends Application {
         super.onCreate();
         theInstance = this;
     }
-    public static AppController getInstance(){return theInstance;}
+    public static synchronized AppController getInstance(){return theInstance;}
 
     public RequestQueue getRequestQueue() {
         if(requestQueue == null){
@@ -25,8 +28,8 @@ public class AppController extends Application {
         }
         return requestQueue;
     }
-    public <T>void addToRequestQueue(Request<T> request){
-        getRequestQueue().add(request);
+    public <T> void addToRequestQueue(@NonNull Request<T> req){
+        req.setTag(TAG);
+        getRequestQueue().add(req);
     }
-
 }
