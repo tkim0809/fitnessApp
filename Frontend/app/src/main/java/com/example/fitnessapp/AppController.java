@@ -28,7 +28,7 @@ public class AppController extends Application {
         }
         return requestQueue;
     }
-    public <T> void addToRequestQueue(@NonNull Request<T> req){
+    public <T> void addToRequestQueue(Request<T> req){
         req.setTag(TAG);
         getRequestQueue().add(req);
     }

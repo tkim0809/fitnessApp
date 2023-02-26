@@ -30,7 +30,7 @@ public class statsEdit extends AppCompatActivity implements IView{
         exMax = findViewById(R.id.exciseRepTxt);
         saveBtn = findViewById(R.id.saveExBtn);
         IServerRequest upDateStatsRQ = new updateStatsRequests();
-        final StatsUpdateLogic statsLogic = new StatsUpdateLogic(this,upDateStatsRQ);
+        final StatsUpdateLogic statsLogic = new StatsUpdateLogic(statsEdit.this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

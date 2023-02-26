@@ -12,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.AppController;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class updateStatsRequests implements IServerRequest{
@@ -31,19 +32,20 @@ public class updateStatsRequests implements IServerRequest{
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("",response.toString());
+                        Log.d(AppController.TAG,response.toString());
                         //depend on the string send back from the back end
-
+                        System.out.println("Request went through");
                     }},
 
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d("tag",error);
+                        VolleyLog.d("sent user data error",error);
                     }
                 }
         );
         AppController.getInstance().addToRequestQueue(request);
+
 
 
 
@@ -54,10 +56,7 @@ public class updateStatsRequests implements IServerRequest{
         l=listener;
     }
 
-    @Override
-    public JSONObject getObject() {
-        return null;
-    }
+
 
 
 }

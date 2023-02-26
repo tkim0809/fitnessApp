@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class userMenu extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class userMenu extends AppCompatActivity {
                 startActivity(toChat);
             }
         });
-        Button profileBtn = findViewById(R.id.profileButton);
+        ImageButton profileBtn = findViewById(R.id.profileButton);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
