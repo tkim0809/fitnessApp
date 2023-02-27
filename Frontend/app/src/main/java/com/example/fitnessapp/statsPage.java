@@ -47,11 +47,12 @@ public class statsPage extends AppCompatActivity implements IView{
       //  makeJsonObjReq();
 
 
- getStatsRequests getStatsRQ = new getStatsRequests();
- getStatsRQ.sendToServer("https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,"Get");
- ex1Name.setText(getStatsRQ.getName().toString());
- ex1Rep.setText(getStatsRQ.getRep().toString());
- ex1Max.setText(getStatsRQ.getMax().toString());
+        getStatsRequests getStatsRQ = new getStatsRequests();
+        getStatsRQ.setName(ex1Name);
+        getStatsRQ.setRep(ex1Rep);
+        getStatsRQ.setMax(ex1Max);
+        getStatsRQ.sendToServer("https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,"Get");
+
 
     }
 
