@@ -1,0 +1,44 @@
+package com.example.Login_Page.StatPage;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.example.Login_Page.StatPage.StatRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+public class StatController {
+    @Autowired
+     StatRepository statsRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(StatController.class);
+
+    @RequestMapping(method = RequestMethod.POST, path = "/stats/new")
+    public String saveWorkout(Stats stats) {
+        statsRepository.save(stats);
+        return "New workout "+ stats.getWorkoutName() + " Saved";
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, path = "/Workouts")
+    public List<Stats> getAllWorkouts() {
+        logger.info("Entered into Controller Layer");
+        List<Stats> results = statsRepository.findAll();
+        logger.info("Number of Workouts Fetched:" + results.size());
+        return results;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/workouts/{workoutId}")
+    public Optional<Stats> findOwnerById(@PathVariable("ownerId") int id) {
+        logger.info("Entered into Controller Layer");
+        Optional<Stats> results = statsRepository.findById(id);
+        return results;
+    }
+}
