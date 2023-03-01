@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.fitnessapp.Logic.StatsUpdateLogic;
 import com.example.fitnessapp.Network.IServerRequest;
-import com.example.fitnessapp.Network.updateStatsRequests;
+import com.example.fitnessapp.Network.updateRequests;
 
 import org.json.JSONException;
 
@@ -29,15 +29,15 @@ public class statsEdit extends AppCompatActivity implements IView{
         exRep = findViewById(R.id.exciseMaxTxt);
         exMax = findViewById(R.id.exciseRepTxt);
         saveBtn = findViewById(R.id.saveExBtn);
-        IServerRequest upDateStatsRQ = new updateStatsRequests();
+        IServerRequest upDateStatsRQ = new updateRequests();
         final StatsUpdateLogic statsLogic = new StatsUpdateLogic(statsEdit.this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = exName.getText().toString();
+                String rep = exRep.getText().toString();
+                String max = exMax.getText().toString();
                 try {
-                    String name = exName.getText().toString();
-                    String rep = exRep.getText().toString();
-                    String max = exMax.getText().toString();
                     statsLogic.addExercise(name,rep,max);
                     statsLogic.onSuccess();
                 }catch (JSONException e){

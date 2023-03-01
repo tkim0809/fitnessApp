@@ -61,30 +61,30 @@ public class statsPage extends AppCompatActivity implements IView{
 
     }
 /**
-    private void makeJsonObjReq() {
+ private void makeJsonObjReq() {
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,
-                new Response.Listener<JSONObject>() {
+ JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+ "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,
+ new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            ex1Name.setText(response.get("name").toString());
-                            ex1Rep.setText(response.get("rep").toString());
-                            ex1Max.setText(response.get("max").toString());
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }, new Response.ErrorListener() {
+@Override
+public void onResponse(JSONObject response) {
+try {
+ex1Name.setText(response.get("name").toString());
+ex1Rep.setText(response.get("rep").toString());
+ex1Max.setText(response.get("max").toString());
+} catch (JSONException e) {
+throw new RuntimeException(e);
+}
+}
+}, new Response.ErrorListener() {
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
+@Override
+public void onErrorResponse(VolleyError error) {
 
-            }
-        });
-        AppController.getInstance().getRequestQueue().add(jsonObjReq);
+}
+});
+ AppController.getInstance().getRequestQueue().add(jsonObjReq);
     }
 */
 }

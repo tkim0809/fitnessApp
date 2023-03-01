@@ -2,20 +2,17 @@ package com.example.fitnessapp.Network;
 
 import android.util.Log;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.Volley;
 import com.example.fitnessapp.Logic.IVolleyListener;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.AppController;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-public class updateStatsRequests implements IServerRequest{
+public class updateRequests implements IServerRequest{
     private IVolleyListener l;
     @Override
     public void sendToServer(String url, JSONObject jsObject, String method) {
