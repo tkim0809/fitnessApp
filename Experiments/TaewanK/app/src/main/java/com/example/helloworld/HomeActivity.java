@@ -10,8 +10,12 @@ import android.widget.EditText;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public static String userName = "";
+    public static String email = "";
+
     private EditText username, password;
     private Button logIn;
+    private Button signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,16 @@ public class HomeActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         logIn = findViewById(R.id.loginButton);
+        signUp = findViewById(R.id.signUpButton);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, signUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
         logIn.setOnClickListener(new View.OnClickListener() {
 
@@ -35,6 +49,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 }

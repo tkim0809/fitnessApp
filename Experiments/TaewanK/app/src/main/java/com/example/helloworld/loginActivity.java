@@ -7,7 +7,11 @@ import android.widget.TextView;
 
 public class loginActivity extends AppCompatActivity {
 
+
+
     private TextView textUsername, textPassword;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
