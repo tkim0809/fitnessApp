@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".AppController"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApp"
         tools:targetApi="31">
+        <activity
+            android:name=".editProfilePage"
+            android:exported="false" />
+        <activity
+            android:name=".statsEdit"
+            android:exported="true" />
         <activity
             android:name=".profilePage"
             android:exported="false" />
@@ -24,13 +33,13 @@
             android:name=".friendsPage"
             android:exported="false" />
         <activity
-            android:name=".recordPage"
-            android:exported="false" />
+            android:name=".statsPage"
+            android:exported="true" />
         <activity
             android:name=".userMenu"
-            android:exported="false" />
+            android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

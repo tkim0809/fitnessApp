@@ -69,7 +69,7 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
     private void makeJsonObjReq() {
         showProgressDialog();
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-                Const.URL_JSON_OBJECT, null,
+                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
