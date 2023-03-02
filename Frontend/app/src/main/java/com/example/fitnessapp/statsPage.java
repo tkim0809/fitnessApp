@@ -4,30 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.fitnessapp.Logic.StatsUpdateLogic;
-import com.example.fitnessapp.Logic.getStatsLogic;
-import com.example.fitnessapp.Network.IServerRequest;
 import com.example.fitnessapp.Network.getStatsRequests;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class statsPage extends AppCompatActivity implements IView{
     JSONObject exercise;
     Button editBtn;
     TextView ex1Name;
+    TextView ex1Sets;
     TextView ex1Rep;
-    TextView ex1Max;
+    TextView ex1Weight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +33,17 @@ public class statsPage extends AppCompatActivity implements IView{
         });
 
         ex1Name = findViewById(R.id.ex1Txt);
+        ex1Sets =findViewById(R.id.ex1Sets);
         ex1Rep = findViewById(R.id.ex1RepTxt);
-        ex1Max = findViewById(R.id.ex1MaxTxt);
+        ex1Weight = findViewById(R.id.ex1MaxTxt);
       //  makeJsonObjReq();
 
 
         getStatsRequests getStatsRQ = new getStatsRequests();
         getStatsRQ.setName(ex1Name);
+        getStatsRQ.setSets(ex1Sets);
         getStatsRQ.setRep(ex1Rep);
-        getStatsRQ.setMax(ex1Max);
+        getStatsRQ.setWeight(ex1Weight);
         getStatsRQ.sendToServer("https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,"Get");
 
 

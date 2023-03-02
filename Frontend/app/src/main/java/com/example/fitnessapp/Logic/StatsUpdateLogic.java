@@ -25,12 +25,14 @@ public class StatsUpdateLogic implements IVolleyListener {
     //"max":"input"
 //}
 
-    public void addExercise(String name, String rep, String max) throws JSONException {
+    public void addExercise(String name,String sets, String reps, String weight) throws JSONException {
         final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/exe";
         JSONObject newExercise = new JSONObject();
-        newExercise.put("name",name);
-        newExercise.put("rep",rep);
-        newExercise.put("max",max);
+        newExercise.put("workoutName",name);
+        newExercise.put("workoutSets",sets);
+        newExercise.put("workoutReps",reps);
+        newExercise.put("workoutWeight",weight);
+
         serverRequest.sendToServer(url,newExercise,"Post");
 
 

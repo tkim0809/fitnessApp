@@ -19,6 +19,7 @@ public class statsEdit extends AppCompatActivity implements IView{
     TextView exName;
     TextView exRep;
     TextView exMax;
+    TextView exSets;
     Button saveBtn;
 
     @Override
@@ -28,17 +29,20 @@ public class statsEdit extends AppCompatActivity implements IView{
         exName = findViewById(R.id.exciseNameTxt);
         exRep = findViewById(R.id.exciseMaxTxt);
         exMax = findViewById(R.id.exciseRepTxt);
+        exSets = findViewById(R.id.exciseSetsTxt);
         saveBtn = findViewById(R.id.saveExBtn);
+
         IServerRequest upDateStatsRQ = new updateRequests();
         final StatsUpdateLogic statsLogic = new StatsUpdateLogic(statsEdit.this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = exName.getText().toString();
+                String sets = exSets.getText().toString();
                 String rep = exRep.getText().toString();
-                String max = exMax.getText().toString();
+                String weight = exMax.getText().toString();
                 try {
-                    statsLogic.addExercise(name,rep,max);
+                    statsLogic.addExercise(name,sets,rep,weight);
                     statsLogic.onSuccess();
                 }catch (JSONException e){
                     statsLogic.onError();

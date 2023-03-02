@@ -16,19 +16,26 @@ import org.json.JSONObject;
 public class getStatsRequests implements IServerRequest{
     IVolleyListener l;
     TextView name;
+
+
+
+    TextView sets;
     TextView rep;
-    TextView max;
+    TextView weight;
 
     public void setName(TextView name) {
         this.name = name;
+    }
+    public void setSets(TextView sets) {
+        this.sets = sets;
     }
 
     public void setRep(TextView rep) {
         this.rep = rep;
     }
 
-    public void setMax(TextView max) {
-        this.max = max;
+    public void setWeight(TextView weight) {
+        this.weight = weight;
     }
 
     @Override
@@ -46,9 +53,10 @@ public class getStatsRequests implements IServerRequest{
             public void onResponse(JSONObject response) {
                 System.out.println("Request went through");
                 try {
-                    name.setText(response.get("name").toString());
-                    rep.setText(response.get("rep").toString());
-                    max.setText(response.get("max").toString());
+                    name.setText(response.get("workoutName").toString());
+                    rep.setText(response.get("workoutReps").toString());
+                    sets.setText(response.get("workoutSets").toString());
+                    weight.setText(response.get("workoutWeight").toString());
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
