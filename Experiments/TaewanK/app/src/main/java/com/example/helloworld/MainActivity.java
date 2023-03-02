@@ -7,10 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 
 public class MainActivity extends AppCompatActivity {
 
     Button next, pop, count;
+
+    String api = "https://jsonplaceholder.typicode.com/users";
+
+
+    private StringRequest getRequest, postRequest;
+    private RequestQueue requestQueue;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         next = (Button) findViewById(R.id.nextButton);
         pop = (Button) findViewById(R.id.popupButton);
         count = (Button) findViewById(R.id.countButton);
+
+        requestQueue = Volley.newRequestQueue(this);
 
         pop.setOnClickListener(new View.OnClickListener() {
 
