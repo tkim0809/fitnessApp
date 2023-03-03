@@ -17,6 +17,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/firstNameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:text="TextView" />
+        <TextView
+            android:id="@+id/lastNameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/genderTxt"
             android:layout_width="match_parent"
             android:layout_height="84dp"

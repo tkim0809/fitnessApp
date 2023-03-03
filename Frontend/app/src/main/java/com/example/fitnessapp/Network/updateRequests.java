@@ -37,7 +37,11 @@ public class updateRequests implements IServerRequest{
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d("sent user data error",error);
+                        //VolleyLog.d("sent user data error",error);
+                        // Handle the error
+                        error.printStackTrace();
+                        String errorMessage = error.getMessage() != null ? error.getMessage() : "Unknown error";
+                        VolleyLog.d("Request error: " + errorMessage);
                     }
                 }
         );

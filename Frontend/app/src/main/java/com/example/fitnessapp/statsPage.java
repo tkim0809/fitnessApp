@@ -44,7 +44,7 @@ public class statsPage extends AppCompatActivity implements IView{
         getStatsRQ.setSets(ex1Sets);
         getStatsRQ.setRep(ex1Rep);
         getStatsRQ.setWeight(ex1Weight);
-        getStatsRQ.sendToServer("https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/stats", null,"Get");
+        getStatsRQ.sendToServer("http://coms-309-004.class.las.iastate.edu:8080/Workouts", null,"Get");
 
 
     }

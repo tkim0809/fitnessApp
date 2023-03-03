@@ -22,6 +22,8 @@ public class profilePage extends AppCompatActivity {
     TextView age;
     TextView email;
     TextView weight;
+    TextView firstname;
+    TextView lastname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class profilePage extends AppCompatActivity {
         age = findViewById(R.id.ageTxt);
         email = findViewById(R.id.emailTxt);
         weight = findViewById(R.id.weightTxt);
+        firstname =findViewById(R.id.firstNameTxt);
+        lastname = findViewById(R.id.lastNameTxt);
         makeJsonObjReq();
         edit = findViewById(R.id.editPBtn);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +54,8 @@ public class profilePage extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            firstname.setText(response.get("firstName").toString());
+                            lastname.setText(response.get("lastName").toString());
                             gender.setText(response.get("gender").toString());
                             age.setText(response.get("age").toString());
                             email.setText(response.get("email").toString());

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,10 +17,10 @@ import org.json.JSONException;
 
 //Edit the exercises "name", "rep" and "max" and send it to the backend.
 public class statsEdit extends AppCompatActivity implements IView{
-    TextView exName;
-    TextView exRep;
-    TextView exMax;
-    TextView exSets;
+    EditText exName;
+    EditText exRep;
+    EditText exMax;
+    EditText exSets;
     Button saveBtn;
 
     @Override
@@ -32,7 +33,7 @@ public class statsEdit extends AppCompatActivity implements IView{
         exSets = findViewById(R.id.exciseSetsTxt);
         saveBtn = findViewById(R.id.saveExBtn);
 
-        IServerRequest upDateStatsRQ = new updateRequests();
+        updateRequests upDateStatsRQ = new updateRequests();
         final StatsUpdateLogic statsLogic = new StatsUpdateLogic(statsEdit.this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
