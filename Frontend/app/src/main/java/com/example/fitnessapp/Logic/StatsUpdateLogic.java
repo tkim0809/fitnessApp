@@ -5,6 +5,7 @@ package com.example.fitnessapp.Logic;
 import com.example.fitnessapp.IView;
 import com.example.fitnessapp.Network.IServerRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,14 +27,16 @@ public class StatsUpdateLogic implements IVolleyListener {
 //}
 
     public void addExercise(String name,String sets, String reps, String weight) throws JSONException {
-        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/exe";
+        final String url = "http://coms-309-004.class.las.iastate.edu:8080/stats/new";
+        JSONArray exArray = new JSONArray();
         JSONObject newExercise = new JSONObject();
         newExercise.put("workoutName",name);
         newExercise.put("workoutSets",sets);
         newExercise.put("workoutReps",reps);
         newExercise.put("workoutWeight",weight);
+        exArray.put(newExercise);
 
-        serverRequest.sendToServer(url,newExercise,"Post");
+        serverRequest.sendToServer(url,exArray,"Post");
 
 
     }

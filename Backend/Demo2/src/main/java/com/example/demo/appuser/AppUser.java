@@ -39,9 +39,6 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
-    private String gender;
-    private int age;
-    private double weight;
 
     public AppUser(String firstName,
                    String lastName,
@@ -53,7 +50,6 @@ public class AppUser implements UserDetails {
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
-
     }
 
     @Override

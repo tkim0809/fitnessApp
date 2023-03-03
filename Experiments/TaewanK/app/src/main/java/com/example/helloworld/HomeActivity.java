@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,20 +24,21 @@ import org.json.JSONObject;
 public class HomeActivity extends AppCompatActivity {
 
     public static String userName = "";
-    public static String email = "";
+    //public static String email = "";
 
-    private EditText username, password;
+    private EditText Email, password;
     private Button logIn;
-    private Button signUp;
+    private Button signUp, backToLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        username = findViewById(R.id.username);
+        Email = findViewById(R.id.username);
         password = findViewById(R.id.password);
         logIn = findViewById(R.id.loginButton);
         signUp = findViewById(R.id.signUpButton);
+
 
         signUp.setOnClickListener(new View.OnClickListener() {
 
@@ -50,63 +54,75 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String name = username.getText().toString();
+
+                String email = Email.getText().toString();
                 String pw = password.getText().toString();
-                userName = name;
-                String url="";
+                //userName = name;
+                String url="http://coms-309-004.class.las.iastate.edu:8080/login";
+                RequestQueue queue = Volley.newRequestQueue(HomeActivity.this);
+                JSONObject obj = new JSONObject();
 
-                JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url,
-                        null,
-                        new Response.Listener<JSONArray>() {
+                try {
+
+                    obj.put("email", email);
+                    obj.put("password", pw);
+
+
+                } catch(Exception e) {
+
+                    System.out.println("ERROR23");
+
+                }
+
+                JsonObjectRequest jsonArr = new JsonObjectRequest(Request.Method.POST, url,
+                        obj,
+                        new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JSONArray response) {
+                            public void onResponse(JSONObject response) {
+
+                                //System.out.println(response.toString());
+
                                 try {
+                                    if (response.getBoolean("result")) {
 
-                                    for (int i = 0; i < response.length(); i++) {
+                                        Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
 
-                                        JSONObject user = response.getJSONObject(i);
+                                        Intent i = new Intent(HomeActivity.this, MainMenuActivity.class);
+                                        i.putExtra("email", email);
+                                        startActivity(i);
 
-                                        String BEUsername = user.getString("userName");
-                                        String BEPassword = user.getString("password");
 
-                                        if (name.equals(BEUsername) && pw.equals(BEPassword)) {
 
-                                            if (name.equals("user") && pw.equals("user")) {
+                                    } else {
 
-                                                System.out.println("Login is successful");
-                                                Intent intent = new Intent(HomeActivity.this, loginActivity.class);
-                                                intent.putExtra("keyUsername", name);
-                                                intent.putExtra("keyPassword", pw);
-                                                startActivity(intent);
-                                                break;
-
-                                            } else {
-
-                                                System.out.println("Login failed");
-
-                                            }
-
-                                        }
+                                        Toast.makeText(getApplicationContext(), "login error", Toast.LENGTH_SHORT).show();
 
                                     }
 
                                 } catch (JSONException e) {
 
-                                    e.printStackTrace();
+                                    throw new RuntimeException(e);
 
                                 }
+
+
                             }
+
                         }, new Response.ErrorListener() {
+
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Error45", Toast.LENGTH_SHORT).show();
                     }
                 }
                 );
 
 
+                queue.add(jsonArr);
+
 
             }
+
         });
 
 

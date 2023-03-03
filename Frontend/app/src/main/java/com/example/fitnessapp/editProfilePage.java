@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +19,12 @@ import org.json.JSONException;
 public class editProfilePage extends AppCompatActivity implements IView{
     Button back;
     Button save;
-    TextView gender;
-    TextView age;
-    TextView weight;
-    TextView email;
+    EditText firstname;
+    EditText lastname;
+    EditText gender;
+    EditText age;
+    EditText weight;
+    EditText email;
 
 
     @Override
@@ -34,6 +37,8 @@ public class editProfilePage extends AppCompatActivity implements IView{
         age = findViewById(R.id.edAgeTxt);
         weight = findViewById(R.id.edWeightTxt);
         email = findViewById(R.id.edEmailTxt);
+        firstname = findViewById(R.id.edFNTxt);
+        lastname = findViewById(R.id.edLNTxt);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,8 +55,10 @@ public class editProfilePage extends AppCompatActivity implements IView{
                 String inputAge = age.getText().toString();
                 String inputWeight = weight.getText().toString();
                 String inputEmail = email.getText().toString();
+                String inputFirstname = firstname.getText().toString();
+                String inputLastName = lastname.getText().toString();
                 try {
-                    logic.editProfile(inputGender,inputAge,inputWeight,inputEmail);
+                    logic.editProfile(inputFirstname,inputLastName,inputGender,inputAge,inputWeight,inputEmail);
                     logic.onSuccess();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

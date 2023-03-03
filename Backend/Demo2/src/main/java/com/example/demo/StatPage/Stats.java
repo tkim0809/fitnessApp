@@ -50,10 +50,6 @@ public class Stats {
         this.id = id;
     }
 
-    public boolean isNew() {
-        return this.id == null;
-    }
-
     public String getWorkoutName() {
         return this.workout_name;
     }
@@ -91,7 +87,6 @@ public class Stats {
         return new ToStringCreator(this)
 
                 .append("id", this.getId())
-                .append("new", this.isNew())
                 .append("workoutName", this.getWorkoutName())
                 .append("workoutSet", this.getWorkoutSets())
                 .append("workoutReps", this.getWorkoutReps())
