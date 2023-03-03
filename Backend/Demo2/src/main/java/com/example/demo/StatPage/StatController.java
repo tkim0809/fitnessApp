@@ -1,5 +1,6 @@
 package com.example.demo.StatPage;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,9 @@ public class StatController {
     @RequestMapping(method = RequestMethod.POST, path = "/stats/new")
     public String saveWorkout(@RequestBody Stats stats) {
         statsRepository.save(stats);
-        return "New workout "+ stats.getWorkoutName() + " Saved";
+        //return "{\"\":\"\"}";
+        return "{\"message\":\"success\"}";
+        //"{\"Result\": \"New workout "+ stats.getWorkoutName() + " Saved\"";
     }
 
 
