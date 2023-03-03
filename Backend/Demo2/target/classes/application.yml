@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://coms-309-004.class.las.iastate.edu:3306/coms309_roundtrip
+    url: jdbc:mysql://127.0.0.1:3306/coms309_roundtrip
     username: root
-    password: 0bd6e62916d2c878
+    password: Chandra03@shivababa
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,4 +17,3 @@ spring:
         format_sql: true
     show-sql: true
 
-  
