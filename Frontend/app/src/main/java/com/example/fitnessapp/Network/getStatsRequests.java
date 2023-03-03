@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.AppController;
 import com.example.fitnessapp.Logic.IVolleyListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,6 +75,11 @@ public class getStatsRequests implements IServerRequest{
 
 
         }
+
+    @Override
+    public void sendToServer(String url, JSONArray array, String method) {
+
+    }
 
 
     @Override
