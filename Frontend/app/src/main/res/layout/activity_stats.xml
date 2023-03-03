@@ -7,17 +7,17 @@
     tools:context=".statsPage">
 
     <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="557dp"
+        android:id="@+id/linearLayout5"
+        android:layout_width="408dp"
+        android:layout_height="519dp"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="18dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addExBtn"
-        app:layout_constraintVertical_bias="0.724">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,11 +136,12 @@
         android:id="@+id/addExBtn"
         android:layout_width="wrap_content"
         android:layout_height="62dp"
-        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:text="add"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintVertical_bias="0.36" />
 </androidx.constraintlayout.widget.ConstraintLayout>
