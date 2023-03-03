@@ -30,11 +30,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class findFriendActivity extends AppCompatActivity {
-    public ArrayList<String> friendEmailList = new ArrayList<String>();
-    int friendNumber = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
@@ -56,6 +56,8 @@ public class findFriendActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString();
 
         findButton.setOnClickListener(new View.OnClickListener() {
+
+
 
 
             @Override
@@ -89,16 +91,17 @@ public class findFriendActivity extends AppCompatActivity {
 
                                     if (response.getBoolean("email")) {
 
+                                        String friendNumber = "Hello";
                                         Toast.makeText(findFriendActivity.this, "Successful added to friend list", Toast.LENGTH_LONG).show();
-                                        //Intent i = new Intent(findFriendActivity.this, FriendListActivity.class);
-                                        //i.putExtra("friendNumber", "friendNumber");
-                                        //i.putExtra("email"+friendNumber, "email");
-                                        friendNumber++;
-                                        friendEmailList.add(obj.get("email").toString());
+                                        Intent i = new Intent(findFriendActivity.this, FriendListActivity.class);
+                                        i.putExtra("friendNumber", friendNumber);
+                                        i.putExtra("testing", "testing value");
+                                        i.putExtra("email", "email");
 
                                     }
 
                                 } catch (JSONException e) {
+
 
                                     throw new RuntimeException(e);
 
