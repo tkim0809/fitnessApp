@@ -35,6 +35,12 @@ public class Stats {
 
     }
 
+    public Stats(String workout_name, String workout_sets, String workout_reps) {
+        this.workout_name = workout_name;
+        this.workout_sets = workout_sets;
+        this.workout_reps = workout_reps;
+    }
+
     public Stats(String workout_name, String workout_sets, String workout_reps, String workout_weight) {
         this.workout_name = workout_name;
         this.workout_sets = workout_sets;
