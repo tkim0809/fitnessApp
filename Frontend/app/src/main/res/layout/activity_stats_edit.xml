@@ -22,7 +22,7 @@
             android:layout_height="118dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Sets" />
 
         <EditText
             android:id="@+id/exciseRepTxt"
@@ -30,7 +30,7 @@
             android:layout_height="155dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Reps" />
 
         <EditText
             android:id="@+id/exciseMaxTxt"
@@ -38,7 +38,7 @@
             android:layout_height="161dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Weight" />
 
     </LinearLayout>
 

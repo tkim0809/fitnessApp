@@ -21,9 +21,7 @@ public class StatController {
     @RequestMapping(method = RequestMethod.POST, path = "/stats/new")
     public String saveWorkout(@RequestBody Stats stats) {
         statsRepository.save(stats);
-        //return "{\"\":\"\"}";
         return "{\"message\":\"success\"}";
-        //"{\"Result\": \"New workout "+ stats.getWorkoutName() + " Saved\"";
     }
 
 
