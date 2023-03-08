@@ -13,14 +13,14 @@ import java.util.Optional;
 @RestController
 public class StatController {
     @Autowired
-     StatRepository statsRepository;
+    StatRepository statsRepository;
 
     private final Logger logger = LoggerFactory.getLogger(StatController.class);
 
     @RequestMapping(method = RequestMethod.POST, path = "/stats/new")
     public String saveWorkout(@RequestBody Stats stats) {
         statsRepository.save(stats);
-        return "New workout "+ stats.getWorkoutName() + " Saved";
+        return "{\"message\":\"success\"}";
     }
 
 
