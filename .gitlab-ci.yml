@@ -1,0 +1,11 @@
+stages:
+  - maventry
+  
+
+maven-build:   #this is a JOB
+  stage: maventry
+  tags:
+    - chandra_backend  					# this is LINK to the shell runner on the remote-server 
+  script:
+    - cd Backend/Demo2 					#change directory to where you have your springboot application
+    - mvn package
