@@ -28,8 +28,8 @@ public class statsEdit extends AppCompatActivity implements IView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats_edit);
         exName = findViewById(R.id.exciseNameTxt);
-        exRep = findViewById(R.id.exciseMaxTxt);
-        exMax = findViewById(R.id.exciseRepTxt);
+        exRep = findViewById(R.id.exciseRepTxt);
+        exMax = findViewById(R.id.exciseMaxTxt);
         exSets = findViewById(R.id.exciseSetsTxt);
         saveBtn = findViewById(R.id.saveExBtn);
 

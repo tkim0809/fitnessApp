@@ -33,7 +33,7 @@ public class updateRequests implements IServerRequest {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String status = response.getString("status");
+                            String status = response.getString("message");
                             if (status.equals("success")) {
                                 VolleyLog.d("Exercise added successfully");
                             } else {

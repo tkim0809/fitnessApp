@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/barb"
-    tools:context=".LoginPage">
+    tools:context=".findFriendActivity">
 
     <TextView
-        android:id="@+id/signin"
+        android:id="@+id/friendMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -17,68 +17,30 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="Sign in"
+        android:text="Find friend"
         android:textColor="@color/white"
         android:textSize="40dp" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/friendEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signin"
+        android:layout_below="@id/friendMsg"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:hint="Username"
+        android:hint="Email"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:layout_below = "@id/username"
-        android:hint="Password"
-        android:textColorHint = "@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:padding="20dp"/>
-
-    <Button
-
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-
-        android:text="Log in"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-        android:layout_below="@id/password"
-        android:text="Sign up"
-        android:textColor="@color/black" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/forgotPassword"
-        android:layout_below = "@id/loginButton"
-        android:text="Forgot password?"
+        android:id="@+id/findFriendButton"
+        android:layout_below = "@id/friendEmail"
+        android:text="Find friend"
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
         android:layout_centerHorizontal="true"
@@ -86,7 +48,18 @@
 
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/backToMenu"
+        android:layout_below = "@id/findFriendButton"
+        android:text="Back to menu"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_margin = "20dp"
 
+        />
 
 
 
