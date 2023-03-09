@@ -7,7 +7,7 @@ maven-build:   #this is a JOB
   tags:
     - chandra_backend  					# this is LINK to the shell runner on the remote-server 
   script:
-    - cd Backend					#change directory to where you have your springboot application
+    - cd Backend/Demo2					#change directory to where you have your springboot application
     - mvn package
 
 android-build:
