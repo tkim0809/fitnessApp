@@ -1,5 +1,6 @@
 stages:
   - maventry
+  - maventest
   - androidtry
   - androidbuild
   - androidtest
@@ -11,6 +12,16 @@ maven-build:   #this is a JOB
   script:
     - cd Backend/Demo2					#change directory to where you have your springboot application
     - mvn package
+maven-test:
+  stage: maventest
+  tags:
+    - chandra_backend
+  script:
+    - cd Backend/Demo2
+    - mvn test
+  artifacts:
+    paths:
+      - Backend/target/*.jar
 
 android-build:
   image: gjandres/android-ci:latest
