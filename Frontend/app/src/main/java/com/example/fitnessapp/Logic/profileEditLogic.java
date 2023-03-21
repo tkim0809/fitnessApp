@@ -28,7 +28,7 @@ public class profileEditLogic implements IVolleyListener{
         newProfile.put("age",age);
         newProfile.put("weight",weight);
         newProfile.put("email",email);
-        serverRequest.sendToServer(url,newProfile,"Post");
+        serverRequest.sendToServer(url,newProfile,"Put");
 
 
     }

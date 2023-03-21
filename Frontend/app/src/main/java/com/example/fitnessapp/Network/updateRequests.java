@@ -24,8 +24,10 @@ public class updateRequests implements IServerRequest {
 
         if (method == "Post") {
             meth = Request.Method.POST;
-        } else {
+        } else if (method =="Get"){
             meth = Request.Method.GET;
+        } else {
+            meth = Request.Method.PUT;
         }
         JsonObjectRequest request = new JsonObjectRequest(meth, url, jsObject,
 
