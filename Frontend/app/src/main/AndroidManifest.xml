@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".addDietPage"
+            android:exported="false" />
+        <activity
+            android:name=".dietPage"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeMenu"
             android:exported="false" />
         <activity
