@@ -15,12 +15,13 @@ public class addDietLogic implements IVolleyListener{
         this.serverRequest = serverRequest;
         serverRequest.addVolleyListener(this);
     }
-    public void addDiet(String name, String calories, String date) throws JSONException {
+    public void addDiet(String name, String calories, String date, String meal) throws JSONException {
         final String url = "TBD";
         JSONObject newFood = new JSONObject();
         newFood.put("name", name);
         newFood.put("calories", calories);
         newFood.put("date", date);
+        newFood.put("meal",meal);
         serverRequest.sendToServer(url,newFood,"Post");
 
     }
