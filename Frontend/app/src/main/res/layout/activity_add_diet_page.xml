@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addDietPage" >
+    tools:context=".addDietPage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,10 +29,10 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Date:" />
 
             <EditText
                 android:id="@+id/DateTxt"
@@ -51,10 +51,10 @@
 
             <TextView
                 android:id="@+id/textView1"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Food:" />
 
             <EditText
                 android:id="@+id/FoodTxt"
@@ -73,10 +73,10 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Calories:" />
 
             <EditText
                 android:id="@+id/CaloriesTxt"
@@ -95,17 +95,28 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Meal:" />
 
             <Spinner
                 android:id="@+id/MealDD"
                 android:layout_width="200dp"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:layout_weight="1" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="631dp"
+        android:layout_marginBottom="52dp"
+        android:text="Add" />
 </RelativeLayout>
