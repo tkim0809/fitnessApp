@@ -16,6 +16,9 @@ import com.example.fitnessapp.Network.updateRequests;
 
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class addDietPage extends AppCompatActivity implements IView {
 
     Button add = findViewById(R.id.addBtn);
@@ -28,6 +31,11 @@ public class addDietPage extends AppCompatActivity implements IView {
         EditText foodDiet = findViewById(R.id.FoodTxt);
         EditText caloriesDiet = findViewById(R.id.CaloriesTxt);
         Spinner dropdown = findViewById(R.id.MealDD);
+        Date currentDate = new Date();
+        //set today's date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String formattedDate = sdf.format(currentDate);
+        dateDiet.setText(formattedDate);
         String[] items = new String[]{"Breakfast", "Lunch", "Dinner","Snack"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
