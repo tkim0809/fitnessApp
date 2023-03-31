@@ -2,6 +2,7 @@ package com.example.fitnessapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,20 +14,35 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DailyDiet extends AppCompatActivity implements IView{
     LinearLayout layout;
+    JSONArray requestArray = new JSONArray();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_diet);
         layout = (LinearLayout) findViewById(R.id.layoutV);
+        JSONObject object = new JSONObject();
+        Intent intent = getIntent();
+        String date = intent.getStringExtra("message");
+        try {
+            object.put("date",date);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        requestArray.put(object);
+
+
         makeRequest();
     }
+
     final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/dayCal";
     private void makeRequest(){
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,requestArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {

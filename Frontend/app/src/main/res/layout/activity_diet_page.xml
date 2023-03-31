@@ -55,7 +55,7 @@
                 android:id="@+id/WednesdayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="Button" />
+                android:text="wednesday" />
 
             <TextView
                 android:id="@+id/WednesdayCal"
@@ -67,7 +67,7 @@
                 android:id="@+id/ThursdayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="Button" />
+                android:text="thursday" />
 
             <TextView
                 android:id="@+id/ThursdayCal"
@@ -79,7 +79,7 @@
                 android:id="@+id/FridayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="Button" />
+                android:text="friday" />
 
             <TextView
                 android:id="@+id/FridayCal"
@@ -91,7 +91,7 @@
                 android:id="@+id/SaturdayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="Button" />
+                android:text="saturday" />
 
             <TextView
                 android:id="@+id/SaturdayCal"
@@ -103,7 +103,7 @@
                 android:id="@+id/SundayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="Button" />
+                android:text="sunday" />
 
             <TextView
                 android:id="@+id/SundayCal"
