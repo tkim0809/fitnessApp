@@ -29,6 +29,11 @@ public class Diet {
     @JoinColumn(name = "user_id")
     private AppUser user;
 
+
+
+    @Transient
+    private String userEmail;
+
     public Diet() {
     }
 
@@ -37,6 +42,14 @@ public class Diet {
         this.calories = calories;
         this.date = date;
         this.meal = meal;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public Long getId() {

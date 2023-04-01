@@ -21,8 +21,9 @@ public class DietController {
     }
 
     @PostMapping
+
     public Diet addDiet(@RequestBody Diet diet) {
-        AppUser user = appUserService.getCurrentUser();
+        AppUser user = appUserService.getUserByEmail(diet.getUserEmail());
         diet.setUser(user);
         return dietRepository.save(diet);
     }
@@ -41,4 +42,11 @@ public class DietController {
     public void deleteDiet(@PathVariable Long id) {
         dietRepository.deleteById(id);
     }
+
+
+    @GetMapping("/test")
+    public String testEndpoint() {
+        return "Test successful";
+    }
+
 }

@@ -2,14 +2,10 @@ package com.example.demo.appuser;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-
 
 @Service
 @AllArgsConstructor
@@ -49,10 +45,8 @@ public class AppUserService implements UserDetailsService {
         appUserRepository.save(appUser);
     }
 
-    public AppUser getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        return appUserRepository.findByEmail(currentPrincipalName)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, currentPrincipalName)));
+    public AppUser getUserByEmail(String email) {
+        return appUserRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 }
