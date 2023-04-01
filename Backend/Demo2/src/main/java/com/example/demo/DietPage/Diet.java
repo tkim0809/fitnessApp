@@ -1,5 +1,7 @@
 package com.example.demo.DietPage;
 
+import com.example.demo.appuser.AppUser;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,26 +13,30 @@ public class Diet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "food_name")
+    @Column(name = "name")
     private String foodName;
 
     @Column(name = "calories")
-    private int calories;
+    private String calories;
 
     @Column(name = "date")
-    private LocalDate date;
+    private String date;
 
-    @Column(name = "time")
-    private LocalTime time;
+    @Column(name = "meal")
+    private String meal;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser user;
 
     public Diet() {
     }
 
-    public Diet(String foodName, int calories, LocalDate date, LocalTime time) {
+    public Diet(String foodName, String calories, String date, String meal) {
         this.foodName = foodName;
         this.calories = calories;
         this.date = date;
-        this.time = time;
+        this.meal = meal;
     }
 
     public Long getId() {
@@ -49,28 +55,36 @@ public class Diet {
         this.foodName = foodName;
     }
 
-    public int getCalories() {
+    public String getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(String calories) {
         this.calories = calories;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public String getMeal() {
+        return meal;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setMeal(String meal) {
+        this.meal = meal;
+    }
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
     }
 
     @Override
@@ -80,7 +94,7 @@ public class Diet {
                 ", foodName='" + foodName + '\'' +
                 ", calories=" + calories +
                 ", date=" + date +
-                ", time=" + time +
+                ", meal=" + meal +
                 '}';
     }
 }

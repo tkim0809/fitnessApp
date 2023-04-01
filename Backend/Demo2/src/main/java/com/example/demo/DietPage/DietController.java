@@ -1,48 +1,42 @@
 package com.example.demo.DietPage;
 
-import com.example.demo.DietPage.Diet;
-import com.example.demo.DietPage.DietRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.appuser.AppUser;
+import com.example.demo.appuser.AppUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
+@AllArgsConstructor
+@RequestMapping(path = "/diet")
 public class DietController {
 
-    @Autowired
-    private DietRepository dietRepository;
+    private final DietRepository dietRepository;
+    private final AppUserService appUserService;
 
-    @GetMapping("/diets")
-    public List<Diet> getAllDiets() {
-        return dietRepository.findAll();
+    @GetMapping("/{id}")
+    public Diet getDiet(@PathVariable Long id) {
+        return dietRepository.findById(id).orElseThrow(() -> new RuntimeException("Diet not found"));
     }
 
-    @GetMapping("/diets/{id}")
-    public Diet getDietById(@PathVariable(value = "id") Long id) {
-        return dietRepository.findById(id).orElse(null);
-    }
-
-    @PostMapping("/diets")
-    public Diet createDiet(@RequestBody Diet diet) {
+    @PostMapping
+    public Diet addDiet(@RequestBody Diet diet) {
+        AppUser user = appUserService.getCurrentUser();
+        diet.setUser(user);
         return dietRepository.save(diet);
     }
 
-    @PutMapping("/diets/{id}")
-    public Diet updateDiet(@PathVariable(value = "id") Long id, @RequestBody Diet dietDetails) {
-        Diet diet = dietRepository.findById(id).orElse(null);
-        if (diet == null) {
-            return null;
-        }
-        diet.setFoodName(dietDetails.getFoodName());
-        diet.setCalories(dietDetails.getCalories());
-        diet.setDate(dietDetails.getDate());
-        diet.setTime(dietDetails.getTime());
+    @PutMapping("/{id}")
+    public Diet updateDiet(@PathVariable Long id, @RequestBody Diet updatedDiet) {
+        Diet diet = dietRepository.findById(id).orElseThrow(() -> new RuntimeException("Diet not found"));
+        diet.setFoodName(updatedDiet.getFoodName());
+        diet.setCalories(updatedDiet.getCalories());
+        diet.setDate(updatedDiet.getDate());
+        diet.setMeal(updatedDiet.getMeal());
         return dietRepository.save(diet);
     }
 
-    @DeleteMapping("/diets/{id}")
-    public void deleteDiet(@PathVariable(value = "id") Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteDiet(@PathVariable Long id) {
         dietRepository.deleteById(id);
     }
 }
