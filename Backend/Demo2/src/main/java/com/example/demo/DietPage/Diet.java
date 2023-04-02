@@ -1,6 +1,7 @@
 package com.example.demo.DietPage;
 
 import com.example.demo.appuser.AppUser;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class Diet {
     private Long id;
 
     @Column(name = "name")
+    @JsonProperty("name")
     private String foodName;
 
     @Column(name = "calories")
