@@ -31,8 +31,7 @@ public class Diet {
 
 
 
-    @Transient
-    private String userEmail;
+
 
     public Diet() {
     }
@@ -44,13 +43,7 @@ public class Diet {
         this.meal = meal;
     }
 
-    public String getUserEmail() {
-        return userEmail;
-    }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
 
     public Long getId() {
         return id;
