@@ -14,7 +14,7 @@ public class Diet {
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    private String foodName;
 
     @Column(name = "calories")
     private String calories;
@@ -36,8 +36,8 @@ public class Diet {
     public Diet() {
     }
 
-    public Diet(String name, String calories, String date, String meal) {
-        this.name = name;
+    public Diet(String foodName, String calories, String date, String meal) {
+        this.foodName = foodName;
         this.calories = calories;
         this.date = date;
         this.meal = meal;
@@ -54,11 +54,11 @@ public class Diet {
     }
 
     public String getFoodName() {
-        return name;
+        return foodName;
     }
 
-    public void setFoodName(String name) {
-        this.name = name;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public String getCalories() {
@@ -97,7 +97,7 @@ public class Diet {
     public String toString() {
         return "Diet{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", foodName='" + foodName + '\'' +
                 ", calories=" + calories +
                 ", date=" + date +
                 ", meal=" + meal +
