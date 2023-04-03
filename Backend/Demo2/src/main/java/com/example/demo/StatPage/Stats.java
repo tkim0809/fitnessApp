@@ -39,6 +39,7 @@ public class Stats {
         this.workout_name = workout_name;
         this.workout_sets = workout_sets;
         this.workout_reps = workout_reps;
+        this.workout_weight = "N/A";
     }
 
     public Stats(String workout_name, String workout_sets, String workout_reps, String workout_weight) {

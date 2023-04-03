@@ -2,14 +2,16 @@ stages:
   - maventry
   - maventest
   - mavenDeploy
-  
+  - androidtry
+  - androidbuild
+  - androidtest
 
 maven-build:   #this is a JOB
   stage: maventry
   tags:
     - chandra_backend  					# this is LINK to the shell runner on the remote-server 
   script:
-    - cd Backend/Demo2 					#change directory to where you have your springboot application
+    - cd Backend/Demo2					#change directory to where you have your springboot application
     - mvn package
 maven-test:
   stage: maventest
@@ -32,7 +34,30 @@ autoDeploy:
     - sudo systemctl stop system-web-demo
     - sudo systemctl start system-web-demo
 
+android-build:
+  image: gjandres/android-ci:latest
+  stage: androidbuild
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+   - Frontend-Runner
+  script:
+    - cd Frontend
+    - ./gradlew build
+  artifacts:
+    paths:
+    - Android_test/app/build/outputs/
 
-
-
+android-test:
+  image: gjandres/android-ci:latest
+  stage: androidtest
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+   - Frontend-Runner
+  script:
+    - cd Frontend
+    - ./gradlew test
 
