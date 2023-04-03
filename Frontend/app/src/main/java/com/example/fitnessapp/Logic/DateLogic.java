@@ -1,16 +1,24 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.Logic;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateLogic {
     Calendar calendar;
     String[] days = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+
+
     String currentDay;
     int day;
     public DateLogic() {
         calendar = Calendar.getInstance();
         day = calendar.get(Calendar.DAY_OF_WEEK);
         currentDay = days[day - 1];
+    }
+    public String getCurrentDay() {
+        return currentDay;
     }
     public String getCurrentDate(){
         int year = calendar.get(Calendar.YEAR);
@@ -21,41 +29,52 @@ public class DateLogic {
     }
     public String DateSunday(){
         Calendar c = Calendar.getInstance();
-        switch (day-1){
-            case 1:
+        switch (currentDay){
+            case "Monday":
                 c.add(Calendar.DAY_OF_YEAR,-1);
-            case 2:
+                break;
+            case "Tuesday":
                 c.add(Calendar.DAY_OF_YEAR,-2);
-            case 3:
+                break;
+            case "Wednesday":
                 c.add(Calendar.DAY_OF_YEAR,-3);
-            case 4:
+                break;
+            case "Thursday":
                 c.add(Calendar.DAY_OF_YEAR,-4);
-            case 5:
+                break;
+            case "Friday":
                 c.add(Calendar.DAY_OF_YEAR,-5);
-            case 6:
+                break;
+            case "Saturday":
                 c.add(Calendar.DAY_OF_YEAR,-6);
+                break;
         }
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH) + 1;
-        int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-        String out = year+"/"+month+"/"+dayOfMonth;
-        return out;
+        Date date = c.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String formattedDate = sdf.format(date);
+        return formattedDate;
     }
     public String DateMonday(){
         Calendar c = Calendar.getInstance();
         switch (day-1){
             case 0:
                 c.add(Calendar.DAY_OF_YEAR,1);
+                break;
             case 2:
                 c.add(Calendar.DAY_OF_YEAR,-1);
+                break;
             case 3:
                 c.add(Calendar.DAY_OF_YEAR,-2);
+                break;
             case 4:
                 c.add(Calendar.DAY_OF_YEAR,-3);
+                break;
             case 5:
                 c.add(Calendar.DAY_OF_YEAR,-4);
+                break;
             case 6:
                 c.add(Calendar.DAY_OF_YEAR,-5);
+                break;
         }
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -68,16 +87,22 @@ public class DateLogic {
         switch (day-1){
             case 0:
                 c.add(Calendar.DAY_OF_YEAR,2);
+                break;
             case 1:
                 c.add(Calendar.DAY_OF_YEAR,1);
+                break;
             case 3:
                 c.add(Calendar.DAY_OF_YEAR,-1);
+                break;
             case 4:
                 c.add(Calendar.DAY_OF_YEAR,-2);
+                break;
             case 5:
                 c.add(Calendar.DAY_OF_YEAR,-3);
+                break;
             case 6:
                 c.add(Calendar.DAY_OF_YEAR,-4);
+                break;
         }
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -90,16 +115,22 @@ public class DateLogic {
         switch (day-1){
             case 0:
                 c.add(Calendar.DAY_OF_YEAR,3);
+                break;
             case 1:
                 c.add(Calendar.DAY_OF_YEAR,2);
+                break;
             case 2:
                 c.add(Calendar.DAY_OF_YEAR,1);
+                break;
             case 4:
                 c.add(Calendar.DAY_OF_YEAR,-1);
+                break;
             case 5:
                 c.add(Calendar.DAY_OF_YEAR,-2);
+                break;
             case 6:
                 c.add(Calendar.DAY_OF_YEAR,-3);
+                break;
         }
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -112,16 +143,22 @@ public class DateLogic {
         switch (day-1){
             case 0:
                 c.add(Calendar.DAY_OF_YEAR,4);
+                break;
             case 1:
                 c.add(Calendar.DAY_OF_YEAR,3);
+                break;
             case 2:
                 c.add(Calendar.DAY_OF_YEAR,2);
+                break;
             case 3:
                 c.add(Calendar.DAY_OF_YEAR,1);
+                break;
             case 5:
                 c.add(Calendar.DAY_OF_YEAR,-1);
+                break;
             case 6:
                 c.add(Calendar.DAY_OF_YEAR,-2);
+                break;
         }
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -134,16 +171,22 @@ public class DateLogic {
         switch (day-1){
             case 0:
                 c.add(Calendar.DAY_OF_YEAR,5);
+                break;
             case 1:
                 c.add(Calendar.DAY_OF_YEAR,4);
+                break;
             case 2:
                 c.add(Calendar.DAY_OF_YEAR,3);
+                break;
             case 3:
                 c.add(Calendar.DAY_OF_YEAR,2);
+                break;
             case 4:
                 c.add(Calendar.DAY_OF_YEAR,1);
+                break;
             case 6:
                 c.add(Calendar.DAY_OF_YEAR,-1);
+                break;
         }
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -156,16 +199,22 @@ public class DateLogic {
         switch (day-1){
             case 0:
                 c.add(Calendar.DAY_OF_YEAR,6);
+                break;
             case 1:
                 c.add(Calendar.DAY_OF_YEAR,5);
+                break;
             case 2:
                 c.add(Calendar.DAY_OF_YEAR,4);
+                break;
             case 3:
                 c.add(Calendar.DAY_OF_YEAR,3);
+                break;
             case 4:
                 c.add(Calendar.DAY_OF_YEAR,2);
+                break;
             case 5:
                 c.add(Calendar.DAY_OF_YEAR,1);
+                break;
         }
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;

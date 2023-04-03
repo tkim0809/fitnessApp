@@ -6,20 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".addDietPage">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="176dp">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <LinearLayout
-        android:layout_width="389dp"
-        android:layout_height="424dp"
+        android:layout_width="378dp"
+        android:layout_height="477dp"
+        android:layout_above="@+id/addBtn"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="179dp"
-        android:layout_marginBottom="128dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="86dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -90,7 +84,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="97dp"
             android:orientation="horizontal">
 
             <TextView
@@ -113,10 +107,8 @@
         android:id="@+id/addBtn"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="631dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="55dp"
         android:text="Add" />
 </RelativeLayout>

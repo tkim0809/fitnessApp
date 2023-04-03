@@ -9,32 +9,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.fitnessapp.Logic.IVolleyListener;
+import com.example.fitnessapp.Logic.DateLogic;
 import com.example.fitnessapp.Logic.addDietLogic;
 import com.example.fitnessapp.Network.IServerRequest;
 import com.example.fitnessapp.Network.updateRequests;
 
 import org.json.JSONException;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class addDietPage extends AppCompatActivity implements IView {
 
-    Button add = findViewById(R.id.addBtn);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_diet_page);
-
+        Button add = findViewById(R.id.addBtn);
         EditText dateDiet = findViewById(R.id.DateTxt);
         EditText foodDiet = findViewById(R.id.FoodTxt);
         EditText caloriesDiet = findViewById(R.id.CaloriesTxt);
         Spinner dropdown = findViewById(R.id.MealDD);
+        /**
         Date currentDate = new Date();
-        //set today's date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         String formattedDate = sdf.format(currentDate);
+         **/
+        DateLogic dateLogic = new DateLogic();
+        String formattedDate = dateLogic.getCurrentDate();
         dateDiet.setText(formattedDate);
         String[] items = new String[]{"Breakfast", "Lunch", "Dinner","Snack"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
