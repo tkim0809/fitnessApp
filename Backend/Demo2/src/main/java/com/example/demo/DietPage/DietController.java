@@ -6,6 +6,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
+import com.example.demo.appuser.AppUser;
+import com.example.demo.appuser.AppUserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping()
@@ -41,6 +51,30 @@ public class DietController {
     public void deleteDiet(@PathVariable Long id) {
         dietRepository.deleteById(id);
     }
+
+    @GetMapping("/diet")
+    public List<Diet> getDietsByDate(@RequestParam("date") String date, @RequestParam("userId") Long userId) {
+        List<Diet> diets = dietRepository.findByDateAndUser_Id(date, userId);
+        int totalCalories = 0;
+        int targetDiet = 0;
+        for (Diet diet : diets) {
+            totalCalories += Integer.parseInt(diet.getCalories());
+            targetDiet = diet.getTargetDiet();
+        }
+        double achievedPercentage = 0.0;
+        if (targetDiet > 0) {
+            achievedPercentage = (double) totalCalories / targetDiet * 100;
+        }
+        for (Diet diet : diets) {
+            diet.setTotalCalories(totalCalories);
+            diet.setTargetDiet(targetDiet);
+            diet.setAchievedPercentage();
+        }
+
+        return diets;
+    }
+
+
 
     @GetMapping("/diet/test")
     public String testEndpoint() {
