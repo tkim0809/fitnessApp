@@ -27,15 +27,6 @@ public class Diet {
     @Column(name = "meal")
     private String meal;
 
-    @Column(name = "target_diet")
-    private int targetDiet;
-
-    @Column(name = "total_calories")
-    private int totalCalories;
-
-    @Column(name = "achieved_percentage")
-    private double achievedPercentage;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser user;
@@ -43,12 +34,11 @@ public class Diet {
     public Diet() {
     }
 
-    public Diet(String foodName, String calories, String date, String meal, int targetDiet) {
+    public Diet(String foodName, String calories, String date, String meal) {
         this.foodName = foodName;
         this.calories = calories;
         this.date = date;
         this.meal = meal;
-        this.targetDiet = targetDiet;
     }
 
     public Long getId() {
@@ -97,34 +87,6 @@ public class Diet {
 
     public void setUser(AppUser user) {
         this.user = user;
-    }
-
-    public int getTargetDiet() {
-        return targetDiet;
-    }
-
-    public void setTargetDiet(int targetDiet) {
-        this.targetDiet = targetDiet;
-    }
-
-    public int getTotalCalories() {
-        return totalCalories;
-    }
-
-    public void setTotalCalories(int totalCalories) {
-        this.totalCalories = totalCalories;
-    }
-
-    public double getAchievedPercentage() {
-        return achievedPercentage;
-    }
-
-    public void setAchievedPercentage() {
-        if (targetDiet != 0) {
-            achievedPercentage = Math.round((double) totalCalories / targetDiet * 10000.0) / 100.0;
-        } else {
-            achievedPercentage = 0.0;
-        }
     }
 
     @Override
