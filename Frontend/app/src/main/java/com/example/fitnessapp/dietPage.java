@@ -8,7 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class dietPage extends AppCompatActivity {
     TextView mondayInfo;
@@ -18,6 +25,7 @@ public class dietPage extends AppCompatActivity {
     TextView fridayInfo;
     TextView saturdayInfo;
     TextView sundayInfo;
+    TextView todayInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,9 +104,48 @@ public class dietPage extends AppCompatActivity {
         fridayInfo = findViewById(R.id.FridayCal);
         saturdayInfo = findViewById(R.id.SaturdayCal);
         sundayInfo = findViewById(R.id.SundayCal);
+        todayInfo = findViewById(R.id.TodayCal);
+        try {
+            getDataForDay(todayInfo,dateLogic.getCurrentDate());
+            getDataForDay(mondayInfo,dateLogic.DateMonday());
+            getDataForDay(tuesdayInfo,dateLogic.DateTuesday());
+            getDataForDay(wednesdayInfo, dateLogic.DateWednesday());
+            getDataForDay(thursdayInfo, dateLogic.DateThursday());
+            getDataForDay(fridayInfo, dateLogic.DateFriday());
+            getDataForDay(saturdayInfo, dateLogic.DateSaturday());
+            getDataForDay(sundayInfo, dateLogic.DateSunday());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
-    public void setCalories(){
+    public void getDataForDay(TextView day, String date) throws JSONException {
+        JSONObject requestInfo = new JSONObject();
+        String userId = UserInfo.getUserID();
+        requestInfo.put("date",date);
+        requestInfo.put("userId",userId);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/profile", requestInfo,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            day.setText(response.get("totalCalories").toString());
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        AppController.getInstance().getRequestQueue().add(jsonObjReq);
+
 
     }
 }

@@ -1,10 +1,10 @@
 package com.example.fitnessapp;
 
 public class UserInfo {
-    String userID = null;
+    static String userID = null;
     String userEmail = null;
 
-    public String getUserID() {
+    public static String getUserID() {
         return userID;
     }
 
