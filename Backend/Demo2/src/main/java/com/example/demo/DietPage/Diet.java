@@ -4,8 +4,6 @@ import com.example.demo.appuser.AppUser;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 public class Diet {
@@ -16,7 +14,7 @@ public class Diet {
 
     @Column(name = "name")
     @JsonProperty("name")
-    private String foodName;
+    private String name;
 
     @Column(name = "calories")
     private String calories;
@@ -34,8 +32,8 @@ public class Diet {
     public Diet() {
     }
 
-    public Diet(String foodName, String calories, String date, String meal) {
-        this.foodName = foodName;
+    public Diet(String name, String calories, String date, String meal) {
+        this.name = name;
         this.calories = calories;
         this.date = date;
         this.meal = meal;
@@ -49,12 +47,12 @@ public class Diet {
         this.id = id;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public String getName() {
+        return name;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCalories() {
@@ -93,7 +91,7 @@ public class Diet {
     public String toString() {
         return "Diet{" +
                 "id=" + id +
-                ", foodName='" + foodName + '\'' +
+                ", name='" + name + '\'' +
                 ", calories=" + calories +
                 ", date=" + date +
                 ", meal=" + meal +
