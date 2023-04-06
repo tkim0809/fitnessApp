@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
 @Service
 @AllArgsConstructor
 public class AppUserService implements UserDetailsService {
@@ -37,22 +35,6 @@ public class AppUserService implements UserDetailsService {
         return "User registered successfully!";
     }
 
-//    @Transactional
-//    public boolean enableAppUser(String email, String password) {
-//        boolean userEnabled = false;
-//        Optional<AppUser> appUserOptional = appUserRepository.findAppUserByEmailAndPassword(email, password);
-//
-//        if (appUserOptional.isPresent()) {
-//            AppUser appUser = appUserOptional.get();
-//            appUser.setEnabled(true);
-//            appUserRepository.save(appUser);
-//            userEnabled = true;
-//        }
-//
-//        return userEnabled;
-//    }
-
-
     @Transactional
     public void updateUserProfile(String email, String firstName, String lastName) {
         AppUser appUser = appUserRepository.findByEmail(email)
@@ -62,4 +44,9 @@ public class AppUserService implements UserDetailsService {
 
         appUserRepository.save(appUser);
     }
+
+//    public AppUser getUserByEmail(String email) {
+//        return appUserRepository.findByEmail(email)
+//                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+//    }
 }
