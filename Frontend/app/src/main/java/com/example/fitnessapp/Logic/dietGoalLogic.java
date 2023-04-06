@@ -18,8 +18,7 @@ public class dietGoalLogic implements IVolleyListener{
     public void setGoal(String dailyCal, String weeklyCal) throws JSONException {
         final String url ="TBD";
         JSONObject goal = new JSONObject();
-        goal.put("dailyGoal",dailyCal);
-        goal.put("weeklyGoal",weeklyCal);
+        goal.put("dietGoal",dailyCal);
         serverRequest.sendToServer(url,goal,"Put");
     }
     @Override

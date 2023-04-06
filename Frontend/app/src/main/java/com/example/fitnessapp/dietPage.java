@@ -6,11 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.fitnessapp.Logic.DateLogic;
 
 public class dietPage extends AppCompatActivity {
-
+    TextView mondayInfo;
+    TextView tuesdayInfo;
+    TextView wednesdayInfo;
+    TextView thursdayInfo;
+    TextView fridayInfo;
+    TextView saturdayInfo;
+    TextView sundayInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +89,16 @@ public class dietPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mondayInfo = findViewById(R.id.MondayCal);
+        tuesdayInfo = findViewById(R.id.TuesdayCal);
+        wednesdayInfo = findViewById(R.id.WednesdayCal);
+        thursdayInfo = findViewById(R.id.ThursdayCal);
+        fridayInfo = findViewById(R.id.FridayCal);
+        saturdayInfo = findViewById(R.id.SaturdayCal);
+        sundayInfo = findViewById(R.id.SundayCal);
+
+    }
+    public void setCalories(){
 
     }
 }
