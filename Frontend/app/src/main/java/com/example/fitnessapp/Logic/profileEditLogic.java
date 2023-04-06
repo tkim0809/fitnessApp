@@ -19,11 +19,11 @@ public class profileEditLogic implements IVolleyListener{
 
 
 
-    public void editProfile(String firstname, String lastname,String gender, String age, String weight, String email) throws JSONException {
+    public void editProfile(String username,String gender, String age, String weight, String email) throws JSONException {
         final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/profile";
         JSONObject newProfile = new JSONObject();
-        newProfile.put("firstName",firstname);
-        newProfile.put("lastName",lastname);
+        newProfile.put("userName",username);
+
         newProfile.put("gender",gender);
         newProfile.put("age",age);
         newProfile.put("weight",weight);
