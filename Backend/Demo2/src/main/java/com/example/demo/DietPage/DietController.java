@@ -48,6 +48,24 @@ public class DietController {
         return dietGoalRepository.save(dietGoal);
     }
 
+    @PutMapping("/dietgoal/{userId}")
+    public DietGoal updateDietGoal(@PathVariable Long userId, @RequestBody DietGoal updatedDietGoal) {
+        DietGoal dietGoal = dietGoalRepository.findByUser_Id(userId)
+                .orElseThrow(() -> new RuntimeException("Diet goal not found"));
+
+        // Update the diet goal fields as needed
+        int updatedDietGoalValue = updatedDietGoal.getDietGoalValue();
+        if (updatedDietGoalValue > 0) {
+            dietGoal.setDietGoalValue(updatedDietGoalValue);
+        }
+
+        // Add any other fields that you want to allow for updates
+
+        return dietGoalRepository.save(dietGoal);
+    }
+
+
+
     @GetMapping("/dietgoal/{userId}")
     public DietGoal getDietGoal(@PathVariable Long userId) {
         return dietGoalRepository.findByUser_Id(userId)
