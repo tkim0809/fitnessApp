@@ -24,6 +24,18 @@
 
 
             <Button
+                android:id="@+id/SundayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="sunday" />
+
+            <TextView
+                android:id="@+id/SundayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+            <Button
                 android:id="@+id/MondayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
@@ -95,18 +107,6 @@
 
             <TextView
                 android:id="@+id/SaturdayCal"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
-
-            <Button
-                android:id="@+id/SundayBtn"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="sunday" />
-
-            <TextView
-                android:id="@+id/SundayCal"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:text="TextView" />

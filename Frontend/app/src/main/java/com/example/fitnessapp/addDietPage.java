@@ -49,6 +49,9 @@ public class addDietPage extends AppCompatActivity implements IView {
                 String food = foodDiet.getText().toString();
                 String calories = caloriesDiet.getText().toString();
                 String meal = dropdown.getSelectedItem().toString();
+                if(date == dateLogic.getCurrentDate()){
+                    UserInfo.setUpDatedDiet(true);
+                }
                 try {
                     logic.addDiet(food,calories,date,meal);
                 } catch (JSONException e) {

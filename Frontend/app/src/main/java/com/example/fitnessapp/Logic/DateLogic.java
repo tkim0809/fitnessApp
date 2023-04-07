@@ -9,14 +9,28 @@ public class DateLogic {
     String[] days = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 
+    Boolean[] future = new Boolean[]{false,false,false,false,false,false,false};
+
 
     String currentDay;
+
+    public int getDay() {
+        return day;
+    }
+
     int day;
     public DateLogic() {
         calendar = Calendar.getInstance();
         day = calendar.get(Calendar.DAY_OF_WEEK);
         currentDay = days[day - 1];
+        for (int i = day;i<future.length;++i){
+            future[i]=true;
+        }
     }
+    public Boolean[] getFuture() {
+        return future;
+    }
+
     public String getCurrentDay() {
         return currentDay;
     }
@@ -56,8 +70,10 @@ public class DateLogic {
     }
     public String DateMonday(){
         Calendar c = Calendar.getInstance();
+
         switch (day-1){
             case 0:
+
                 c.add(Calendar.DAY_OF_YEAR,1);
                 break;
             case 2:

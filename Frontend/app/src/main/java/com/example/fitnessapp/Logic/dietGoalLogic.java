@@ -16,10 +16,10 @@ public class dietGoalLogic implements IVolleyListener{
         serverRequest.addVolleyListener(this);
     }
     public void setGoal(int dailyCal, String weeklyCal) throws JSONException {
-        final String url ="TBD";
+        final String url ="http://coms-309-004.class.las.iastate.edu:8080/dietgoal/29";
         JSONObject goal = new JSONObject();
-        goal.put("dietGoal",dailyCal);
-        serverRequest.sendToServer(url,goal,"Put");
+        goal.put("dietGoalValue",dailyCal);
+        serverRequest.sendToServer(url,goal,"Post");
     }
     @Override
     public void onSuccess() {

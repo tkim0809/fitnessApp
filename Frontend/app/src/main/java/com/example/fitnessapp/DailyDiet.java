@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class DailyDiet extends AppCompatActivity implements IView{
     LinearLayout layout;
     JSONArray requestArray = new JSONArray();
-
+    String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class DailyDiet extends AppCompatActivity implements IView{
         layout = (LinearLayout) findViewById(R.id.layoutV);
         JSONObject object = new JSONObject();
         Intent intent = getIntent();
-        String date = intent.getStringExtra("message");
+        date = intent.getStringExtra("message");
         try {
             object.put("date",date);
         } catch (JSONException e) {
@@ -40,9 +40,9 @@ public class DailyDiet extends AppCompatActivity implements IView{
         makeRequest();
     }
 
-    final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/dayCal";
+    final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/29";
     private void makeRequest(){
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,requestArray, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
