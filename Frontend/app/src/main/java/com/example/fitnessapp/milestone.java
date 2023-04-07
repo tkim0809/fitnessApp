@@ -41,7 +41,7 @@ public class milestone extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String workoutname = workoutNameEditText.getText().toString();
+                String workoutName = workoutNameEditText.getText().toString();
                 String weights = weightsEditText.getText().toString();
                 String reps = repsEditText.getText().toString();
                 String sets = setsEditText.getText().toString();
@@ -52,7 +52,7 @@ public class milestone extends AppCompatActivity {
 
                 try {
 
-                    obj.put("workoutname", workoutname);
+                    obj.put("workoutName", workoutName);
                     obj.put("weights", weights);
                     obj.put("reps", reps);
                     obj.put("sets", sets);
