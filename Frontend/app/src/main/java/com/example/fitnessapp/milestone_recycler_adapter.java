@@ -41,7 +41,6 @@ public class milestone_recycler_adapter extends RecyclerView.Adapter<milestone_r
         holder.workoutSets.setText(milestoneModels.get(position).getWorkoutSets());
         holder.workoutReps.setText(milestoneModels.get(position).getWorkoutReps());
 
-
     }
 
     @Override
