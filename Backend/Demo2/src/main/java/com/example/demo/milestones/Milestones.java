@@ -35,14 +35,14 @@ public class Milestones {
 
     }
 
-    public Milestones(String milestone_name, String milestone_sets, String milestone_reps) {
+    public Milestones(String milestone_name, String milestone_reps, String milestone_sets) {
         this.milestone_name = milestone_name;
         this.milestone_sets = milestone_sets;
         this.milestone_reps = milestone_reps;
         this.milestone_weight = "N/A";
     }
 
-    public Milestones(String milestone_name, String milestone_sets, String milestone_reps, String milestone_weight) {
+    public Milestones(String milestone_name, String milestone_weight, String milestone_reps, String milestone_sets) {
         this.milestone_name = milestone_name;
         this.milestone_sets = milestone_sets;
         this.milestone_reps = milestone_reps;
@@ -95,8 +95,8 @@ public class Milestones {
 
                 .append("id", this.getId())
                 .append("workoutName", this.getMilestoneName())
-                .append("workoutSet", this.getMilestoneSets())
-                .append("workoutReps", this.getMilestoneReps())
-                .append("workoutWeight", this.getMilestoneWeight()).toString();
+                .append("weights", this.getMilestoneWeight())
+                .append("reps", this.getMilestoneReps())
+                .append("sets", this.getMilestoneSets()).toString();
     }
 }

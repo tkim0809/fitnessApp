@@ -13,6 +13,4 @@ public interface MilestonesRepository extends JpaRepository<Milestones, Integer>
 //
 //    @Transactional
 //    void deleteById(int id);
-
-
 }
