@@ -42,7 +42,7 @@ public class userMenu extends AppCompatActivity {
         milestoneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMilestone = new Intent(userMenu.this, Milestone.class);
+                Intent toMilestone = new Intent(userMenu.this, milestone.class);
                 startActivity(toMilestone);
             }
         });
