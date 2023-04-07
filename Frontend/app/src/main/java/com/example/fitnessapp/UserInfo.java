@@ -4,6 +4,7 @@ public class UserInfo {
     static String userID = null;
     String userEmail = null;
 
+
     public static String getDate() {
         return date;
     }
@@ -25,6 +26,18 @@ public class UserInfo {
     static Boolean upDatedDiet = false;
 
     public static String getUserID() {
+
+    public static Boolean getHasProfile() {
+        return hasProfile;
+    }
+
+    public static void setHasProfile(Boolean hasProfile) {
+        UserInfo.hasProfile = hasProfile;
+    }
+
+    static Boolean hasProfile = false;
+
+    public String getUserID() {
         return userID;
     }
 

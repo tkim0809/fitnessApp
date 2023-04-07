@@ -2,9 +2,9 @@ stages:
   - maventry
   - maventest
   - mavenDeploy
-  - androidtry
   - androidbuild
   - androidtest
+
 
 maven-build:   #this is a JOB
   stage: maventry
@@ -60,4 +60,6 @@ android-test:
   script:
     - cd Frontend
     - ./gradlew test
+
+
 
