@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessapp.Logic.profileEditLogic;
@@ -19,8 +18,8 @@ import org.json.JSONException;
 public class editProfilePage extends AppCompatActivity implements IView{
     Button back;
     Button save;
-    EditText firstname;
-    EditText lastname;
+    EditText username;
+
     EditText gender;
     EditText age;
     EditText weight;
@@ -37,8 +36,8 @@ public class editProfilePage extends AppCompatActivity implements IView{
         age = findViewById(R.id.edAgeTxt);
         weight = findViewById(R.id.edWeightTxt);
         email = findViewById(R.id.edEmailTxt);
-        firstname = findViewById(R.id.edFNTxt);
-        lastname = findViewById(R.id.edLNTxt);
+        username = findViewById(R.id.edUNTxt);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,14 +50,15 @@ public class editProfilePage extends AppCompatActivity implements IView{
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserInfo.setHasProfile(true);
                 String inputGender = gender.getText().toString();
                 String inputAge = age.getText().toString();
                 String inputWeight = weight.getText().toString();
                 String inputEmail = email.getText().toString();
-                String inputFirstname = firstname.getText().toString();
-                String inputLastName = lastname.getText().toString();
+                String inputUsername = username.getText().toString();
+
                 try {
-                    logic.editProfile(inputFirstname,inputLastName,inputGender,inputAge,inputWeight,inputEmail);
+                    logic.editProfile(inputUsername,inputGender,inputAge,inputWeight,inputEmail);
                     logic.onSuccess();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
