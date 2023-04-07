@@ -37,7 +37,7 @@ public class editProfilePage extends AppCompatActivity implements IView{
         weight = findViewById(R.id.edWeightTxt);
         email = findViewById(R.id.edEmailTxt);
         username = findViewById(R.id.edUNTxt);
-
+//123
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
