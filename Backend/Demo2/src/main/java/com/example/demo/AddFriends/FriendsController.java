@@ -81,6 +81,7 @@ public class FriendsController {
             friendsRepository.save(newFriendship);
             return ResponseEntity.ok().build();
         }
+
     }
 
 
