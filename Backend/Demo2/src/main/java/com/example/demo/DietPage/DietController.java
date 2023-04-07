@@ -120,8 +120,8 @@ public class DietController {
     }
 
 
-    @GetMapping("/diet/test")
-    public String testEndpoint() {
-        return "Test successful";
-    }
+//    @GetMapping("/diet/test")
+//    public String testEndpoint() {
+//        return "Test successful";
+//    }
 }
