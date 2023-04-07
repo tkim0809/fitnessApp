@@ -56,9 +56,6 @@ public class findFriendActivity extends AppCompatActivity {
 
         findButton.setOnClickListener(new View.OnClickListener() {
 
-
-
-
             @Override
             public void onClick(View view) {
 
