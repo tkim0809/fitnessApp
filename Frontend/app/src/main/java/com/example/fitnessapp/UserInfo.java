@@ -2,8 +2,26 @@ package com.example.fitnessapp;
 
 public class UserInfo {
     static String userID = null;
-    String userEmail = null;
+    static String userEmail = null;
+    static String date = null;
+    static Boolean upDatedDiet = false;
+    static Boolean hasProfile = false;
 
+    public static String getUserID() {
+        return userID;
+    }
+
+    public static void setUserID(String userID) {
+        UserInfo.userID = userID;
+    }
+
+    public static String getUserEmail() {
+        return userEmail;
+    }
+
+    public static void setUserEmail(String userEmail) {
+        UserInfo.userEmail = userEmail;
+    }
 
     public static String getDate() {
         return date;
@@ -13,19 +31,13 @@ public class UserInfo {
         UserInfo.date = date;
     }
 
-    static String date = null;
-
     public static Boolean getUpDatedDiet() {
         return upDatedDiet;
     }
 
-    public static void setUpDatedDiet(Boolean b) {
-        upDatedDiet = b;
+    public static void setUpDatedDiet(Boolean upDatedDiet) {
+        UserInfo.upDatedDiet = upDatedDiet;
     }
-
-    static Boolean upDatedDiet = false;
-
-    public static String getUserID() {
 
     public static Boolean getHasProfile() {
         return hasProfile;
@@ -34,23 +46,4 @@ public class UserInfo {
     public static void setHasProfile(Boolean hasProfile) {
         UserInfo.hasProfile = hasProfile;
     }
-
-    static Boolean hasProfile = false;
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
 }
