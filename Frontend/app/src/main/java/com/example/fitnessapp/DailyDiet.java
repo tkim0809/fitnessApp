@@ -45,7 +45,7 @@ public class DailyDiet extends AppCompatActivity implements IView{
         makeRequest();
     }
 
-    final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/29";
+    final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/29/2023-04-06";
     private void makeRequest(){
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override
