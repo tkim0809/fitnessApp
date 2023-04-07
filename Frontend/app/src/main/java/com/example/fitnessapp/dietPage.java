@@ -223,14 +223,14 @@ public class dietPage extends AppCompatActivity {
         requestInfo.put("date",date);
         requestInfo.put("userId",userId);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date="+date+"&userId=29", requestInfo,
+                "http://coms-309-004.class.las.iastate.edu:8080/diet?date=2023/4/6&userId=29", requestInfo,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
 
                         try {
-                            day.setText(response.get("totalCalories").toString()+"Cal");
+                            day.setText(response.get("totalCalories").toString()+"Cal"+"    "+response.getString("achievedPercentage").toString()+" has taken");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
