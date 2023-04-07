@@ -9,10 +9,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface MilestonesRepository extends JpaRepository<Milestones, Integer> {
-//    Milestones findById(int id);
-//
-//    @Transactional
-//    void deleteById(int id);
-
 
 }
