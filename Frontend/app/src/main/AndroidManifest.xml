@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".leaderboardAdd"
+            android:exported="false" />
+        <activity
+            android:name=".leaderboard"
+            android:exported="false" />
+        <activity
             android:name=".friendList"
             android:exported="false" />
         <activity

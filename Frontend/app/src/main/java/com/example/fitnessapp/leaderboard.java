@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,19 +20,21 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class friendList extends AppCompatActivity {
+public class leaderboard extends AppCompatActivity {
 
-    ArrayList<friendModel> friendModels = new ArrayList<>();
-    RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
+    ArrayList<leaderboardModel> leaderboardModels = new ArrayList<>();
+    RecyclerView recyclerView = findViewById(R.id.leaderboard_recyclerview);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_list);
+        setContentView(R.layout.activity_leaderboard);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/friend";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/AllMilestones";
+        Button addpushupsButton = findViewById(R.id.addpushupsButton);
 
-        RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
             //response.getJSONObject(0).get("").toString();
@@ -40,7 +45,8 @@ public class friendList extends AppCompatActivity {
 
                     for(int i = 0; i < response.length(); i++) {
 
-                        friendModels.add(new friendModel(response.getJSONObject(i).get("email").toString(), response.getJSONObject(i).get("userName").toString()));
+                        leaderboardModels.add(new leaderboardModel(response.getJSONObject(i).get("username").toString(), response.getJSONObject(i).get("pushups").toString()));
+
 
                     }
 
@@ -58,12 +64,21 @@ public class friendList extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(jsonArr);
 
-        friendListRecyclerAdapter adapter = new friendListRecyclerAdapter(this, friendModels);
+        addpushupsButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(leaderboard.this, leaderboardAdd.class);
+                startActivity(i);
+            }
+        });
+
+
+        leaderboard_recycler_adapter adapter = new leaderboard_recycler_adapter(this, leaderboardModels);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
-
-
 }
