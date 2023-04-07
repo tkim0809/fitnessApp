@@ -3,7 +3,12 @@ package com.example.fitnessapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +67,13 @@ public class DailyDiet extends AppCompatActivity implements IView{
                                 heightInPixels
                         );
                         textView.setLayoutParams(layoutParams);
+                        ShapeDrawable shapeDrawable = new ShapeDrawable();
+                        shapeDrawable.setShape(new RectShape());
+                        shapeDrawable.getPaint().setColor(Color.BLUE);
+                        shapeDrawable.getPaint().setStyle(Paint.Style.STROKE);
+                        shapeDrawable.getPaint().setStrokeWidth(5);
+                        textView.setBackground(shapeDrawable);
+                        textView.setGravity(Gravity.CENTER);
                         layout.addView(textView);
 
                     }
