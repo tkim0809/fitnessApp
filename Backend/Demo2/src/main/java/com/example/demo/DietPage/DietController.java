@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 import com.example.demo.DietPage.DailyTarget;
 import com.example.demo.DietPage.DietGoalRepository;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -44,6 +48,24 @@ public class DietController {
         return dietGoalRepository.save(dietGoal);
     }
 
+    @PutMapping("/dietgoal/{userId}")
+    public DietGoal updateDietGoal(@PathVariable Long userId, @RequestBody DietGoal updatedDietGoal) {
+        DietGoal dietGoal = dietGoalRepository.findByUser_Id(userId)
+                .orElseThrow(() -> new RuntimeException("Diet goal not found"));
+
+        // Update the diet goal fields as needed
+        int updatedDietGoalValue = updatedDietGoal.getDietGoalValue();
+        if (updatedDietGoalValue > 0) {
+            dietGoal.setDietGoalValue(updatedDietGoalValue);
+        }
+
+        // Add any other fields that you want to allow for updates
+
+        return dietGoalRepository.save(dietGoal);
+    }
+
+
+
     @GetMapping("/dietgoal/{userId}")
     public DietGoal getDietGoal(@PathVariable Long userId) {
         return dietGoalRepository.findByUser_Id(userId)
@@ -51,10 +73,25 @@ public class DietController {
     }
 
 
-    @GetMapping("/diet/{id}")
-    public Diet getDiet(@PathVariable Long id) {
-        return dietRepository.findById(id).orElseThrow(() -> new RuntimeException("Diet not found"));
+    @GetMapping("/diet/{userId}/{date}")
+    public List<Map<String, Object>> getDietByUserAndDate(@PathVariable Long userId, @PathVariable String date) {
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Diet> diets = dietRepository.findByUserAndDate(user, date);
+
+        List<Map<String, Object>> response = new ArrayList<>();
+        for (Diet diet : diets) {
+            Map<String, Object> dietData = new HashMap<>();
+            dietData.put("name", diet.getName());
+            dietData.put("calories", diet.getCalories());
+            dietData.put("meal", diet.getMeal());
+            response.add(dietData);
+        }
+
+        return response;
     }
+
 
     @PostMapping("/diet/{userId}")
     public Diet addDiet(@PathVariable Long userId, @RequestBody Diet diet) {
