@@ -70,10 +70,10 @@
             android:text="chat" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/dietBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="diet" />
     </LinearLayout>
 
     <Button

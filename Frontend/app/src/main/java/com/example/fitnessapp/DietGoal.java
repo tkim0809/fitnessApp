@@ -51,7 +51,7 @@ public class DietGoal extends AppCompatActivity implements IView{
         setBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String dayCal = inputCal.getText().toString();
+                int dayCal = Integer.parseInt(inputCal.getText().toString());
                 String weekCal = String.valueOf(weeklyCalNum);
                 try {
                     logic.setGoal(dayCal,weekCal);

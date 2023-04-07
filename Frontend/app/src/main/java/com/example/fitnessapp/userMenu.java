@@ -42,7 +42,7 @@ public class userMenu extends AppCompatActivity {
         milestoneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMilestone = new Intent(userMenu.this, Milestone.class);
+                Intent toMilestone = new Intent(userMenu.this, milestonePage.class);
                 startActivity(toMilestone);
             }
         });
@@ -60,6 +60,14 @@ public class userMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent toProfile = new Intent(userMenu.this, profilePage.class);
                 startActivity(toProfile);
+            }
+        });
+        Button dietBtn = findViewById(R.id.dietBtn);
+        dietBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toDiet = new Intent(userMenu.this, dietPage.class);
+                startActivity(toDiet);
             }
         });
     }

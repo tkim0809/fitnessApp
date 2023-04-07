@@ -117,6 +117,22 @@ public class dietPage extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+        Button addMealBtn = findViewById(R.id.addMealBtn);
+        Button setGoalBtn = findViewById(R.id.setGoalBtn);
+        addMealBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toAddDiet= new Intent(dietPage.this, addDietPage.class);
+                startActivity(toAddDiet);
+            }
+        });
+        setGoalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toDietGoal = new Intent(dietPage.this,DietGoal.class);
+                startActivity(toDietGoal);
+            }
+        });
 
 
     }
@@ -126,13 +142,13 @@ public class dietPage extends AppCompatActivity {
         requestInfo.put("date",date);
         requestInfo.put("userId",userId);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/profile", requestInfo,
+                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/totalCal", requestInfo,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            day.setText(response.get("totalCalories").toString());
+                            day.setText(response.get("totalCalories").toString()+"Cal");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
