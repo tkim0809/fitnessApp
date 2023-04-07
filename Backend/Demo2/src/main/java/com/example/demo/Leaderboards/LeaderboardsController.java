@@ -1,6 +1,6 @@
 package com.example.demo.Leaderboards;
 
-import com.example.demo.StatPage.Stats;
+import com.example.demo.Leaderboards.Leaderboards;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class LeaderboardsController {
     public List<Leaderboards> getAllUsers() {
         logger.info("Entered into Controller Layer");
         List<Leaderboards> results = leaderboardsRepository.findAll();
-        logger.info("Number of Workouts Fetched:" + results.size());
+        logger.info("Number of People Fetched:" + results.size());
         return results;
     }
 
