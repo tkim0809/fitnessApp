@@ -48,7 +48,7 @@ public class profilePage extends AppCompatActivity {
     private void makeJsonObjReq() {
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/profile", null,
+                "http://coms-309-004.class.las.iastate.edu:8080/profile/29", null,
                 new Response.Listener<JSONObject>() {
 
                     @Override

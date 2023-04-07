@@ -4,6 +4,16 @@ public class UserInfo {
     String userID = null;
     String userEmail = null;
 
+    public static Boolean getHasProfile() {
+        return hasProfile;
+    }
+
+    public static void setHasProfile(Boolean hasProfile) {
+        UserInfo.hasProfile = hasProfile;
+    }
+
+    static Boolean hasProfile = false;
+
     public String getUserID() {
         return userID;
     }

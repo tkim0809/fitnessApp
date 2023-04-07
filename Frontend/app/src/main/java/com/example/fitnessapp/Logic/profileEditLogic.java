@@ -2,6 +2,7 @@ package com.example.fitnessapp.Logic;
 
 import com.example.fitnessapp.IView;
 import com.example.fitnessapp.Network.IServerRequest;
+import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +21,14 @@ public class profileEditLogic implements IVolleyListener{
 
 
     public void editProfile(String username,String gender, String age, String weight, String email) throws JSONException {
-        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/profile";
+        final String url = "http://coms-309-004.class.las.iastate.edu:8080/profile/29";
+        String meth;
+        if (UserInfo.getHasProfile()){
+            meth = "Put";
+        }
+        else {
+            meth = "Post";
+        }
         JSONObject newProfile = new JSONObject();
         newProfile.put("userName",username);
 
@@ -28,7 +36,7 @@ public class profileEditLogic implements IVolleyListener{
         newProfile.put("age",age);
         newProfile.put("weight",weight);
         newProfile.put("email",email);
-        serverRequest.sendToServer(url,newProfile,"Put");
+        serverRequest.sendToServer(url,newProfile,meth);
 
 
     }
