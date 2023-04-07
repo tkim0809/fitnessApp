@@ -50,7 +50,7 @@ public class editProfilePage extends AppCompatActivity implements IView{
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //UserInfo.setHasProfile(true);
+                UserInfo.setHasProfile(true);
                 String inputGender = gender.getText().toString();
                 String inputAge = age.getText().toString();
                 String inputWeight = weight.getText().toString();
