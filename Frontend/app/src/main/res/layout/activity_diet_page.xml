@@ -152,7 +152,7 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/white"
+            app:backgroundTint="@color/white"
             android:text="today"
             android:textColor="@color/black"/>
 
