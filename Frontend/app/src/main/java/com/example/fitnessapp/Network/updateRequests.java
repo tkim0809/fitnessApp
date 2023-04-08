@@ -34,6 +34,7 @@ public class updateRequests implements IServerRequest {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        l.onSuccess();
                         try {
                             String status = response.getString("message");
                             if (status.equals("success")) {
@@ -51,6 +52,7 @@ public class updateRequests implements IServerRequest {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        l.onError();
                         //VolleyLog.d("sent user data error",error);
                         // Handle the error
                         error.printStackTrace();

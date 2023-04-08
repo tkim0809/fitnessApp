@@ -47,7 +47,7 @@ public class profileEditLogic implements IVolleyListener{
     }
 
     @Override
-    public void onError() {
+    public void onError() { i.showText("error");
 
     }
 }

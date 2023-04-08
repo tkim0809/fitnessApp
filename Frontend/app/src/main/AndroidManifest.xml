@@ -16,6 +16,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+
+            android:name=".diet_function.DietGoal"
+            android:exported="true" />
+        <activity
+            android:name=".diet_function.DailyDiet"
+            android:exported="true" />
+        <activity
+            android:name=".diet_function.addDietPage"
+            android:exported="true" />
+        <activity
+            android:name=".diet_function.dietPage"
+            android:exported="true" />
+        <activity
             android:name=".leaderboardAdd"
             android:exported="false" />
         <activity
@@ -30,6 +43,7 @@
         <activity
             android:name=".milestoneProgress"
             android:exported="false" />
+
         <activity
             android:name=".WelcomeMenu"
             android:exported="false" />
