@@ -62,7 +62,6 @@ public class dietPage extends AppCompatActivity {
             UserInfo.setDate(dateLogic.getCurrentDate());
             UserInfo.setHasUpDatedDiet(false);
         }
-        TodayBtn.setBackgroundColor(Color.WHITE);
         TodayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,7 +132,7 @@ public class dietPage extends AppCompatActivity {
             if (UserInfo.getHasUpDatedDiet()) {
                 getDataForDay(todayInfo, dateLogic.getCurrentDate());
             }else {
-                todayInfo.setText("0Cal");
+                todayInfo.setText("    0Cal");
             }
 
         } catch (JSONException e) {
@@ -143,7 +142,7 @@ public class dietPage extends AppCompatActivity {
 
         try {
             if(isFuture[1]){
-                mondayInfo.setText("");
+                mondayInfo.setText("Add meals later");
             }else {
                 getDataForDay(mondayInfo,dateLogic.DateMonday());
             }
@@ -152,7 +151,7 @@ public class dietPage extends AppCompatActivity {
         }
 
         if(isFuture[2]){
-            tuesdayInfo.setText("");
+            tuesdayInfo.setText("Add meals later");
         }else {
             try {
                 getDataForDay(tuesdayInfo,dateLogic.DateTuesday());
@@ -164,7 +163,7 @@ public class dietPage extends AppCompatActivity {
 
         // Check if Wednesday is in the future
         if(isFuture[3]) {
-            wednesdayInfo.setText("");
+            wednesdayInfo.setText("Add meals later");
         } else {
             try {
                 getDataForDay(wednesdayInfo, dateLogic.DateWednesday());
@@ -175,7 +174,7 @@ public class dietPage extends AppCompatActivity {
 
 // Check if Thursday is in the future
         if(isFuture[4]) {
-            thursdayInfo.setText("");
+            thursdayInfo.setText("Add meals later");
         } else {
             try {
                 getDataForDay(thursdayInfo, dateLogic.DateThursday());
@@ -186,7 +185,7 @@ public class dietPage extends AppCompatActivity {
 
 // Check if Friday is in the future
         if(isFuture[5]) {
-            fridayInfo.setText("");
+            fridayInfo.setText("Add meals later");
         } else {
             try {
                 getDataForDay(fridayInfo, dateLogic.DateFriday());
@@ -197,7 +196,7 @@ public class dietPage extends AppCompatActivity {
 
 // Check if Saturday is in the future
         if(isFuture[6]) {
-            saturdayInfo.setText("");
+            saturdayInfo.setText("Add meals later");
         } else {
             try {
                 getDataForDay(saturdayInfo, dateLogic.DateSaturday());
@@ -208,7 +207,7 @@ public class dietPage extends AppCompatActivity {
 
 // Check if Sunday is in the future
         if(isFuture[0]) {
-            sundayInfo.setText("");
+            sundayInfo.setText("Add meals later");
         } else {
             try {
                 getDataForDay(sundayInfo, dateLogic.DateSunday());
@@ -238,6 +237,7 @@ public class dietPage extends AppCompatActivity {
         layoutLogic.defBtnColor(LL);
         layoutLogic.setAllTxtColor(rootView, Color.WHITE);
         layoutLogic.defBtnColor(rootView);
+        TodayBtn.setBackgroundColor(Color.WHITE);
 
 
     }
