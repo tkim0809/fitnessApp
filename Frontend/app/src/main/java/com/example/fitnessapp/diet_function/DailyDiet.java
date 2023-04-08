@@ -30,6 +30,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DailyDiet extends AppCompatActivity implements IView {
     ScrollView layout;
     JSONArray requestArray = new JSONArray();
@@ -61,9 +65,24 @@ public class DailyDiet extends AppCompatActivity implements IView {
         ViewGroup rootView = findViewById(R.id.dailyDietLO);
         layoutLogic.defBtnColor(rootView);
         makeRequest();
+
+
+
+// Create a SimpleDateFormat instance to parse the original date string
+        SimpleDateFormat originalDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date unformatedDate = null;
+        try {
+            unformatedDate = originalDateFormat.parse(date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+// Create another SimpleDateFormat instance to format the date into the desired string format
+        SimpleDateFormat targetDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        date = targetDateFormat.format(unformatedDate);
     }
 
-    final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/29/2023-04-06";
+    final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/29/"+date;
     private void makeRequest(){
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override

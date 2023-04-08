@@ -154,13 +154,14 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:text="today"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/TodayCal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="TextView" />
     </LinearLayout>
 

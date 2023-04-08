@@ -60,7 +60,7 @@ public class dietPage extends AppCompatActivity {
         DateLogic dateLogic = new DateLogic();
         if (dateLogic.getCurrentDate()!= UserInfo.getDate()){
             UserInfo.setDate(dateLogic.getCurrentDate());
-            UserInfo.setUpDatedDiet(false);
+            UserInfo.setHasUpDatedDiet(false);
         }
         TodayBtn.setBackgroundColor(Color.WHITE);
         TodayBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +130,7 @@ public class dietPage extends AppCompatActivity {
         todayInfo = findViewById(R.id.TodayCal);
         Boolean[] isFuture = dateLogic.getFuture();
         try {
-            if (UserInfo.getUpDatedDiet()) {
+            if (UserInfo.getHasUpDatedDiet()) {
                 getDataForDay(todayInfo, dateLogic.getCurrentDate());
             }else {
                 todayInfo.setText("0Cal");
@@ -247,14 +247,14 @@ public class dietPage extends AppCompatActivity {
         requestInfo.put("date",date);
         requestInfo.put("userId",userId);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "http://coms-309-004.class.las.iastate.edu:8080/diet?date=2023/4/6&userId=29", requestInfo,
+                "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID(), requestInfo,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
 
                         try {
-                            day.setText(response.get("totalCalories").toString()+"Cal"+"    "+response.getString("achievedPercentage").toString()+" has taken");
+                            day.setText(response.get("totalCalories").toString()+"Cal"+"    "+response.getString("achievedPercentage").toString()+"% of the diet plan");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }

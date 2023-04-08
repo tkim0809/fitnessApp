@@ -4,8 +4,16 @@ public class UserInfo {
     static String userID = null;
     static String userEmail = null;
     static String date = null;
-    static Boolean upDatedDiet = false;
+    static Boolean hasUpDatedDiet = false;
     static Boolean hasProfile = false;
+    static Boolean hasSetDietGoal = false;
+    public static Boolean getHasSetDietGoal() {
+        return hasSetDietGoal;
+    }
+
+    public static void setHasSetDietGoal(Boolean hasSetDietGoal) {
+        UserInfo.hasSetDietGoal = hasSetDietGoal;
+    }
 
     public static String getUserID() {
         return userID;
@@ -31,12 +39,12 @@ public class UserInfo {
         UserInfo.date = date;
     }
 
-    public static Boolean getUpDatedDiet() {
-        return upDatedDiet;
+    public static Boolean getHasUpDatedDiet() {
+        return hasUpDatedDiet;
     }
 
-    public static void setUpDatedDiet(Boolean upDatedDiet) {
-        UserInfo.upDatedDiet = upDatedDiet;
+    public static void setHasUpDatedDiet(Boolean hasUpDatedDiet) {
+        UserInfo.hasUpDatedDiet = hasUpDatedDiet;
     }
 
     public static Boolean getHasProfile() {

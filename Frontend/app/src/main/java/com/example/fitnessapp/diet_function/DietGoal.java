@@ -20,6 +20,7 @@ import com.example.fitnessapp.Logic.layoutLogic;
 import com.example.fitnessapp.Network.IServerRequest;
 import com.example.fitnessapp.Network.updateRequests;
 import com.example.fitnessapp.R;
+import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONException;
 
@@ -66,7 +67,7 @@ public class DietGoal extends AppCompatActivity implements IView {
 
                     throw new RuntimeException(e);
                 }
-
+                UserInfo.setHasSetDietGoal(true);
                 Intent back = new Intent(DietGoal.this,dietPage.class);
                 startActivity(back);
 
