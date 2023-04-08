@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.fitnessapp.diet_function.dietPage;
+
 public class userMenu extends AppCompatActivity {
 
     @Override

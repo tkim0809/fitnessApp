@@ -4,17 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DailyDiet">
+    android:background="@drawable/barb"
+    android:id="@+id/dailyDietLO"
+    tools:context=".diet_function.DailyDiet">
 
-    <LinearLayout
+
+    <ScrollView
         android:id="@+id/layoutV"
-        android:layout_width="323dp"
-        android:layout_height="488dp"
-        android:layout_marginTop="121dp"
-        android:layout_marginBottom="57dp"
-        android:orientation="vertical"
+        android:layout_width="319dp"
+        android:layout_height="618dp"
+        android:layout_marginTop="92dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

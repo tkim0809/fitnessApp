@@ -1,4 +1,4 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.diet_function;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,11 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,20 +21,33 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.fitnessapp.AppController;
+import com.example.fitnessapp.IView;
+import com.example.fitnessapp.Logic.layoutLogic;
+import com.example.fitnessapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DailyDiet extends AppCompatActivity implements IView{
-    LinearLayout layout;
+public class DailyDiet extends AppCompatActivity implements IView {
+    ScrollView layout;
     JSONArray requestArray = new JSONArray();
     String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_diet);
-        layout = (LinearLayout) findViewById(R.id.layoutV);
+        Button back = findViewById(R.id.backBtn);
+        back.setText("\u2190back");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(DailyDiet.this,dietPage.class);
+                startActivity(back);
+            }
+        });
+        layout = (ScrollView) findViewById(R.id.layoutV);
         JSONObject object = new JSONObject();
         Intent intent = getIntent();
         date = intent.getStringExtra("message");
@@ -41,7 +58,8 @@ public class DailyDiet extends AppCompatActivity implements IView{
         }
         requestArray.put(object);
 
-
+        ViewGroup rootView = findViewById(R.id.dailyDietLO);
+        layoutLogic.defBtnColor(rootView);
         makeRequest();
     }
 
@@ -69,11 +87,12 @@ public class DailyDiet extends AppCompatActivity implements IView{
                         textView.setLayoutParams(layoutParams);
                         ShapeDrawable shapeDrawable = new ShapeDrawable();
                         shapeDrawable.setShape(new RectShape());
-                        shapeDrawable.getPaint().setColor(Color.BLUE);
+                        shapeDrawable.getPaint().setColor(Color.BLACK);
                         shapeDrawable.getPaint().setStyle(Paint.Style.STROKE);
                         shapeDrawable.getPaint().setStrokeWidth(5);
                         textView.setBackground(shapeDrawable);
                         textView.setGravity(Gravity.CENTER);
+                        textView.setTextSize(16);
                         layout.addView(textView);
 
                     }
@@ -94,6 +113,6 @@ public class DailyDiet extends AppCompatActivity implements IView{
 
     @Override
     public void showText(String s) {
-
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 }

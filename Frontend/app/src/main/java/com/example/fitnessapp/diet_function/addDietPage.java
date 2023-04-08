@@ -1,18 +1,25 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.diet_function;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.fitnessapp.IView;
 import com.example.fitnessapp.Logic.DateLogic;
 import com.example.fitnessapp.Logic.addDietLogic;
+import com.example.fitnessapp.Logic.layoutLogic;
 import com.example.fitnessapp.Network.IServerRequest;
 import com.example.fitnessapp.Network.updateRequests;
+import com.example.fitnessapp.R;
+import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONException;
 
@@ -54,15 +61,22 @@ public class addDietPage extends AppCompatActivity implements IView {
                 }
                 try {
                     logic.addDiet(food,calories,date,meal);
+
                 } catch (JSONException e) {
+
                     throw new RuntimeException(e);
                 }
+                Intent back = new Intent(addDietPage.this,dietPage.class);
+                startActivity(back);
             }
         });
+        ViewGroup rootView = findViewById(R.id.addDietLO);
+        layoutLogic.defBtnColor(rootView);
+
     }
 
     @Override
     public void showText(String s) {
-
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 }

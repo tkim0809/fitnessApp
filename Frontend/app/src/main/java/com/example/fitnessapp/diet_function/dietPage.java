@@ -1,18 +1,26 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.diet_function;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.fitnessapp.AppController;
 import com.example.fitnessapp.Logic.DateLogic;
+import com.example.fitnessapp.Logic.layoutLogic;
+import com.example.fitnessapp.R;
+import com.example.fitnessapp.UserInfo;
+import com.example.fitnessapp.userMenu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,12 +47,22 @@ public class dietPage extends AppCompatActivity {
         Button FridayBtn = findViewById(R.id.FridayBtn);
         Button SaturdayBtn = findViewById(R.id.SaturdayBtn);
         Button SundayBtn = findViewById(R.id.SundayBtn);
-        Intent intent = new Intent(this,DailyDiet.class);
+        Button back = findViewById(R.id.BackBtn);
+        back.setText("\u2190back");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(dietPage.this, userMenu.class);
+                startActivity(back);
+            }
+        });
+        Intent intent = new Intent(this, DailyDiet.class);
         DateLogic dateLogic = new DateLogic();
-        if (dateLogic.getCurrentDate()!=UserInfo.getDate()){
+        if (dateLogic.getCurrentDate()!= UserInfo.getDate()){
             UserInfo.setDate(dateLogic.getCurrentDate());
             UserInfo.setUpDatedDiet(false);
         }
+        TodayBtn.setBackgroundColor(Color.WHITE);
         TodayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,10 +228,16 @@ public class dietPage extends AppCompatActivity {
         setGoalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toDietGoal = new Intent(dietPage.this,DietGoal.class);
+                Intent toDietGoal = new Intent(dietPage.this, DietGoal.class);
                 startActivity(toDietGoal);
             }
         });
+        ViewGroup rootView = findViewById(R.id.dietOL);
+        LinearLayout LL = findViewById(R.id.LinearLayout);
+        layoutLogic.setAllTxtColor(LL,Color.WHITE);
+        layoutLogic.defBtnColor(LL);
+        layoutLogic.setAllTxtColor(rootView, Color.WHITE);
+        layoutLogic.defBtnColor(rootView);
 
 
     }
