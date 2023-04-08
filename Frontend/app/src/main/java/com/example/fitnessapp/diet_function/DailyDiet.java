@@ -68,14 +68,15 @@ public class DailyDiet extends AppCompatActivity implements IView {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        //final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/"+ UserInfo.getUserID() +"/"+date;
+        final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/"+ UserInfo.getUserID() +"/"+date;
         /**
          * postman test url
          */
-        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/"+ UserInfo.getUserID() +"/"+date;
+        //final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/"+ UserInfo.getUserID() +"/"+date;
 
         ViewGroup rootView = findViewById(R.id.dailyDietLO);
         layoutLogic.defBtnColor(rootView);
+        System.out.println("request for"+date);
         makeRequest(url);
 
 
@@ -88,7 +89,7 @@ public class DailyDiet extends AppCompatActivity implements IView {
 
 
     private void makeRequest(String url){
-        System.out.println(url);
+
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -145,7 +146,7 @@ public class DailyDiet extends AppCompatActivity implements IView {
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = inputFormat.parse(inputDate);
         String outputDate = outputFormat.format(date);
-        System.out.println(outputDate);
+
         return outputDate;
     }
 }

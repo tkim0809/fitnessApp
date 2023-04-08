@@ -236,11 +236,11 @@ public class dietPage extends AppCompatActivity {
 
     }
     public void getDataForDay(TextView day, String date) throws JSONException {
-        //final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
+        final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
         /**
          * postman test url
          */
-        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date="+date+"&userId="+UserInfo.getUserID();
+        //final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date="+date+"&userId="+UserInfo.getUserID();
         JSONObject requestInfo = new JSONObject();
         String userId = UserInfo.getUserID();
         requestInfo.put("date",date);
@@ -254,6 +254,7 @@ public class dietPage extends AppCompatActivity {
 
                         try {
                             day.setText(response.get("totalCalories").toString()+"Cal"+"    "+response.getString("achievedPercentage").toString()+"% of the diet plan");
+                            System.out.println("request for"+date+"succeed");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
