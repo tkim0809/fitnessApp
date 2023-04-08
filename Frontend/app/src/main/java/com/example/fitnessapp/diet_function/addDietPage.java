@@ -35,11 +35,7 @@ public class addDietPage extends AppCompatActivity implements IView {
         EditText foodDiet = findViewById(R.id.FoodTxt);
         EditText caloriesDiet = findViewById(R.id.CaloriesTxt);
         Spinner dropdown = findViewById(R.id.MealDD);
-        /**
-        Date currentDate = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String formattedDate = sdf.format(currentDate);
-         **/
+
         DateLogic dateLogic = new DateLogic();
         String formattedDate = dateLogic.getCurrentDate();
         dateDiet.setText(formattedDate);
@@ -56,9 +52,9 @@ public class addDietPage extends AppCompatActivity implements IView {
                 String food = foodDiet.getText().toString();
                 String calories = caloriesDiet.getText().toString();
                 String meal = dropdown.getSelectedItem().toString();
-                if(date == dateLogic.getCurrentDate()){
-                    UserInfo.setHasUpDatedDiet(true);
-                }
+
+                UserInfo.setHasUpDatedDiet(true);
+
                 try {
                     logic.addDiet(food,calories,date,meal);
 

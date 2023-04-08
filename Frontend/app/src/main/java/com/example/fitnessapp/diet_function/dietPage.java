@@ -58,10 +58,6 @@ public class dietPage extends AppCompatActivity {
         });
         Intent intent = new Intent(this, DailyDiet.class);
         DateLogic dateLogic = new DateLogic();
-        if (dateLogic.getCurrentDate()!= UserInfo.getDate()){
-            UserInfo.setDate(dateLogic.getCurrentDate());
-            UserInfo.setHasUpDatedDiet(false);
-        }
         TodayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,17 +124,15 @@ public class dietPage extends AppCompatActivity {
         sundayInfo = findViewById(R.id.SundayCal);
         todayInfo = findViewById(R.id.TodayCal);
         Boolean[] isFuture = dateLogic.getFuture();
-        try {
-            if (UserInfo.getHasUpDatedDiet()) {
+        if (UserInfo.getHasUpDatedDiet()) {
+            try {
                 getDataForDay(todayInfo, dateLogic.getCurrentDate());
-            }else {
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
                 todayInfo.setText("    0Cal");
             }
-
-        } catch (JSONException e) {
-
-            throw new RuntimeException(e);
-        }
 
         try {
             if(isFuture[1]){
@@ -242,12 +236,17 @@ public class dietPage extends AppCompatActivity {
 
     }
     public void getDataForDay(TextView day, String date) throws JSONException {
+        //final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
+        /**
+         * postman test url
+         */
+        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date="+date+"&userId="+UserInfo.getUserID();
         JSONObject requestInfo = new JSONObject();
         String userId = UserInfo.getUserID();
         requestInfo.put("date",date);
         requestInfo.put("userId",userId);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID(), requestInfo,
+                url, requestInfo,
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -263,7 +262,7 @@ public class dietPage extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                day.setText(" 0Cal"+"    "+" 0% of the diet plan");
             }
         });
         AppController.getInstance().getRequestQueue().add(jsonObjReq);

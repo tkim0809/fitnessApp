@@ -25,6 +25,7 @@ import com.example.fitnessapp.AppController;
 import com.example.fitnessapp.IView;
 import com.example.fitnessapp.Logic.layoutLogic;
 import com.example.fitnessapp.R;
+import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DailyDiet extends AppCompatActivity implements IView {
-    ScrollView layout;
+    LinearLayout layout;
     JSONArray requestArray = new JSONArray();
     String date;
     @Override
@@ -51,7 +52,7 @@ public class DailyDiet extends AppCompatActivity implements IView {
                 startActivity(back);
             }
         });
-        layout = (ScrollView) findViewById(R.id.layoutV);
+        layout = (LinearLayout) findViewById(R.id.layoutV);
         JSONObject object = new JSONObject();
         Intent intent = getIntent();
         date = intent.getStringExtra("message");
@@ -60,30 +61,34 @@ public class DailyDiet extends AppCompatActivity implements IView {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(date);
         requestArray.put(object);
-
-        ViewGroup rootView = findViewById(R.id.dailyDietLO);
-        layoutLogic.defBtnColor(rootView);
-        makeRequest();
-
-
-
-// Create a SimpleDateFormat instance to parse the original date string
-        SimpleDateFormat originalDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date unformatedDate = null;
         try {
-            unformatedDate = originalDateFormat.parse(date);
+            date = changFormat(date);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+        //final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/"+ UserInfo.getUserID() +"/"+date;
+        /**
+         * postman test url
+         */
+        final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/"+ UserInfo.getUserID() +"/"+date;
 
-// Create another SimpleDateFormat instance to format the date into the desired string format
-        SimpleDateFormat targetDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        date = targetDateFormat.format(unformatedDate);
+        ViewGroup rootView = findViewById(R.id.dailyDietLO);
+        layoutLogic.defBtnColor(rootView);
+        makeRequest(url);
+
+
+
+
+
     }
 
-    final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/29/"+date;
-    private void makeRequest(){
+
+
+
+    private void makeRequest(String url){
+        System.out.println(url);
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -106,12 +111,13 @@ public class DailyDiet extends AppCompatActivity implements IView {
                         textView.setLayoutParams(layoutParams);
                         ShapeDrawable shapeDrawable = new ShapeDrawable();
                         shapeDrawable.setShape(new RectShape());
-                        shapeDrawable.getPaint().setColor(Color.BLACK);
+                        shapeDrawable.getPaint().setColor(Color.WHITE);
                         shapeDrawable.getPaint().setStyle(Paint.Style.STROKE);
-                        shapeDrawable.getPaint().setStrokeWidth(5);
+                        shapeDrawable.getPaint().setStrokeWidth(10);
                         textView.setBackground(shapeDrawable);
                         textView.setGravity(Gravity.CENTER);
                         textView.setTextSize(16);
+                        textView.setTextColor(Color.WHITE);
                         layout.addView(textView);
 
                     }
@@ -124,7 +130,7 @@ public class DailyDiet extends AppCompatActivity implements IView {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "You have not add any meals for this day.", Toast.LENGTH_SHORT).show();
             }
         });
         AppController.getInstance().addToRequestQueue(request);
@@ -133,5 +139,13 @@ public class DailyDiet extends AppCompatActivity implements IView {
     @Override
     public void showText(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+    }
+    public String changFormat(String inputDate) throws ParseException {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/M/d");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = inputFormat.parse(inputDate);
+        String outputDate = outputFormat.format(date);
+        System.out.println(outputDate);
+        return outputDate;
     }
 }

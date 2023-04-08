@@ -32,6 +32,7 @@ public class dietGoalLogic implements IVolleyListener{
     @Override
     public void onSuccess() {
         i.showText("saved");
+        //UserInfo.setHasSetDietGoal(true);
     }
 
     @Override

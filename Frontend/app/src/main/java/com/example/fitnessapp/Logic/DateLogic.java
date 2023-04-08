@@ -1,5 +1,6 @@
 package com.example.fitnessapp.Logic;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,6 +29,9 @@ public class DateLogic {
         }
     }
     public Boolean[] getFuture() {
+        for (int i = day;i<7;i++){
+            future[i] = true;
+        }
         return future;
     }
 
@@ -63,10 +67,11 @@ public class DateLogic {
                 c.add(Calendar.DAY_OF_YEAR,-6);
                 break;
         }
-        Date date = c.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String formattedDate = sdf.format(date);
-        return formattedDate;
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+        String out = year+"/"+month+"/"+dayOfMonth;
+        return out;
     }
     public String DateMonday(){
         Calendar c = Calendar.getInstance();
@@ -238,4 +243,5 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+
 }

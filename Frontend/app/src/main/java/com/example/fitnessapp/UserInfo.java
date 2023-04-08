@@ -1,7 +1,7 @@
 package com.example.fitnessapp;
 
 public class UserInfo {
-    static String userID = null;
+    static String userID = "1234";
     static String userEmail = null;
     static String date = null;
     static Boolean hasUpDatedDiet = false;
@@ -45,6 +45,7 @@ public class UserInfo {
 
     public static void setHasUpDatedDiet(Boolean hasUpDatedDiet) {
         UserInfo.hasUpDatedDiet = hasUpDatedDiet;
+        System.out.println("hasUpdateDiet:"+UserInfo.hasUpDatedDiet);
     }
 
     public static Boolean getHasProfile() {
