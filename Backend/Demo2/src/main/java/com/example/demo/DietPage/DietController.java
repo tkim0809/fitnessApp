@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.text.DecimalFormat;
 
 
 
@@ -39,14 +40,23 @@ public class DietController {
     private final DietGoalRepository dietGoalRepository;
 
     @PostMapping("/dietgoal/{userId}")
-    public DietGoal addDietGoal(@PathVariable Long userId, @RequestBody DietGoal dietGoal) {
+    public DietGoal addDietGoal(@PathVariable Long userId, @RequestBody DietGoal newDietGoal) {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        dietGoal.setUser(user);
+        Optional<DietGoal> existingDietGoal = dietGoalRepository.findByUser_Id(userId);
 
-        return dietGoalRepository.save(dietGoal);
+        if (existingDietGoal.isPresent()) {
+            DietGoal dietGoal = existingDietGoal.get();
+            dietGoal.setDietGoalValue(newDietGoal.getDietGoalValue());
+            // Add any other fields that you want to allow for updates
+            return dietGoalRepository.save(dietGoal);
+        } else {
+            newDietGoal.setUser(user);
+            return dietGoalRepository.save(newDietGoal);
+        }
     }
+
 
     @PutMapping("/dietgoal/{userId}")
     public DietGoal updateDietGoal(@PathVariable Long userId, @RequestBody DietGoal updatedDietGoal) {
@@ -152,6 +162,9 @@ public class DietController {
         if (targetDiet > 0) {
             achievedPercentage = (double) totalCalories / targetDiet * 100;
         }
+
+        DecimalFormat df = new DecimalFormat("#.#");
+        achievedPercentage = Double.parseDouble(df.format(achievedPercentage));
 
         return new DietSummary(targetDiet, totalCalories, achievedPercentage, diets);
     }
