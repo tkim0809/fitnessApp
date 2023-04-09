@@ -24,7 +24,7 @@ public class dietGoalLogic implements IVolleyListener{
         }else {
             meth ="Post";
         }
-        final String url ="http://coms-309-004.class.las.iastate.edu:8080/dietgoal/"+UserInfo.getUserID();
+        String url ="http://coms-309-004.class.las.iastate.edu:8080/dietgoal/"+UserInfo.getUserID();
         JSONObject goal = new JSONObject();
         goal.put("dietGoalValue",dailyCal);
         serverRequest.sendToServer(url,goal,meth);

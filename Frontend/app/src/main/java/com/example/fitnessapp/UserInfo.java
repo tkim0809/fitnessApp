@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class UserInfo {
-    //test for user id 1234
-    static String userID = "1234";
+    //test for user id 39
+    static String userID = "39";
     static String userEmail = null;
     static String date = null;
     static Boolean hasUpDatedDiet = false;

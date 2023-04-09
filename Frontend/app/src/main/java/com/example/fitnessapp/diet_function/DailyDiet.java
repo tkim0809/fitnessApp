@@ -68,7 +68,7 @@ public class DailyDiet extends AppCompatActivity implements IView {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/"+ UserInfo.getUserID() +"/"+date;
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/diet/"+ UserInfo.getUserID() +"/"+date;
         /**
          * postman test url
          */

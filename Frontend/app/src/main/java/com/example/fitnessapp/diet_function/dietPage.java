@@ -236,7 +236,7 @@ public class dietPage extends AppCompatActivity {
 
     }
     public void getDataForDay(TextView day, String date) throws JSONException {
-        final String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
         /**
          * postman test url
          */
