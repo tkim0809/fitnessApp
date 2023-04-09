@@ -20,7 +20,7 @@ public class MilestonesController {
     private final Logger logger = LoggerFactory.getLogger(com.example.demo.milestones.MilestonesController.class);
 
     @RequestMapping(method = RequestMethod.POST, path = "/Milestones/new")
-    public String saveMilestone(@RequestBody Map<String, String> requestBody, @RequestBody Milestones milestone) {
+    public String saveMilestone(/*@RequestBody Map<String, String> requestBody,*/ @RequestBody Milestones milestone) {
         milestonesRepository.save(milestone);
         return "{\"message\":\"success\"}";
     }

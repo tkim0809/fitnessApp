@@ -20,7 +20,7 @@ public class LeaderboardsController {
     private final Logger logger = LoggerFactory.getLogger(com.example.demo.Leaderboards.LeaderboardsController.class);
 
     @RequestMapping(method = RequestMethod.POST, path = "/leaderboards/new")
-    public String saveWorkout(@RequestBody Map<String, String> requestBody, @RequestBody Leaderboards leaderboards) {
+    public String saveWorkout(/*@RequestBody Map<String, String> requestBody,*/ @RequestBody Leaderboards leaderboards) {
         leaderboardsRepository.save(leaderboards);
         return "{\"message\":\"success\"}";
     }
