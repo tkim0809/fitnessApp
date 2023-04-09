@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,7 +20,7 @@ public class MilestonesController {
     private final Logger logger = LoggerFactory.getLogger(com.example.demo.milestones.MilestonesController.class);
 
     @RequestMapping(method = RequestMethod.POST, path = "/Milestones/new")
-    public String saveMilestone(@RequestBody Milestones milestone) {
+    public String saveMilestone(/*@RequestBody Map<String, String> requestBody,*/ @RequestBody Milestones milestone) {
         milestonesRepository.save(milestone);
         return "{\"message\":\"success\"}";
     }

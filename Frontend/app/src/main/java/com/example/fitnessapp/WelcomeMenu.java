@@ -60,8 +60,8 @@ public class WelcomeMenu extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                //Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
-                //startActivity(i);
+                Intent i = new Intent(WelcomeMenu.this, friendList.class);
+                startActivity(i);
             }
         }) ;
 

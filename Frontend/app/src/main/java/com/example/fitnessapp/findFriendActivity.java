@@ -38,7 +38,7 @@ public class findFriendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find_friend);
 
         EditText emailEditText = findViewById(R.id.friendEmail);
-        Button findButton = findViewById(R.id.findFriendButton);
+        Button addFriendButton = findViewById(R.id.addFriendButton);
         Button backToMenuBtn = findViewById(R.id.backToMenu);
 
         backToMenuBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class findFriendActivity extends AppCompatActivity {
 
         String email = emailEditText.getText().toString();
 
-        findButton.setOnClickListener(new View.OnClickListener() {
+        addFriendButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -85,24 +85,17 @@ public class findFriendActivity extends AppCompatActivity {
 
                                 try {
 
-                                    if (response.getBoolean("email")) {
+                                    if (response.getBoolean("success")) {
 
-                                        String friendNumber = "Hello";
                                         Toast.makeText(findFriendActivity.this, "Successful added to friend list", Toast.LENGTH_LONG).show();
-                                        //Intent i = new Intent(findFriendActivity.this, FriendListActivity.class);
-                                        //i.putExtra("friendNumber", friendNumber);
-                                        //i.putExtra("testing", "testing value");
-                                        //i.putExtra("email", "email");
 
                                     }
 
                                 } catch (JSONException e) {
 
-
                                     throw new RuntimeException(e);
 
                                 }
-
 
                             }
                         }, new Response.ErrorListener() {

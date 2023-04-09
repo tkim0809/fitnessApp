@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/barb"
+    android:id="@+id/dietOL"
+    tools:context=".diet_function.dietPage">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="331dp"
+        android:layout_height="434dp"
+        android:layout_marginTop="50dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/SundayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="sunday" />
+
+            <TextView
+                android:id="@+id/SundayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/MondayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="monday">
+
+            </Button>
+
+            <TextView
+                android:id="@+id/MondayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/TuesdayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="tuesday" />
+
+            <TextView
+                android:id="@+id/TuesdayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/WednesdayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="wednesday" />
+
+            <TextView
+                android:id="@+id/WednesdayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/ThursdayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="thursday" />
+
+            <TextView
+                android:id="@+id/ThursdayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/FridayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="friday" />
+
+            <TextView
+                android:id="@+id/FridayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/SaturdayBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="saturday" />
+
+            <TextView
+                android:id="@+id/SaturdayCal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="TextView" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/addMealBtn"
+        android:layout_width="144dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Add Meal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/setGoalBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.372" />
+
+    <LinearLayout
+        android:layout_width="331dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/TodayBtn"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:backgroundTint="@color/white"
+            android:text="today"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/TodayCal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/setGoalBtn"
+        android:layout_width="144dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="7dp"
+        android:text="set goal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <Button
+        android:id="@+id/BackBtn"
+        android:layout_width="144dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

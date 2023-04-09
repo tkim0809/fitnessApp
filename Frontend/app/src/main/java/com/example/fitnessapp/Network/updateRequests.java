@@ -24,14 +24,17 @@ public class updateRequests implements IServerRequest {
 
         if (method == "Post") {
             meth = Request.Method.POST;
-        } else {
+        } else if (method =="Get"){
             meth = Request.Method.GET;
+        } else {
+            meth = Request.Method.PUT;
         }
         JsonObjectRequest request = new JsonObjectRequest(meth, url, jsObject,
 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        l.onSuccess();
                         try {
                             String status = response.getString("message");
                             if (status.equals("success")) {
@@ -49,6 +52,7 @@ public class updateRequests implements IServerRequest {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        l.onError();
                         //VolleyLog.d("sent user data error",error);
                         // Handle the error
                         error.printStackTrace();

@@ -20,11 +20,6 @@ public class StatsUpdateLogic implements IVolleyListener {
     }
 
 
-//JSONOBJECT{
-    //"name":"input"
-    //"rep":"input"
-    //"max":"input"
-//}
 
     public void addExercise(String name,String sets, String reps, String weight) throws JSONException {
         final String url = "http://coms-309-004.class.las.iastate.edu:8080/stats/new";

@@ -3,10 +3,16 @@ package com.example.fitnessapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.fitnessapp.Logic.layoutLogic;
+import com.example.fitnessapp.diet_function.dietPage;
 
 public class userMenu extends AppCompatActivity {
 
@@ -42,7 +48,7 @@ public class userMenu extends AppCompatActivity {
         milestoneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMilestone = new Intent(userMenu.this, Milestone.class);
+                Intent toMilestone = new Intent(userMenu.this, milestone.class);
                 startActivity(toMilestone);
             }
         });
@@ -55,6 +61,7 @@ public class userMenu extends AppCompatActivity {
             }
         });
         ImageButton profileBtn = findViewById(R.id.profileButton);
+        profileBtn.setImageResource(R.drawable.icon);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,5 +69,18 @@ public class userMenu extends AppCompatActivity {
                 startActivity(toProfile);
             }
         });
+        Button dietBtn = findViewById(R.id.dietBtn);
+        dietBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toDiet = new Intent(userMenu.this, dietPage.class);
+                startActivity(toDiet);
+            }
+        });
+        LinearLayout layout = findViewById(R.id.linearLayout2);
+        layoutLogic.defBtnColor(layout);
+        TextView userName = findViewById(R.id.textUserName);
+        userName.setText("Hi, "+UserInfo.getUserID()+"!");
+        userName.setTextColor(Color.WHITE);
     }
 }
