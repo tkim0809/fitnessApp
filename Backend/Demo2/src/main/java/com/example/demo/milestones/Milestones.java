@@ -94,9 +94,9 @@ public class Milestones {
         return new ToStringCreator(this)
 
                 .append("id", this.getId())
-                .append("milestone_name", this.getMilestoneName())
-                .append("milestone_sets", this.getMilestoneSets())
-                .append("milestone_reps", this.getMilestoneReps())
-                .append("milestone_weight", this.getMilestoneWeight()).toString();
+                .append("milestoneName", this.getMilestoneName())
+                .append("milestoneSets", this.getMilestoneSets())
+                .append("milestoneReps", this.getMilestoneReps())
+                .append("milestoneWeight", this.getMilestoneWeight()).toString();
     }
 }

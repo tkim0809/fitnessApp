@@ -44,7 +44,7 @@ public class Leaderboards {
         return this.username;
     }
 
-    public void setusername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
