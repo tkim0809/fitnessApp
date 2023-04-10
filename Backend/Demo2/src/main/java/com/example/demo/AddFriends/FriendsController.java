@@ -86,8 +86,8 @@ public class FriendsController {
     public ResponseEntity<List<String>> getFriends(@PathVariable Long userId) {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + userId));
-        List<Long> friendIds1 = friendsRepository.findFriendIdsByEmail(user.getEmail());
         List<Long> friendIds2 = friendsRepository.findFriendIdsByFriendId(user.getId());
+        List<Long> friendIds1 = friendsRepository.findFriendIdsByUserId(user.getId());
         friendIds1.addAll(friendIds2);
         List<AppUser> friends = appUserRepository.findByIdIn(friendIds1);
         List<String> friendEmails = friends.stream().map(AppUser::getEmail).collect(Collectors.toList());
