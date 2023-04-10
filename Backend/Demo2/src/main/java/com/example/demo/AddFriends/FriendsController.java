@@ -47,6 +47,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -81,7 +82,20 @@ public class FriendsController {
             friendsRepository.save(newFriendship);
             return ResponseEntity.ok().build();
         }
-
+    @GetMapping("/{userId}/friends")
+    public ResponseEntity<List<String>> getFriends(@PathVariable Long userId) {
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + userId));
+        List<Long> friendIds1 = friendsRepository.findFriendIdsByEmail(user.getEmail());
+        List<Long> friendIds2 = friendsRepository.findFriendIdsByFriendId(user.getId());
+        friendIds1.addAll(friendIds2);
+        List<AppUser> friends = appUserRepository.findByIdIn(friendIds1);
+        List<String> friendEmails = friends.stream().map(AppUser::getEmail).collect(Collectors.toList());
+        return ResponseEntity.ok(friendEmails);
     }
+
+
+
+}
 
 

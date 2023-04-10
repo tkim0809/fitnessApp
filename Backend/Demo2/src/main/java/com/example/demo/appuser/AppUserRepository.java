@@ -24,4 +24,5 @@ public interface AppUserRepository
 
     Optional<AppUser> findAppUserByEmailAndPassword(String email, String password);
 
+    List<AppUser> findByIdIn(List<Long> friendIds);
 }

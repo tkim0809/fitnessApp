@@ -44,7 +44,7 @@ public class Milestones {
 
     }
 
-    public Milestones(String milestone_name, String milestone_sets, String milestone_reps) {
+    public Milestones(String milestone_name, String milestone_sets, String milestone_reps, Integer userId) {
         this.milestone_name = milestone_name;
         this.milestone_sets = milestone_sets;
         this.milestone_reps = milestone_reps;
@@ -53,12 +53,12 @@ public class Milestones {
         this.userId = userId;
     }
 
-    public Milestones(String milestone_name, String milestone_sets, String milestone_reps, String milestone_weight, boolean completed, Integer userId) {
+    public Milestones(String milestone_name, String milestone_sets, String milestone_reps, String milestone_weight, Integer userId) {
         this.milestone_name = milestone_name;
         this.milestone_sets = milestone_sets;
         this.milestone_reps = milestone_reps;
         this.milestone_weight = milestone_weight;
-        this.completed = completed;
+        this.completed = false;
         this.userId = userId;
     }
 
