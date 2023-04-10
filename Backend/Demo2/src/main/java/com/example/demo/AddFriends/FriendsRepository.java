@@ -20,6 +20,7 @@ public interface FriendsRepository extends JpaRepository<Friends, Long> {
 
     List<Friends> findByIdIn(Collection<Long> ids);
 
+    @Query("SELECT f.friendId FROM Friends f WHERE f.friendId = ?1")
     List<Long> findFriendIdsByFriendId(Long id);
 }
 
