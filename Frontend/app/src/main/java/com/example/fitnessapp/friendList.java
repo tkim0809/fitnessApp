@@ -20,16 +20,17 @@ import java.util.ArrayList;
 public class friendList extends AppCompatActivity {
 
     ArrayList<friendModel> friendModels = new ArrayList<>();
-    RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
+        RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
 
         String url = "http://coms-309-004.class.las.iastate.edu:8080/friend";
 
-        RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
+
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
             //response.getJSONObject(0).get("").toString();
@@ -43,6 +44,10 @@ public class friendList extends AppCompatActivity {
                         friendModels.add(new friendModel(response.getJSONObject(i).get("email").toString(), response.getJSONObject(i).get("userName").toString()));
 
                     }
+
+                    friendListRecyclerAdapter adapter = new friendListRecyclerAdapter(friendList.this, friendModels);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(friendList.this));
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -58,9 +63,7 @@ public class friendList extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(jsonArr);
 
-        friendListRecyclerAdapter adapter = new friendListRecyclerAdapter(this, friendModels);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
 
     }

@@ -1,13 +1,13 @@
 package com.example.fitnessapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,8 +16,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class milestone extends AppCompatActivity {
 
@@ -45,6 +47,7 @@ public class milestone extends AppCompatActivity {
                 String weights = weightsEditText.getText().toString();
                 String reps = repsEditText.getText().toString();
                 String sets = setsEditText.getText().toString();
+                String userId;
 
                 String url = "http://coms-309-004.class.las.iastate.edu:8080/Milestones/new";
                 RequestQueue queue = Volley.newRequestQueue(milestone.this);
@@ -52,10 +55,15 @@ public class milestone extends AppCompatActivity {
 
                 try {
 
-                    obj.put("workoutName", workoutName);
-                    obj.put("weights", weights);
-                    obj.put("reps", reps);
-                    obj.put("sets", sets);
+                    obj.put("milestoneName", workoutName);
+                    obj.put("milestoneReps", reps);
+                    obj.put("milestoneSets", sets);
+                    obj.put("milestoneWeight", weights);
+                    obj.put("userId", 39);
+
+
+                    Toast.makeText(getApplicationContext(), "Successfully added", Toast.LENGTH_SHORT).show();
+
 
 
                 } catch(Exception e) {
@@ -70,29 +78,23 @@ public class milestone extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
 
-
-
                                 try {
-                                    if (response.getBoolean("add")) {
+                                    String toCompare = response.get("message").toString();
+
+                                    if(toCompare.equals("success")) {
 
                                         Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
 
-
-                                        Intent i = new Intent(milestone.this, milestoneProgress.class);
-                                        startActivity(i);
-
-
-
                                     } else {
 
-                                        Toast.makeText(getApplicationContext(), "login error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "login error45", Toast.LENGTH_SHORT).show();
+
 
                                     }
 
+
                                 } catch (JSONException e) {
-
                                     throw new RuntimeException(e);
-
                                 }
 
 

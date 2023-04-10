@@ -8,26 +8,48 @@
 
 
     <EditText
+        android:id="@+id/addpushupsEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addpushupsEditText"
-        android:hint="numbers of pushups"
-        android:textColorHint = "@color/black"
-        android:textColor="@color/black"
         android:layout_margin="10dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="225dp"
+        android:hint="numbers of pushups"
         android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/addpushupsBut"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/addpushupsBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="388dp"
         android:backgroundTint="@color/white"
         android:text="add pushups"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="113dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/backToLeaderboardBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="324dp"
+        android:backgroundTint="@color/white"
+        android:text="back to leaderboard"
+        android:textColor="@color/black"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
 

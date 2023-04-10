@@ -75,6 +75,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="diet" />
+        <Button
+            android:id="@+id/leaderboardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="leaderboard" />
     </LinearLayout>
 
     <Button

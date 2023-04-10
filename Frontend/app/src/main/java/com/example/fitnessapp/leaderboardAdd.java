@@ -28,6 +28,7 @@ public class leaderboardAdd extends AppCompatActivity {
 
         EditText addpushupsEditText = findViewById(R.id.addpushupsEditText);
         Button addpushupsButton = findViewById(R.id.addpushupsBut);
+        Button backToLeaderboardBtn = findViewById(R.id.backToLeaderboardBtn);
 
         String pushups = addpushupsEditText.getText().toString();
 
@@ -36,7 +37,7 @@ public class leaderboardAdd extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String url = "http://coms-309-004.class.las.iastate.edu:8080/Milestones/new";
+                String url = "http://coms-309-004.class.las.iastate.edu:8080/leaderboards/new";
                 RequestQueue queue = Volley.newRequestQueue(leaderboardAdd.this);
                 JSONObject obj = new JSONObject();
 
@@ -56,22 +57,20 @@ public class leaderboardAdd extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
 
-
-
                                 try {
-                                    if (response.getBoolean("add")) {
+
+
+                                    String toCompare = response.get("message").toString();
+
+                                    if (toCompare.equals("add")) {
 
                                         Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
-
-
-                                        Intent i = new Intent(leaderboardAdd.this, leaderboard.class);
-                                        startActivity(i);
 
 
 
                                     } else {
 
-                                        Toast.makeText(getApplicationContext(), "login error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "jsonobject response not responding", Toast.LENGTH_SHORT).show();
 
                                     }
 
@@ -94,6 +93,16 @@ public class leaderboardAdd extends AppCompatActivity {
                 );
 
                 queue.add(jsonArr);
+            }
+        });
+
+        backToLeaderboardBtn.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(leaderboardAdd.this, leaderboard.class);
+                startActivity(i);
             }
         });
 

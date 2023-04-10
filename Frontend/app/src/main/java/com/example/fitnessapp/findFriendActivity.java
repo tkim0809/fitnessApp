@@ -85,7 +85,9 @@ public class findFriendActivity extends AppCompatActivity {
 
                                 try {
 
-                                    if (response.getBoolean("success")) {
+                                    String toCompare = response.get("message").toString();
+
+                                    if (toCompare.equals("success")) {
 
                                         Toast.makeText(findFriendActivity.this, "Successful added to friend list", Toast.LENGTH_LONG).show();
 

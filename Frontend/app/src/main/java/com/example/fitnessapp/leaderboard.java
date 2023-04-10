@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class leaderboard extends AppCompatActivity {
 
     ArrayList<leaderboardModel> leaderboardModels = new ArrayList<>();
-    RecyclerView recyclerView = findViewById(R.id.leaderboard_recyclerview);
+
 
 
 
@@ -32,7 +32,9 @@ public class leaderboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/AllMilestones";
+        RecyclerView recyclerView = findViewById(R.id.leaderboard_recyclerview);
+
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/leaderboards";
         Button addpushupsButton = findViewById(R.id.addpushupsButton);
 
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -49,6 +51,11 @@ public class leaderboard extends AppCompatActivity {
 
 
                     }
+
+
+                    leaderboard_recycler_adapter adapter = new leaderboard_recycler_adapter(leaderboard.this, leaderboardModels);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(leaderboard.this));
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -75,9 +82,6 @@ public class leaderboard extends AppCompatActivity {
         });
 
 
-        leaderboard_recycler_adapter adapter = new leaderboard_recycler_adapter(this, leaderboardModels);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }

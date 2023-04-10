@@ -26,7 +26,7 @@ public class milestoneProgress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milestone_progress);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/AllMilestones";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/AllMilestones/39";
 
         RecyclerView recyclerView = findViewById(R.id.milestoneRecyclerV);
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -37,16 +37,35 @@ public class milestoneProgress extends AppCompatActivity {
 
                 try {
 
+                    Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+
                     for(int i = 0; i < response.length(); i++) {
 
-                        milestoneModels.add(new milestoneModel(response.getJSONObject(i).get("workoutName").toString(), response.getJSONObject(i).get("workoutWeights").toString(),
-                                response.getJSONObject(i).get("workoutReps").toString(),response.getJSONObject(i).get("workoutSets").toString()));
-
+                        milestoneModels.add(new milestoneModel(response.getJSONObject(i).get("milestoneName").toString(), response.getJSONObject(i).get("milestoneWeight").toString(),
+                                response.getJSONObject(i).get("milestoneReps").toString(),response.getJSONObject(i).get("milestoneSets").toString()));
 
                     }
 
+                    milestone_recycler_adapter adapter = new milestone_recycler_adapter(milestoneProgress.this, milestoneModels);
+
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(milestoneProgress.this));
+                    milestone_recycler_adapter.setOnItemClickListener(new milestone_recycler_adapter.OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(int position) {
+
+                            milestoneModels.remove(position);
+                            adapter.notifyItemRemoved(position);
+
+                        }
+
+                    });
+
                 } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "login error45", Toast.LENGTH_SHORT).show();
                     throw new RuntimeException(e);
+
                 }
 
             }
@@ -59,9 +78,7 @@ public class milestoneProgress extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(jsonArr);
 
-        milestone_recycler_adapter adapter = new milestone_recycler_adapter(this, milestoneModels);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 

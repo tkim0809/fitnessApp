@@ -77,6 +77,20 @@ public class userMenu extends AppCompatActivity {
                 startActivity(toDiet);
             }
         });
+
+        Button leaderboardBtn = findViewById(R.id.leaderboardBtn);
+
+        leaderboardBtn.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(userMenu.this, leaderboard.class);
+                startActivity(i);
+            }
+        });
+
+
         LinearLayout layout = findViewById(R.id.linearLayout2);
         layoutLogic.defBtnColor(layout);
         TextView userName = findViewById(R.id.textUserName);
