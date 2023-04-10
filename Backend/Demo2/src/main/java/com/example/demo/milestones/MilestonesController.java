@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import com.example.demo.milestones.MilestonesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 import java.util.Map;
@@ -25,11 +27,23 @@ public class MilestonesController {
         return "{\"message\":\"success\"}";
     }
 
+    @RequestMapping(method = RequestMethod.PUT, path = "/Milestone/{milestoneId}/completed")
+    public String updateMilestoneStatus(@PathVariable("milestoneId") int id) {
+        Optional<Milestones> optionalMilestone = milestonesRepository.findById(id);
+        if (optionalMilestone.isPresent()) {
+            Milestones milestone = optionalMilestone.get();
+            milestone.setCompleted(true);
+            milestonesRepository.save(milestone);
+            return "{\"message\":\"success\"}";
+        } else {
+            return "{\"message\":\"Milestone not found\"}";
+        }
+    }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/AllMilestones")
-    public List<Milestones> getAllMilestones() {
+    @RequestMapping(method = RequestMethod.GET, path = "/AllMilestones/{userId}")
+    public List<Milestones> getAllMilestones(@PathVariable("userId") int id) {
         logger.info("Entered into Controller Layer");
-        List<Milestones> results = milestonesRepository.findAll();
+        List<Milestones> results = milestonesRepository.findAllByUserId(id);
         logger.info("Number of Milestones Fetched:" + results.size());
         return results;
     }
@@ -41,19 +55,20 @@ public class MilestonesController {
         return results;
     }
 
-//    @DeleteMapping(path = "/milestone/{id}")
-//    String deleteMilestone(@PathVariable int id){
-//
-//        // Check if there is an object depending on user and then remove the dependency
-//        Milestones milestone = milestonesRepository.findMilestoneById(id);
-//        milestone.setMilestoneName(null);
-//        milestone.setMilestoneSets(null);
-//        milestone.setMilestoneReps(null);
-//        milestone.setMilestoneWeight(null);
-//        milestonesRepository.save(milestone);
-//
-//        // delete the laptop if the changes have not been reflected by the above statement
-//        milestonesRepository.deleteById(id);
-//        return "{\"message\":\"success\"}";
-//    }
+    //@DeleteMapping("/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, path = "Milestone/delete/{id}")
+    public ResponseEntity<?> deleteMilestone(@PathVariable Integer id) {
+        Optional<Milestones> milestone = milestonesRepository.findById(id);
+        if(milestone.isPresent()) {
+            milestonesRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    //Testing branch
+
+
 }
