@@ -28,7 +28,7 @@ public class friendList extends AppCompatActivity {
         setContentView(R.layout.activity_friend_list);
         RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/friend";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/friendList";
 
 
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {

@@ -31,6 +31,10 @@ public class leaderboardAdd extends AppCompatActivity {
         Button backToLeaderboardBtn = findViewById(R.id.backToLeaderboardBtn);
 
         String pushups = addpushupsEditText.getText().toString();
+        String userName = "";
+        userName += UserInfo.getUserEmail();
+        String finalUserEmail = userName;
+
 
         addpushupsButton.setOnClickListener(new View.OnClickListener() {
 
@@ -43,6 +47,7 @@ public class leaderboardAdd extends AppCompatActivity {
 
                 try {
 
+                    obj.put("username", finalUserEmail);
                     obj.put("pushups", pushups);
 
                 } catch(Exception e) {
@@ -62,7 +67,7 @@ public class leaderboardAdd extends AppCompatActivity {
 
                                     String toCompare = response.get("message").toString();
 
-                                    if (toCompare.equals("add")) {
+                                    if (toCompare.equals("success")) {
 
                                         Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
 
