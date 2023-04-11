@@ -156,11 +156,13 @@ public class dietPage extends AppCompatActivity {
             }
         } else {
             todayInfo.setText("    0Cal");
+            TodayPct.setText("0%");
         }
 
         try {
             if (isFuture[1]) {
                 mondayInfo.setText("Add meals later");
+                MondayPct.setText("");
             } else {
                 getDataForDay(mondayInfo, dateLogic.DateMonday(),MondayPct);
             }
@@ -170,6 +172,7 @@ public class dietPage extends AppCompatActivity {
 
         if (isFuture[2]) {
             tuesdayInfo.setText("Add meals later");
+            TuesdayPct.setText("");
         } else {
             try {
                 getDataForDay(tuesdayInfo, dateLogic.DateTuesday(),TuesdayPct);
@@ -182,6 +185,7 @@ public class dietPage extends AppCompatActivity {
         // Check if Wednesday is in the future
         if (isFuture[3]) {
             wednesdayInfo.setText("Add meals later");
+            WednesdayPct.setText("");
         } else {
             try {
                 getDataForDay(wednesdayInfo, dateLogic.DateWednesday(),WednesdayPct);
@@ -193,6 +197,7 @@ public class dietPage extends AppCompatActivity {
 // Check if Thursday is in the future
         if (isFuture[4]) {
             thursdayInfo.setText("Add meals later");
+            ThursdayPct.setText("");
         } else {
             try {
                 getDataForDay(thursdayInfo, dateLogic.DateThursday(),ThursdayPct);
@@ -204,6 +209,7 @@ public class dietPage extends AppCompatActivity {
 // Check if Friday is in the future
         if (isFuture[5]) {
             fridayInfo.setText("Add meals later");
+            FridayPct.setText("");
         } else {
             try {
                 getDataForDay(fridayInfo, dateLogic.DateFriday(),FridayPct);
@@ -215,6 +221,7 @@ public class dietPage extends AppCompatActivity {
 // Check if Saturday is in the future
         if (isFuture[6]) {
             saturdayInfo.setText("Add meals later");
+            SaturdayPct.setText("");
         } else {
             try {
                 getDataForDay(saturdayInfo, dateLogic.DateSaturday(),SaturdayPct);
@@ -226,6 +233,7 @@ public class dietPage extends AppCompatActivity {
 // Check if Sunday is in the future
         if (isFuture[0]) {
             sundayInfo.setText("Add meals later");
+            SundayPct.setText("");
         } else {
             try {
                 getDataForDay(sundayInfo, dateLogic.DateSunday(),SundayPct);
@@ -267,11 +275,11 @@ public class dietPage extends AppCompatActivity {
 
 
     public void getDataForDay(TextView dayInfo, String date,TextView dayPct) throws JSONException {
-        //String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
         /**
          * postman test url
          */
-        String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date=" + date + "&userId=" + UserInfo.getUserID();
+        //String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date=" + date + "&userId=" + UserInfo.getUserID();
         System.out.println(url);
         String userId = UserInfo.getUserID();
 
@@ -283,16 +291,12 @@ public class dietPage extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            dayInfo.setText(response.get("totalCalories").toString() + "Cal");
-
                             int totalIn = Integer.parseInt((String) response.get("totalCalories"));
+                            dayInfo.setText(response.get("totalCalories").toString() + "Cal");
                             System.out.println("Total request for" + date + "succeed total is"+totalIn);
 
-                            //try {
-                              //  getPctForDay(dayPct,totalIn);
-                            //}catch (JSONException e){
-                              //  throw new RuntimeException(e);
-                            //}
+                            //get percentage
+                            getPctForDay(dayPct,totalIn);
 
                             System.out.println("request for" + date + "succeed");
                         } catch (JSONException e) {
@@ -305,6 +309,8 @@ public class dietPage extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 dayInfo.setText(" 0Cal");
+                dayPct.setText(" 0% of total");
+                System.out.println(error.toString());
             }
         });
         AppController.getInstance().getRequestQueue().add(jsonObjReq);
@@ -313,11 +319,11 @@ public class dietPage extends AppCompatActivity {
     }
 
     public void getPctForDay(TextView dayPct, int totalIn) throws JSONException {
-        //String url = "http://coms-309-004.class.las.iastate.edu:8080/dietgoal/"+UserInfo.getUserID();
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/dietgoal/"+UserInfo.getUserID();
         /**
          * postman url
          */
-        String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/dietgoal/" + UserInfo.getUserID();
+        //String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/dietgoal/" + UserInfo.getUserID();
         System.out.println(url);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 url, null,
@@ -337,7 +343,8 @@ public class dietPage extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                dayPct.setText(" 0% of the daily plan");
+                System.out.println(error.toString());
+
             }
         });
         AppController.getInstance().getRequestQueue().add(jsonObjReq);
@@ -345,9 +352,14 @@ public class dietPage extends AppCompatActivity {
 
     }
 
-    public int calculatePct(int a, int b) {
-        int result = a / b;
-        return result;
+    public String calculatePct(int a, int b) {
+        float i = (float) a;
+        float j = (float) b;
+        float result = i / j * 100;
+        String formatted = String.format("%.1f", result);
+        System.out.println(a+ "divided by" +b + "="+ formatted+"%");
+        return formatted +"%";
+
     }
 
 }
