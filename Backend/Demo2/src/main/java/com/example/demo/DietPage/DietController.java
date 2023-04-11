@@ -69,7 +69,7 @@ public class DietController {
             dietGoal.setDietGoalValue(updatedDietGoalValue);
         }
 
-        // Add any other fields that you want to allow for updates
+
 
         return dietGoalRepository.save(dietGoal);
     }
