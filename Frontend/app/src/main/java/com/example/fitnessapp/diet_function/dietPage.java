@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import com.example.fitnessapp.userMenu;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.concurrent.ExecutionException;
+
 public class dietPage extends AppCompatActivity {
     TextView mondayInfo;
     TextView tuesdayInfo;
@@ -34,6 +37,13 @@ public class dietPage extends AppCompatActivity {
     TextView saturdayInfo;
     TextView sundayInfo;
     TextView todayInfo;
+    TextView MondayPct;
+    TextView TuesdayPct;
+    TextView WednesdayPct;
+    TextView ThursdayPct;
+    TextView FridayPct;
+    TextView SaturdayPct;
+    TextView SundayPct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,92 +133,168 @@ public class dietPage extends AppCompatActivity {
         saturdayInfo = findViewById(R.id.SaturdayCal);
         sundayInfo = findViewById(R.id.SundayCal);
         todayInfo = findViewById(R.id.TodayCal);
-        Boolean[] isFuture = dateLogic.getFuture();
-        if (UserInfo.getHasUpDatedDiet()) {
-            try {
-                getDataForDay(todayInfo, dateLogic.getCurrentDate());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }else {
-                todayInfo.setText("    0Cal");
-            }
+        class LongOperation extends AsyncTask<Void, Void, Void> {
 
-        try {
-            if(isFuture[1]){
-                mondayInfo.setText("Add meals later");
-            }else {
-                getDataForDay(mondayInfo,dateLogic.DateMonday());
-            }
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+            @Override
+            protected Void doInBackground(Void... params) {
+                // Perform a long-running operation here
+                Boolean[] isFuture = dateLogic.getFuture();
+                if (UserInfo.getHasUpDatedDiet()) {
+                    try {
+                        getDataForDay(todayInfo, dateLogic.getCurrentDate());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }else {
+                    todayInfo.setText("    0Cal");
+                }
 
-        if(isFuture[2]){
-            tuesdayInfo.setText("Add meals later");
-        }else {
-            try {
-                getDataForDay(tuesdayInfo,dateLogic.DateTuesday());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
+                try {
+                    if(isFuture[1]){
+                        mondayInfo.setText("Add meals later");
+                    }else {
+                        getDataForDay(mondayInfo,dateLogic.DateMonday());
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+                if(isFuture[2]){
+                    tuesdayInfo.setText("Add meals later");
+                }else {
+                    try {
+                        getDataForDay(tuesdayInfo,dateLogic.DateTuesday());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
 
-        // Check if Wednesday is in the future
-        if(isFuture[3]) {
-            wednesdayInfo.setText("Add meals later");
-        } else {
-            try {
-                getDataForDay(wednesdayInfo, dateLogic.DateWednesday());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
+                // Check if Wednesday is in the future
+                if(isFuture[3]) {
+                    wednesdayInfo.setText("Add meals later");
+                } else {
+                    try {
+                        getDataForDay(wednesdayInfo, dateLogic.DateWednesday());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
 // Check if Thursday is in the future
-        if(isFuture[4]) {
-            thursdayInfo.setText("Add meals later");
-        } else {
-            try {
-                getDataForDay(thursdayInfo, dateLogic.DateThursday());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
+                if(isFuture[4]) {
+                    thursdayInfo.setText("Add meals later");
+                } else {
+                    try {
+                        getDataForDay(thursdayInfo, dateLogic.DateThursday());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
 // Check if Friday is in the future
-        if(isFuture[5]) {
-            fridayInfo.setText("Add meals later");
-        } else {
-            try {
-                getDataForDay(fridayInfo, dateLogic.DateFriday());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
+                if(isFuture[5]) {
+                    fridayInfo.setText("Add meals later");
+                } else {
+                    try {
+                        getDataForDay(fridayInfo, dateLogic.DateFriday());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
 // Check if Saturday is in the future
-        if(isFuture[6]) {
-            saturdayInfo.setText("Add meals later");
-        } else {
-            try {
-                getDataForDay(saturdayInfo, dateLogic.DateSaturday());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
+                if(isFuture[6]) {
+                    saturdayInfo.setText("Add meals later");
+                } else {
+                    try {
+                        getDataForDay(saturdayInfo, dateLogic.DateSaturday());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+// Check if Sunday is in the future
+                if(isFuture[0]) {
+                    sundayInfo.setText("Add meals later");
+                } else {
+                    try {
+                        getDataForDay(sundayInfo, dateLogic.DateSunday());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                // Update the UI here with the results of the long-running operation
+                try {
+                    getPctForDay(MondayPct, dateLogic.DateMonday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    getPctForDay(TuesdayPct, dateLogic.DateTuesday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    getPctForDay(WednesdayPct, dateLogic.DateWednesday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    getPctForDay(ThursdayPct, dateLogic.DateThursday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    getPctForDay(FridayPct, dateLogic.DateFriday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    getPctForDay(SaturdayPct, dateLogic.DateSaturday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    getPctForDay(SundayPct, dateLogic.DateSunday());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println(dailyTotal.toString());
+
             }
         }
 
-// Check if Sunday is in the future
-        if(isFuture[0]) {
-            sundayInfo.setText("Add meals later");
-        } else {
-            try {
-                getDataForDay(sundayInfo, dateLogic.DateSunday());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
+// To execute the long-running operation, create an instance of the AsyncTask and call the execute() method
+        LongOperation longOperation = new LongOperation();
+        longOperation.execute();
+
+// To wait for the AsyncTask to complete, call the get() method
+        try {
+            longOperation.get();
+        } catch (InterruptedException e) {
+            // Handle the interrupted exception
+        } catch (ExecutionException e) {
+            // Handle the execution exception
         }
+
+
+
+
+        MondayPct = findViewById(R.id.MondayPct);
+        TuesdayPct = findViewById(R.id.TuesdayPct);
+        WednesdayPct = findViewById(R.id.WednesdayPct);
+        ThursdayPct = findViewById(R.id.ThursdayPct);
+        FridayPct = findViewById(R.id.FridayPct);
+        SaturdayPct = findViewById(R.id.SaturdayPct);
+        SundayPct = findViewById(R.id.SundayPct);
+
+
         Button addMealBtn = findViewById(R.id.addMealBtn);
         Button setGoalBtn = findViewById(R.id.setGoalBtn);
         addMealBtn.setOnClickListener(new View.OnClickListener() {
@@ -235,25 +321,25 @@ public class dietPage extends AppCompatActivity {
 
 
     }
+    JSONObject dailyTotal = new JSONObject();
     public void getDataForDay(TextView day, String date) throws JSONException {
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
+        //String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
         /**
          * postman test url
          */
-        //final String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date="+date+"&userId="+UserInfo.getUserID();
-        JSONObject requestInfo = new JSONObject();
+        String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/diet?date="+date+"&userId="+UserInfo.getUserID();
+        System.out.println(url);
         String userId = UserInfo.getUserID();
-        requestInfo.put("date",date);
-        requestInfo.put("userId",userId);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                url, requestInfo,
+                url, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
 
                         try {
-                            day.setText(response.get("totalCalories").toString()+"Cal"+"    "+response.getString("achievedPercentage").toString()+"% of the diet plan");
+                            day.setText(response.get("totalCalories").toString()+"Cal");
+                            dailyTotal.put(date,response.get("totalCalories").toString());
                             System.out.println("request for"+date+"succeed");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
@@ -263,11 +349,49 @@ public class dietPage extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                day.setText(" 0Cal"+"    "+" 0% of the diet plan");
+                day.setText(" 0Cal");
             }
         });
         AppController.getInstance().getRequestQueue().add(jsonObjReq);
 
 
     }
+    public void getPctForDay(TextView day, String date) throws JSONException {
+        //String url = "http://coms-309-004.class.las.iastate.edu:8080/dietgoal/"+UserInfo.getUserID();
+        /**
+         * postman url
+         */
+        String url = "https://52f9ae65-dabb-4c69-b849-73127aa5c466.mock.pstmn.io/dietgoal/"+UserInfo.getUserID();
+        System.out.println(url);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            day.setText(calculatePct(response.get("dietGoalValue").toString(),Integer.parseInt((String) dailyTotal.get(date)))+"% of daily plan");
+                            System.out.println("percentage request for"+date+"succeed");
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                day.setText(" 0% of the daily plan");
+            }
+        });
+        AppController.getInstance().getRequestQueue().add(jsonObjReq);
+
+
+    }
+    public int calculatePct(String a, int b){
+        int i = Integer.parseInt(a);
+        int result = i/b;
+        return result;
+    }
+
 }
