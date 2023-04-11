@@ -38,6 +38,12 @@
                 android:layout_height="35dp"
                 android:text="TextView" />
 
+            <TextView
+                android:id="@+id/SundayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <Button
                 android:id="@+id/MondayBtn"
                 android:layout_width="match_parent"
@@ -50,6 +56,12 @@
                 android:id="@+id/MondayCal"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/MondayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <Button
@@ -66,6 +78,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/TuesdayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <Button
                 android:id="@+id/WednesdayBtn"
                 android:layout_width="match_parent"
@@ -76,6 +94,12 @@
                 android:id="@+id/WednesdayCal"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/WednesdayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <Button
@@ -90,6 +114,12 @@
                 android:layout_height="35dp"
                 android:text="TextView" />
 
+            <TextView
+                android:id="@+id/ThursdayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <Button
                 android:id="@+id/FridayBtn"
                 android:layout_width="match_parent"
@@ -102,6 +132,12 @@
                 android:layout_height="35dp"
                 android:text="TextView" />
 
+            <TextView
+                android:id="@+id/FridayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <Button
                 android:id="@+id/SaturdayBtn"
                 android:layout_width="match_parent"
@@ -112,6 +148,12 @@
                 android:id="@+id/SaturdayCal"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/SaturdayPct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="TextView" />
 
 
@@ -133,6 +175,7 @@
         app:layout_constraintVertical_bias="0.372" />
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="331dp"
         android:layout_height="58dp"
         android:layout_marginStart="38dp"
@@ -152,12 +195,20 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:backgroundTint="@color/white"
             android:text="today"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
 
         <TextView
             android:id="@+id/TodayCal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/todayPct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -180,12 +231,12 @@
 
     <Button
         android:id="@+id/BackBtn"
-        android:layout_width="144dp"
-        android:layout_height="51dp"
+        android:layout_width="104dp"
+        android:layout_height="52dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
