@@ -289,9 +289,10 @@ public class dietPage extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        System.out.println(response.toString());
 
                         try {
-                            int totalIn = Integer.parseInt((String) response.get("totalCalories"));
+                            int totalIn = (int) response.get("totalCalories");
                             dayInfo.setText(response.get("totalCalories").toString() + "Cal");
                             System.out.println("Total request for" + date + "succeed total is"+totalIn);
 
