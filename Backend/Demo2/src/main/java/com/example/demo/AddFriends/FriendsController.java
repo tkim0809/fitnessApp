@@ -65,22 +65,22 @@ public class FriendsController {
 
 
         @PostMapping("/{userId}/add")
-        public ResponseEntity<?> addFriend(@RequestBody Map<String, String> requestBody, @PathVariable Long userId) {
+        public String/*ResponseEntity<?>*/ addFriend(@RequestBody Map<String, String> requestBody, @PathVariable Long userId) {
             String friendEmail = requestBody.get("email");
 
             AppUser user = appUserRepository.findById(userId)
                     .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with id: " + userId));
             if (user.getEmail().equals(friendEmail)) {
-                return ResponseEntity.badRequest().body("You cannot add yourself as a friend.");
+                return "\"message\" : \"failed\"";//ResponseEntity.badRequest().body("You cannot add yourself as a friend.");
             }
             if (friendsRepository.existsByEmailAndFriendId(user.getEmail(), userId)) {
-                return ResponseEntity.badRequest().body("You are already friends with this user.");
+                return "\"message\" : \"failed\"";//ResponseEntity.badRequest().body("You are already friends with this user.");
             }
             AppUser friend = appUserRepository.findByEmail(friendEmail)
                     .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with email: " + friendEmail));
             Friends newFriendship = new Friends(user, friend.getId());
             friendsRepository.save(newFriendship);
-            return ResponseEntity.ok().build();
+            return "\"message\" : \"success\"";//ResponseEntity.ok().build();
         }
     @GetMapping("/{userId}/friends")
     public ResponseEntity<List<String>> getFriends(@PathVariable Long userId) {
