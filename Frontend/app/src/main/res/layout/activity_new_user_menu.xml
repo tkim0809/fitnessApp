@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".NewUserMenu">
 
+    <LinearLayout
+        android:id="@+id/menu3"
+        android:layout_width="378dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/menu2"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/findFriendButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_border"
+            android:text="search friend"
+            android:layout_weight="1">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/FriendListButtonXML"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_border"
+            android:text="friend list"
+            android:layout_weight="1">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/moreBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_border"
+            android:text="more..."
+            android:layout_weight="1">
+        </androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/userInfo"
         android:layout_width="match_parent"
@@ -19,7 +55,7 @@
         android:background="@color/Gold">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/profileBtn"
             android:layout_width="99dp"
             android:layout_height="94dp"
             android:layout_alignParentStart="true"
@@ -43,7 +79,7 @@
 
             android:layout_marginEnd="36dp"
             android:layout_toStartOf="@+id/logOutBtn"
-            android:layout_toEndOf="@+id/imageButton"
+            android:layout_toEndOf="@+id/profileBtn"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.072"
@@ -66,21 +102,57 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ProgressBar
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textUserName"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/profileBtn"
+            android:background="@drawable/circle_shap"
+            android:indeterminate="false"
+            android:progress="1"
+            android:progressDrawable="@drawable/circle_pb"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/dailyCalTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginBottom="18dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/dailyCalTxt"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="6dp"
+            android:text="Daily calorie goal:" />
+
+        <TextView
+            android:id="@+id/TodayPct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textUserName"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="68dp"
-            android:layout_toEndOf="@+id/imageButton" />
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="33dp"
+            android:layout_toEndOf="@+id/progressBar"
+            android:text="TextView" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/menu1"
         android:layout_width="378dp"
-        android:layout_height="125dp"
+        android:layout_height="90dp"
         android:layout_below="@+id/userInfo"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
@@ -99,12 +171,12 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/friendsBtn"
+            android:id="@+id/chatBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_border"
             android:layout_weight="1"
-            android:text="Friends">
+            android:text="Chat">
 
         </androidx.appcompat.widget.AppCompatButton>
         <androidx.appcompat.widget.AppCompatButton
@@ -123,13 +195,39 @@
     <LinearLayout
         android:id="@+id/menu2"
         android:layout_width="378dp"
-        android:layout_height="125dp"
+        android:layout_height="90dp"
         android:layout_below="@+id/menu1"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/communityBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_border"
+            android:text="community"
+            android:layout_weight="1">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dietBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_border"
+            android:text="diet"
+            android:layout_weight="1">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/leaderboardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_border"
+            android:text="Leaderboard"
+            android:layout_weight="1">
+        </androidx.appcompat.widget.AppCompatButton>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
