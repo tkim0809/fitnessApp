@@ -46,7 +46,7 @@ public class findFriendActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(findFriendActivity.this, WelcomeMenu.class);
+                Intent i = new Intent(findFriendActivity.this, NewUserMenu.class);
                 startActivity(i);
             }
         });

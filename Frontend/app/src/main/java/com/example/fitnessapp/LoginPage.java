@@ -88,7 +88,7 @@ public class LoginPage extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
 
-                                        Intent i = new Intent(LoginPage.this, WelcomeMenu.class);
+                                        Intent i = new Intent(LoginPage.this, NewUserMenu.class);
                                         i.putExtra("email", email);
                                         startActivity(i);
 

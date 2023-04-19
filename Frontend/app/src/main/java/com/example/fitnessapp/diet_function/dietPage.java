@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.AppController;
 import com.example.fitnessapp.Logic.DateLogic;
 import com.example.fitnessapp.Logic.layoutLogic;
+import com.example.fitnessapp.NewUserMenu;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.UserInfo;
 import com.example.fitnessapp.userMenu;
@@ -65,7 +66,7 @@ public class dietPage extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(dietPage.this, userMenu.class);
+                Intent back = new Intent(dietPage.this, NewUserMenu.class);
                 startActivity(back);
             }
         });
