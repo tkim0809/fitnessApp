@@ -115,7 +115,7 @@
             android:background="@drawable/circle_shap"
             android:indeterminate="false"
             android:progress="1"
-            android:progressDrawable="@drawable/circle_pb"
+            android:progressDrawable="@drawable/circle_percentage_bar"
             android:textAlignment="center" />
 
         <TextView
