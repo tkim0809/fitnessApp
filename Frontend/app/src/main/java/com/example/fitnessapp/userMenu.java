@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.fitnessapp.Logic.layoutLogic;
+import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
 
 public class userMenu extends AppCompatActivity {

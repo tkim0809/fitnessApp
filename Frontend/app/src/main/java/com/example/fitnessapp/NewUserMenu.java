@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
+import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
 
 import org.json.JSONException;

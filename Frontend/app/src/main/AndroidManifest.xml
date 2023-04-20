@@ -64,7 +64,7 @@
             android:name=".profilePage"
             android:exported="true" />
         <activity
-            android:name=".chatPage"
+            android:name=".chat_function.chatPage"
             android:exported="false" />
         <activity
             android:name=".friendsPage"
