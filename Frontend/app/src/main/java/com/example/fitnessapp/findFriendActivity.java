@@ -69,7 +69,6 @@ public class findFriendActivity extends AppCompatActivity {
                 try {
 
                     obj.put("email", email);
-                    obj.put("userID", userName);
 
 
                 } catch (Exception e) {
@@ -78,7 +77,7 @@ public class findFriendActivity extends AppCompatActivity {
 
                 }
 
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                         url, obj,
                         new Response.Listener<JSONObject>() {
 

@@ -28,7 +28,7 @@ public class friendList extends AppCompatActivity {
         setContentView(R.layout.activity_friend_list);
         RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/friendList";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/api/friends/37/friends";
 
 
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -41,8 +41,9 @@ public class friendList extends AppCompatActivity {
 
                     for(int i = 0; i < response.length(); i++) {
 
-                        friendModels.add(new friendModel(response.getJSONObject(i).get("email").toString(), response.getJSONObject(i).get("userName").toString()));
-
+                        String email = response.getString(i);
+                        //String userName = friendObj.getString("username");
+                        friendModels.add(new friendModel(email, ""));
                     }
 
                     friendListRecyclerAdapter adapter = new friendListRecyclerAdapter(friendList.this, friendModels);
