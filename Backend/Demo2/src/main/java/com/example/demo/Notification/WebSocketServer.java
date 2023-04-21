@@ -75,4 +75,17 @@ public class WebSocketServer {
             }
         });
     }
+
+    public void sendMessageToPArticularUser(String userId, String message) {
+        Session session = userIdSessionMap.get(userId);
+        if (session != null) {
+            try {
+                session.getBasicRemote().sendText(message);
+            } catch (IOException e) {
+                logger.info("Exception: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
