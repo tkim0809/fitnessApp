@@ -15,6 +15,11 @@ import java.util.ArrayList;
 
 public class Chat_RecyclerViewAdapter extends RecyclerView.Adapter<Chat_RecyclerViewAdapter.MyViewHolder> {
     Context context;
+
+    public void setChatMessages(ArrayList<chatModel> chatMessages) {
+        this.chatMessages = chatMessages;
+    }
+
     ArrayList<chatModel> chatMessages;
     public Chat_RecyclerViewAdapter(Context context, ArrayList<chatModel> chatMessages){
         this.context =context;

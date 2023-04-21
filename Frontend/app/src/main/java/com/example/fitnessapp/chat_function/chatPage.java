@@ -26,7 +26,7 @@ public class chatPage extends AppCompatActivity {
     String opponentId;
     Button sendBtn,backBtn;
     EditText message;
-    ArrayList<chatModel> chatMessages = new ArrayList<>();
+    ArrayList<chatModel> chatMessagesArray = new ArrayList<>();
 
     private WebSocketClient cc;
     @Override
@@ -37,14 +37,13 @@ public class chatPage extends AppCompatActivity {
         backBtn = findViewById(R.id.chatBackBtn);
         message = findViewById(R.id.chatingMessage);
         RecyclerView recyclerView = findViewById(R.id.chatRecyclerView);
-        Chat_RecyclerViewAdapter adapter = new Chat_RecyclerViewAdapter(this,chatMessages);
+        Chat_RecyclerViewAdapter adapter = new Chat_RecyclerViewAdapter(this,chatMessagesArray);
         recyclerView.setAdapter(adapter);
         //from bottom to top
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
-
-
         /**
          * websocket
+         *
          */
         Draft[] drafts = {
                 new Draft_6455()
@@ -59,6 +58,9 @@ public class chatPage extends AppCompatActivity {
                     Log.d("", "run() returned: " + message);
                     //String s = t1.getText().toString();
                     //t1.setText(s + "\nServer:" + message);
+                    addMessageToArray(message,false);
+                    adapter.setChatMessages(chatMessagesArray);
+                    recyclerView.setAdapter(adapter);
                 }
 
                 @Override
@@ -85,10 +87,13 @@ public class chatPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cc.send("@"+opponentId + message.getText().toString());
+                addMessageToArray(message.getText().toString(),true);
+                adapter.setChatMessages(chatMessagesArray);
+                recyclerView.setAdapter(adapter);
             }
         });
     }
     private void addMessageToArray(String message,Boolean Isent){
-        chatMessages.add(new chatModel(message,Isent));
+        chatMessagesArray.add(new chatModel(message,Isent));
     }
 }
