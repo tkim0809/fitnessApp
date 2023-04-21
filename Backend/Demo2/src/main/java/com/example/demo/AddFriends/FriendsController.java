@@ -41,12 +41,16 @@ public class FriendsController {
         if (user.getEmail().equals(friendEmail)) {
             return ResponseEntity.badRequest().body("You cannot add yourself as a friend.");
         }
-        if (friendsRepository.existsByEmailAndFriendId(user.getEmail(), userId)) {
-            return ResponseEntity.badRequest().body("You are already friends with this user.");
-        }
         AppUser friend = appUserRepository.findByEmail(friendEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + friendEmail));
-        Friends newFriendship = new Friends(user, friend.getId());
+
+        Long friendId = friend.getId();
+
+        if (friendsRepository.existsByUserIdAndFriendId(user.getId(), friendId)) {
+            return ResponseEntity.badRequest().body("You are already friends with this user.");
+        }
+
+        Friends newFriendship = new Friends(user, friendId);
         friendsRepository.save(newFriendship);
 
         // Send a notification to the user who added the friend
@@ -57,7 +61,6 @@ public class FriendsController {
 
         return ResponseEntity.ok().build();
     }
-
 
 
     @GetMapping("/{userId}/friends")
@@ -72,9 +75,6 @@ public class FriendsController {
         return ResponseEntity.ok(friendEmails);
     }
 
-
-
 }
-
 
 
