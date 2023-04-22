@@ -28,7 +28,7 @@ public class friendList extends AppCompatActivity {
         setContentView(R.layout.activity_friend_list);
         RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/api/friends/37/friends";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/api/friends/39/friends";
 
 
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -49,6 +49,20 @@ public class friendList extends AppCompatActivity {
                     friendListRecyclerAdapter adapter = new friendListRecyclerAdapter(friendList.this, friendModels);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(friendList.this));
+
+                    friendListRecyclerAdapter.setOnItemClickListener(new friendListRecyclerAdapter.OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(int position) {
+
+                            // i need to implement json delete method request in order to actually delete the json objects from the data, but we dont have the database/server/url for that now
+
+                            friendModels.remove(position);
+                            adapter.notifyItemRemoved(position);
+
+                        }
+
+                    });
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

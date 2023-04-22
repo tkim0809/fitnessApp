@@ -1,13 +1,13 @@
 package com.example.fitnessapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -21,6 +21,8 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fitnessapp.NewUserMenu;
+import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +45,6 @@ public class findFriendActivity extends AppCompatActivity {
 
         backToMenuBtn.setOnClickListener(new View.OnClickListener() {
 
-
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(findFriendActivity.this, NewUserMenu.class);
@@ -51,13 +52,11 @@ public class findFriendActivity extends AppCompatActivity {
             }
         });
 
-
-        String email = emailEditText.getText().toString();
-
         addFriendButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+                String email = emailEditText.getText().toString();
 
                 String userName = "";
                 userName += UserInfo.getUserID();
@@ -67,82 +66,69 @@ public class findFriendActivity extends AppCompatActivity {
                 JSONObject obj = new JSONObject();
 
                 try {
-
                     obj.put("email", email);
-
-
                 } catch (Exception e) {
-
                     System.out.println("ERROR");
-
                 }
 
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                         url, obj,
                         new Response.Listener<JSONObject>() {
 
-
                             @Override
                             public void onResponse(JSONObject response) {
+                                Toast.makeText(findFriendActivity.this, "success", Toast.LENGTH_LONG).show();
 
 
                                 try {
-
                                     String toCompare = response.get("message").toString();
 
                                     if (toCompare.equals("success")) {
-
                                         Toast.makeText(findFriendActivity.this, "Successful added to friend list", Toast.LENGTH_LONG).show();
-
                                     }
 
                                 } catch (JSONException e) {
-
                                     throw new RuntimeException(e);
-
                                 }
 
                             }
                         }, new Response.ErrorListener() {
+
+
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        if (error instanceof ServerError) {
-                            Toast.makeText(findFriendActivity.this, "Server", Toast.LENGTH_SHORT).show();
-                        } else if (error instanceof NetworkError) {
-                            Toast.makeText(findFriendActivity.this, "Network", Toast.LENGTH_SHORT).show();
-                            System.out.println(error.getMessage());
-                        } else if (error instanceof AuthFailureError) {
-                            Toast.makeText(findFriendActivity.this, "Auth", Toast.LENGTH_SHORT).show();
-                        } else if (error instanceof ParseError) {
-                            Toast.makeText(findFriendActivity.this, "Parse", Toast.LENGTH_SHORT).show();
-                        } else if (error instanceof NoConnectionError) {
-                            Toast.makeText(findFriendActivity.this, "No Connection", Toast.LENGTH_SHORT).show();
-                        } else if (error instanceof TimeoutError) {
-                            Toast.makeText(findFriendActivity.this, "T/O", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(findFriendActivity.this, "Unknown", Toast.LENGTH_SHORT).show();
 
-                        }
+                        if (error instanceof ServerError) {
+                                Toast.makeText(findFriendActivity.this, "Server", Toast.LENGTH_SHORT).show();
+                            } else if (error instanceof NetworkError) {
+                                Toast.makeText(findFriendActivity.this, "Network", Toast.LENGTH_SHORT).show();
+                                System.out.println(error.getMessage());
+                            } else if (error instanceof AuthFailureError) {
+                                Toast.makeText(findFriendActivity.this, "Auth", Toast.LENGTH_SHORT).show();
+                            } else if (error instanceof ParseError) {
+                                Toast.makeText(findFriendActivity.this, "Parse", Toast.LENGTH_SHORT).show();
+                            } else if (error instanceof NoConnectionError) {
+                                Toast.makeText(findFriendActivity.this, "No Connection", Toast.LENGTH_SHORT).show();
+                            } else if (error instanceof TimeoutError) {
+                                Toast.makeText(findFriendActivity.this, "T/O", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(findFriendActivity.this, "Unknown", Toast.LENGTH_SHORT).show();
+
+                            }
+
                     }
                 }) {
 
                     @Override
                     public Map<String, String> getParams() {
-
                         Map<String, String> params = new HashMap<String, String>();
                         return params;
-
                     }
 
                 };
 
                 queue.add(jsonObjReq);
-
             }
-
-
         });
-
-
     }
 }

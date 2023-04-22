@@ -28,6 +28,13 @@
             android:text="TextView"
             android:textColor="@android:color/black"
             android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_delete_24"
+            android:id="@+id/delete_id_friendList"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
