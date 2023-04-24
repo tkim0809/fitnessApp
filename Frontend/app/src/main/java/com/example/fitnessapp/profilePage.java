@@ -16,6 +16,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+/**
+ * Profile UI class
+ */
 public class profilePage extends AppCompatActivity {
     Button edit;
     TextView gender;
@@ -45,6 +49,10 @@ public class profilePage extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * This method makes and displays request to the server for user profile information
+     */
     private void makeJsonObjReq() {
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,

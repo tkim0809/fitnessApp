@@ -22,6 +22,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+/**
+ * This class is the UI of chat function
+ */
 public class chatPage extends AppCompatActivity {
     String opponentId;
     Button sendBtn,backBtn;
@@ -41,10 +44,7 @@ public class chatPage extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         //from bottom to top
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
-        /**
-         * websocket
-         *
-         */
+        //websocket
         Draft[] drafts = {
                 new Draft_6455()
         };
@@ -93,6 +93,12 @@ public class chatPage extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * This method is used to add message to the message array which is used to display the message.
+     * @param message text message sent or received
+     * @param Isent Boolean return true if user sent the message
+     */
     private void addMessageToArray(String message,Boolean Isent){
         chatMessagesArray.add(new chatModel(message,Isent));
     }

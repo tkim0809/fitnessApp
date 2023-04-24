@@ -5,6 +5,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * This class is used to store user information as they login
+ */
 public class UserInfo {
     //test for user id 39
     static String userID = "39";
@@ -14,9 +17,13 @@ public class UserInfo {
     static Boolean hasProfile = false;
     static Boolean hasSetDietGoal = false;
 
+    /**
+     * @return true if user has set diet goal.
+     */
     public static Boolean getHasSetDietGoal() {
         return hasSetDietGoal;
     }
+
 
     public static void setHasSetDietGoal(Boolean hasSetDietGoal) {
         UserInfo.hasSetDietGoal = hasSetDietGoal;
@@ -46,6 +53,9 @@ public class UserInfo {
         UserInfo.date = date;
     }
 
+    /**
+     * @return true is user has update meal intake today
+     */
     public static Boolean getHasUpDatedDiet() {
         return hasUpDatedDiet;
     }
@@ -55,6 +65,9 @@ public class UserInfo {
         System.out.println("hasUpdateDiet:"+UserInfo.hasUpDatedDiet);
     }
 
+    /**
+     * @return true if user has set up profile
+     */
     public static Boolean getHasProfile() {
         return hasProfile;
     }

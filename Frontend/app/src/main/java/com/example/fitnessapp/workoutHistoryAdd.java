@@ -6,17 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fitnessapp.Logic.StatsUpdateLogic;
-import com.example.fitnessapp.Network.IServerRequest;
+import com.example.fitnessapp.Logic.workoutHistoryUpdateLogic;
 import com.example.fitnessapp.Network.updateRequests;
 
 import org.json.JSONException;
 
+/**
+ * Adding work out history UI class
+ */
 //Edit the exercises "name", "rep" and "max" and send it to the backend.
-public class statsEdit extends AppCompatActivity implements IView{
+public class workoutHistoryAdd extends AppCompatActivity implements IView{
     EditText exName;
     EditText exRep;
     EditText exMax;
@@ -34,7 +35,7 @@ public class statsEdit extends AppCompatActivity implements IView{
         saveBtn = findViewById(R.id.saveExBtn);
 
         updateRequests upDateStatsRQ = new updateRequests();
-        final StatsUpdateLogic statsLogic = new StatsUpdateLogic(statsEdit.this,upDateStatsRQ);
+        final workoutHistoryUpdateLogic statsLogic = new workoutHistoryUpdateLogic(workoutHistoryAdd.this,upDateStatsRQ);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

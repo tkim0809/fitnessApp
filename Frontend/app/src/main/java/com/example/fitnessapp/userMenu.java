@@ -33,7 +33,7 @@ public class userMenu extends AppCompatActivity {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toRecord = new Intent(userMenu.this, statsPage.class);
+                Intent toRecord = new Intent(userMenu.this, workoutHistoryPage.class);
                 startActivity(toRecord);
             }
         });

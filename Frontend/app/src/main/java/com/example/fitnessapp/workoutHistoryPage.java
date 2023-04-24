@@ -15,10 +15,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-public class statsPage extends AppCompatActivity implements IView{
+/**
+ * Viewing workout history class
+ */
+public class workoutHistoryPage extends AppCompatActivity implements IView{
     JSONObject exercise;
     Button addBtn;
     TextView ex1Name;
@@ -43,7 +45,7 @@ public class statsPage extends AppCompatActivity implements IView{
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toEdit = new Intent(statsPage.this, statsEdit.class);
+                Intent toEdit = new Intent(workoutHistoryPage.this, workoutHistoryAdd.class);
                 startActivity(toEdit);
             }
         });
@@ -70,6 +72,10 @@ public class statsPage extends AppCompatActivity implements IView{
     public void showText(String s) {
 
     }
+
+    /**
+     * This method requests and display the user workout history.
+     */
     private void makeRequest(){
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url, null, new Response.Listener<JSONArray>() {
             @Override

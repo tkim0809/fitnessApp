@@ -11,11 +11,22 @@ public class dietGoalLogic implements IVolleyListener{
     IView i;
     IServerRequest serverRequest;
 
+    /**
+     * constructor
+     * @param i
+     * @param serverRequest
+     */
     public dietGoalLogic(IView i, IServerRequest serverRequest) {
         this.i = i;
         this.serverRequest = serverRequest;
         serverRequest.addVolleyListener(this);
     }
+
+    /**
+     * @param dailyCal the user input of daily diet goal in Cal
+     * @param weeklyCal
+     * @throws JSONException
+     */
     public void setGoal(int dailyCal, String weeklyCal) throws JSONException {
         String meth;
         if (UserInfo.getHasSetDietGoal()){

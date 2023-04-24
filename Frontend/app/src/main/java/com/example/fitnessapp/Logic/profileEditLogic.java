@@ -11,6 +11,11 @@ public class profileEditLogic implements IVolleyListener{
     IView i;
     IServerRequest serverRequest;
 
+    /**
+     * constructor
+     * @param i
+     * @param serverRequest
+     */
     public profileEditLogic(IView i, IServerRequest serverRequest) {
         this.i = i;
         this.serverRequest = serverRequest;
@@ -18,8 +23,15 @@ public class profileEditLogic implements IVolleyListener{
     }
 
 
-
-
+    /**
+     * This method put/post user profile information which the user has edited
+     * @param username
+     * @param gender
+     * @param age
+     * @param weight
+     * @param email
+     * @throws JSONException
+     */
     public void editProfile(String username,String gender, String age, String weight, String email) throws JSONException {
         final String url = "http://coms-309-004.class.las.iastate.edu:8080/profile/37";
         String meth;

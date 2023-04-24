@@ -8,6 +8,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+/**
+ * This class is used to implement request queue to each context.
+ */
 public class AppController extends Application {
     public static final String TAG = AppController.class.getSimpleName();
     private RequestQueue requestQueue;
@@ -20,14 +23,27 @@ public class AppController extends Application {
         super.onCreate();
         theInstance = this;
     }
+
+    /**
+     * @return the context
+     */
     public static synchronized AppController getInstance(){return theInstance;}
 
+    /**
+     * @return created or existing request queue
+     */
     public RequestQueue getRequestQueue() {
         if(requestQueue == null){
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         return requestQueue;
     }
+
+    /**
+     * adds request to the request queue
+     * @param req
+     * @param <T>
+     */
     public <T> void addToRequestQueue(Request<T> req){
         req.setTag(TAG);
         getRequestQueue().add(req);
