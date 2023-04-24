@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.text.DecimalFormat;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 
 
@@ -29,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = "Diet")
 @RestController
 @AllArgsConstructor
 @RequestMapping()
@@ -39,8 +45,18 @@ public class DietController {
     private final DailyTargetRepository dailyTargetRepository;
     private final DietGoalRepository dietGoalRepository;
 
+    @ApiOperation(value = "Add or update a diet goal for the user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet goal added/updated successfully"),
+            @ApiResponse(code = 404, message = "User not found")
+    })
     @PostMapping("/dietgoal/{userId}")
-    public DietGoal addDietGoal(@PathVariable Long userId, @RequestBody DietGoal newDietGoal) {
+    public DietGoal addDietGoal(
+            @ApiParam(value = "User ID", required = true)
+            @PathVariable Long userId,
+            @ApiParam(value = "Diet goal object", required = true)
+            @RequestBody DietGoal newDietGoal
+    ) {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -56,10 +72,19 @@ public class DietController {
             return dietGoalRepository.save(newDietGoal);
         }
     }
-
+    @ApiOperation(value = "Update a diet goal for the user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet goal updated successfully"),
+            @ApiResponse(code = 404, message = "Diet goal not found")
+    })
 
     @PutMapping("/dietgoal/{userId}")
-    public DietGoal updateDietGoal(@PathVariable Long userId, @RequestBody DietGoal updatedDietGoal) {
+    public DietGoal updateDietGoal(
+            @ApiParam(value = "User ID", required = true)
+            @PathVariable Long userId,
+            @ApiParam(value = "Updated diet goal object", required = true)
+            @RequestBody DietGoal updatedDietGoal
+    ) {
         DietGoal dietGoal = dietGoalRepository.findByUser_Id(userId)
                 .orElseThrow(() -> new RuntimeException("Diet goal not found"));
 
@@ -75,16 +100,33 @@ public class DietController {
     }
 
 
-
+    @ApiOperation(value = "Get a diet goal for the user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet goal found"),
+            @ApiResponse(code = 404, message = "Diet goal not found")
+    })
     @GetMapping("/dietgoal/{userId}")
-    public DietGoal getDietGoal(@PathVariable Long userId) {
+    public DietGoal getDietGoal(
+            @ApiParam(value = "User ID", required = true)
+            @PathVariable Long userId
+    ) {
         return dietGoalRepository.findByUser_Id(userId)
                 .orElseThrow(() -> new RuntimeException("Diet goal not found"));
     }
 
+    @ApiOperation(value = "Get diet entries for the user by date")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet entries found"),
+            @ApiResponse(code = 404, message = "User not found")
+    })
 
     @GetMapping("/diet/{userId}/{date}")
-    public List<Map<String, Object>> getDietByUserAndDate(@PathVariable Long userId, @PathVariable String date) {
+    public List<Map<String, Object>> getDietByUserAndDate(
+            @ApiParam(value = "User ID", required = true)
+            @PathVariable Long userId,
+            @ApiParam(value = "Date in yyyy-MM-dd format", required = true)
+            @PathVariable String date
+    )  {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -102,9 +144,18 @@ public class DietController {
         return response;
     }
 
-
+    @ApiOperation(value = "Add a new diet entry for the user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet entry added successfully"),
+            @ApiResponse(code = 404, message = "User not found")
+    })
     @PostMapping("/diet/{userId}")
-    public Diet addDiet(@PathVariable Long userId, @RequestBody Diet diet) {
+    public Diet addDiet(
+            @ApiParam(value = "User ID", required = true)
+            @PathVariable Long userId,
+            @ApiParam(value = "Diet entry object", required = true)
+            @RequestBody Diet diet
+    ) {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -131,8 +182,18 @@ public class DietController {
         return dietRepository.save(diet);
     }
 
+    @ApiOperation(value = "Update a diet entry")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet entry updated successfully"),
+            @ApiResponse(code = 404, message = "Diet entry not found")
+    })
     @PutMapping("/diet/{id}")
-    public Diet updateDiet(@PathVariable Long id, @RequestBody Diet updatedDiet) {
+    public Diet updateDiet(
+            @ApiParam(value = "Diet entry ID", required = true)
+            @PathVariable Long id,
+            @ApiParam(value = "Updated diet entry object", required = true)
+            @RequestBody Diet updatedDiet
+    ) {
         Diet diet = dietRepository.findById(id).orElseThrow(() -> new RuntimeException("Diet not found"));
         diet.setName(updatedDiet.getName());
         diet.setCalories(updatedDiet.getCalories());
@@ -141,13 +202,31 @@ public class DietController {
         return dietRepository.save(diet);
     }
 
+    @ApiOperation(value = "Delete a diet entry")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet entry deleted successfully"),
+            @ApiResponse(code = 404, message = "Diet entry not found")
+    })
     @DeleteMapping("/diet/{id}")
-    public void deleteDiet(@PathVariable Long id) {
+    public void deleteDiet(
+            @ApiParam(value = "Diet entry ID", required = true)
+            @PathVariable Long id
+    ) {
         dietRepository.deleteById(id);
     }
 
+    @ApiOperation(value = "Get diet summary by date for the user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Diet summary found"),
+            @ApiResponse(code = 404, message = "Daily target not found")
+    })
     @GetMapping("/diet")
-    public DietSummary getDietsByDate(@RequestParam("date") String date, @RequestParam("userId") Long userId) {
+    public DietSummary getDietsByDate(
+            @ApiParam(value = "Date in yyyy-MM-dd format", required = true)
+            @RequestParam("date") String date,
+            @ApiParam(value = "User ID", required = true)
+            @RequestParam("userId") Long userId
+    )  {
         List<Diet> diets = dietRepository.findByDateAndUser_Id(date, userId);
         int totalCalories = 0;
         DailyTarget dailyTarget = dailyTargetRepository.findByDateAndUser_Id(date, userId)
