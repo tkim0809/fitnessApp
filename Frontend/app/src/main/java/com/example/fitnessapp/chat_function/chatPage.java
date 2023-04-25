@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.UserInfo;
@@ -26,24 +29,37 @@ import java.util.ArrayList;
  * This class is the UI of chat function
  */
 public class chatPage extends AppCompatActivity {
-    String opponentId;
+    String opponentUserName;
     Button sendBtn,backBtn;
+    TextView chatName;
     EditText message;
-    ArrayList<chatModel> chatMessagesArray = new ArrayList<>();
+    ArrayList<chatMessageModel> chatMessagesArray = new ArrayList<>();
+
 
     private WebSocketClient cc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        addMessageToArray("Hi(Received)",false);
+        addMessageToArray("Hello(sent)",true);
+        //pan up the activity when keyboard is shown.
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         sendBtn = findViewById(R.id.sendChatBtn);
         backBtn = findViewById(R.id.chatBackBtn);
         message = findViewById(R.id.chatingMessage);
-        RecyclerView recyclerView = findViewById(R.id.chatRecyclerView);
+        chatName = findViewById(R.id.chatName);
+        RecyclerView recyclerView = findViewById(R.id.chatListRecyclerView);
         Chat_RecyclerViewAdapter adapter = new Chat_RecyclerViewAdapter(this,chatMessagesArray);
         recyclerView.setAdapter(adapter);
+
+
         //from bottom to top
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
+
+        Intent i = this.getIntent();
+        opponentUserName = i.getStringExtra("userName");
+        chatName.setText(opponentUserName);
         //websocket
         Draft[] drafts = {
                 new Draft_6455()
@@ -86,7 +102,12 @@ public class chatPage extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cc.send("@"+opponentId + message.getText().toString());
+                try {
+                    cc.send("@"+opponentUserName + message.getText().toString());
+                }catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+
                 addMessageToArray(message.getText().toString(),true);
                 adapter.setChatMessages(chatMessagesArray);
                 recyclerView.setAdapter(adapter);
@@ -100,6 +121,6 @@ public class chatPage extends AppCompatActivity {
      * @param Isent Boolean return true if user sent the message
      */
     private void addMessageToArray(String message,Boolean Isent){
-        chatMessagesArray.add(new chatModel(message,Isent));
+        chatMessagesArray.add(0,new chatMessageModel(message,Isent));
     }
 }

@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".chat_function.ChatList"
+            android:exported="true" />
+        <activity
             android:name=".NewUserMenu"
             android:exported="true" />
         <activity
@@ -65,7 +68,7 @@
             android:exported="true" />
         <activity
             android:name=".chat_function.chatPage"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".friendsPage"
             android:exported="false" />

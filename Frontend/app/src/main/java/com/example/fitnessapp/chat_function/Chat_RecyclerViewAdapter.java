@@ -15,13 +15,15 @@ import java.util.ArrayList;
 
 public class Chat_RecyclerViewAdapter extends RecyclerView.Adapter<Chat_RecyclerViewAdapter.MyViewHolder> {
     Context context;
+    private static final int SENT_MESSAGE = 0;
+    private static final int RECEIVED_MESSAGE = 1;
 
-    public void setChatMessages(ArrayList<chatModel> chatMessages) {
+    public void setChatMessages(ArrayList<chatMessageModel> chatMessages) {
         this.chatMessages = chatMessages;
     }
 
-    ArrayList<chatModel> chatMessages;
-    public Chat_RecyclerViewAdapter(Context context, ArrayList<chatModel> chatMessages){
+    ArrayList<chatMessageModel> chatMessages;
+    public Chat_RecyclerViewAdapter(Context context, ArrayList<chatMessageModel> chatMessages){
         this.context =context;
         this.chatMessages =chatMessages;
     }
@@ -29,7 +31,12 @@ public class Chat_RecyclerViewAdapter extends RecyclerView.Adapter<Chat_Recycler
     @Override
     public Chat_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.chat_message_layout,parent,false);
+        View view;
+        if (viewType == SENT_MESSAGE){
+            view = layoutInflater.inflate(R.layout.chat_message_send_layout,parent,false);
+        }else {
+            view = layoutInflater.inflate(R.layout.chat_message_receive_layout,parent,false);
+        }
         return new Chat_RecyclerViewAdapter.MyViewHolder(view);
     }
 
@@ -47,7 +54,17 @@ public class Chat_RecyclerViewAdapter extends RecyclerView.Adapter<Chat_Recycler
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            message = itemView.findViewById(R.id.chatMessage);
+            message = itemView.findViewById(R.id.message_text);
+        }
+    }
+    @Override
+    public int getItemViewType(int position){
+        chatMessageModel m = chatMessages.get(position);
+        if (m.getIsent()){
+            return SENT_MESSAGE;
+        }
+        else {
+            return RECEIVED_MESSAGE;
         }
     }
 }
