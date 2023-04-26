@@ -3,7 +3,7 @@ package com.example.fitnessapp.chat_function;
 /**
  * This is the chat text box model.
  */
-public class chatModel {
+public class chatMessageModel {
 
 
     String message;
@@ -13,7 +13,7 @@ public class chatModel {
      * @param message the text message
      * @param Isent equals true if the user has sent the message, false if user receive it
      */
-    public chatModel(String message, Boolean Isent) {
+    public chatMessageModel(String message, Boolean Isent) {
         this.message = message;
         this.Isent = Isent;
     }
