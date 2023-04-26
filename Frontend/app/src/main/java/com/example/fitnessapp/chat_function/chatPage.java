@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.UserInfo;
@@ -20,6 +21,8 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -74,7 +77,14 @@ public class chatPage extends AppCompatActivity {
                     Log.d("", "run() returned: " + message);
                     //String s = t1.getText().toString();
                     //t1.setText(s + "\nServer:" + message);
-                    addMessageToArray(message,false);
+                    String received;
+                    try {
+                        JSONObject messageObj = new JSONObject(message);
+                        received = messageObj.getString("message");
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                    addMessageToArray(received,false);
                     adapter.setChatMessages(chatMessagesArray);
                     recyclerView.setAdapter(adapter);
                 }
@@ -102,10 +112,15 @@ public class chatPage extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JSONObject messageObj = new JSONObject();
                 try {
-                    cc.send("@"+opponentUserName + message.getText().toString());
+                    messageObj.put("sender",UserInfo.getUserID());
+                    messageObj.put("message",message.getText());
+                    messageObj.put("receiver",opponentUserName);
+                    cc.send(messageObj.toString());
                 }catch (Exception e){
                     System.out.println(e.getMessage());
+                    Toast.makeText(chatPage.this, "Your message did not sent.", Toast.LENGTH_SHORT).show();
                 }
 
                 addMessageToArray(message.getText().toString(),true);
