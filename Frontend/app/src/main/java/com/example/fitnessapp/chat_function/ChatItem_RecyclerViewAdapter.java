@@ -15,6 +15,9 @@ import com.example.fitnessapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter class for chatList
+ */
 public class ChatItem_RecyclerViewAdapter extends RecyclerView.Adapter<ChatItem_RecyclerViewAdapter.MyViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
     ArrayList<chatItemModel> chatList;

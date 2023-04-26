@@ -13,6 +13,9 @@ import com.example.fitnessapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter class for chat page
+ */
 public class Chat_RecyclerViewAdapter extends RecyclerView.Adapter<Chat_RecyclerViewAdapter.MyViewHolder> {
     Context context;
     private static final int SENT_MESSAGE = 0;

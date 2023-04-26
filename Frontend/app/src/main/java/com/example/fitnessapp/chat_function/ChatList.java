@@ -11,6 +11,9 @@ import com.example.fitnessapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Shows all the chats
+ */
 public class ChatList extends AppCompatActivity implements RecyclerViewInterface{
     ArrayList<chatItemModel> chatItemModelArrayList = new ArrayList<>();
 
