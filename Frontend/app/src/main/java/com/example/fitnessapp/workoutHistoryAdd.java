@@ -14,7 +14,7 @@ import com.example.fitnessapp.Network.updateRequests;
 import org.json.JSONException;
 
 /**
- * Adding work out history UI class
+ * Adding work out history UI class.
  */
 //Edit the exercises "name", "rep" and "max" and send it to the backend.
 public class workoutHistoryAdd extends AppCompatActivity implements IView{
