@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * Recycler adapter class that is used to create milestone recycler view
+ */
 public class milestone_recycler_adapter extends RecyclerView.Adapter<milestone_recycler_adapter.MyViewHolder>{
 
     Context context;
