@@ -61,7 +61,7 @@
             android:name=".editProfilePage"
             android:exported="true" />
         <activity
-            android:name=".workoutHistoryAdd"
+            android:name=".workoutHistory_function.workoutHistoryAdd"
             android:exported="true" />
         <activity
             android:name=".profilePage"
@@ -73,7 +73,7 @@
             android:name=".friendsPage"
             android:exported="false" />
         <activity
-            android:name=".workoutHistoryPage"
+            android:name=".workoutHistory_function.workoutHistoryPage"
             android:exported="true" />
         <activity
             android:name=".userMenu"

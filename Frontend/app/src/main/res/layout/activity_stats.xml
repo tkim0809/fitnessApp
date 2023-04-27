@@ -4,144 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".workoutHistoryPage">
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="408dp"
-        android:layout_height="519dp"
-        android:layout_marginStart="3dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/ex1Txt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/ex1Sets"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ex1RepTxt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ex1MaxTxt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/ex2Txt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/ex2Sets"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ex2RepTxt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ex2MaxTxt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/ex3Txt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/ex3Sets"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ex3RepTxt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ex3MaxTxt"
-                android:layout_width="90dp"
-                android:layout_height="65dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
-
-    </LinearLayout>
+    tools:context=".workoutHistory_function.workoutHistoryPage"
+    android:background="@drawable/yellow_background">
 
     <Button
         android:id="@+id/addExBtn"
         android:layout_width="wrap_content"
         android:layout_height="62dp"
+        android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:text="add"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Ivory"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutItemRView"
+        android:layout_width="0dp"
+        android:layout_height="551dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/addExBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Workout History"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

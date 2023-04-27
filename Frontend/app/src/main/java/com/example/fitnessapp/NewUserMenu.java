@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
 import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
+import com.example.fitnessapp.workoutHistory_function.workoutHistoryPage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
