@@ -17,6 +17,9 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to view milestone progress of each user
+ */
 public class milestoneProgress extends AppCompatActivity {
 
     ArrayList<milestoneModel> milestoneModels = new ArrayList<>();
@@ -46,11 +49,13 @@ public class milestoneProgress extends AppCompatActivity {
 
                     }
 
+                    // setting recycler adapter to this class
                     milestone_recycler_adapter adapter = new milestone_recycler_adapter(milestoneProgress.this, milestoneModels);
 
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(milestoneProgress.this));
                     milestone_recycler_adapter.setOnItemClickListener(new milestone_recycler_adapter.OnItemClickListener() {
+
 
                         @Override
                         public void onItemClick(int position) {

@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Api(tags = "Login")
 @RestController
 @AllArgsConstructor
 public class LoginController {
@@ -20,8 +26,17 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    @ApiOperation(value = "Authenticate user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully authenticated user"),
+            @ApiResponse(code = 400, message = "Bad request, invalid login information"),
+            @ApiResponse(code = 500, message = "Internal server error")
+    })
     @PostMapping(path = "/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<String> login(
+            @ApiParam(value = "Login request object containing username and password", required = true)
+            @RequestBody LoginRequest loginRequest
+    ) {
         boolean isValidUser = loginService.validateUser(loginRequest);
 
         // create a Map object with a key-value pair representing the boolean result

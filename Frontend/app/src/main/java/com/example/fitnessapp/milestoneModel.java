@@ -1,5 +1,8 @@
 package com.example.fitnessapp;
 
+/**
+ * This class is used to set constructor for milestoneModel and getters methods that is used for recycler view.
+ */
 public class milestoneModel {
 
     String workoutName;

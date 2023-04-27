@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class is used to find a friend with given email address by user
+ */
 public class findFriendActivity extends AppCompatActivity {
 
     @Override
@@ -41,6 +44,9 @@ public class findFriendActivity extends AppCompatActivity {
         Button addFriendButton = findViewById(R.id.addFriendButton);
         Button backToMenuBtn = findViewById(R.id.backToMenu);
 
+        /**
+         * when "back" button is pressed
+         */
         backToMenuBtn.setOnClickListener(new View.OnClickListener() {
 
 
@@ -54,7 +60,11 @@ public class findFriendActivity extends AppCompatActivity {
 
         String email = emailEditText.getText().toString();
 
+        /**
+         * when "add" button is pressed
+         */
         addFriendButton.setOnClickListener(new View.OnClickListener() {
+
 
             @Override
             public void onClick(View view) {
@@ -78,6 +88,9 @@ public class findFriendActivity extends AppCompatActivity {
 
                 }
 
+                /**
+                 * sends json object "email" to the server and if valid/has data in the server, gets response
+                 */
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                         url, obj,
                         new Response.Listener<JSONObject>() {

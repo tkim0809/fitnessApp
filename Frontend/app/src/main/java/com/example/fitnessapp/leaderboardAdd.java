@@ -19,6 +19,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * This class is used to add leaderboard progress of each user.
+ */
 public class leaderboardAdd extends AppCompatActivity {
 
     @Override
@@ -36,6 +39,9 @@ public class leaderboardAdd extends AppCompatActivity {
         String finalUserEmail = userName;
 
 
+        /**
+         * when "add" button is pushed
+         */
         addpushupsButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -56,6 +62,9 @@ public class leaderboardAdd extends AppCompatActivity {
 
                 }
 
+                /**
+                 * sends json POST method request with two json objects, "username" and "pushups"
+                 */
                 JsonObjectRequest jsonArr = new JsonObjectRequest(Request.Method.POST, url,
                         obj,
                         new Response.Listener<JSONObject>() {

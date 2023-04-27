@@ -48,8 +48,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 
+@Api(tags = "Friends")
 @RestController
 @RequestMapping("/api/friends")
 public class FriendsController {
@@ -62,10 +68,14 @@ public class FriendsController {
         this.appUserRepository = appUserRepository;
     }
 
+    @ApiOperation(value = "Add a friend")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Friend added successfully"),
+            @ApiResponse(code = 400, message = "Invalid input or friend already added")
+    })
 
-
-        @PostMapping("/{userId}/add")
-        public String/*ResponseEntity<?>*/ addFriend(@RequestBody Map<String, String> requestBody, @PathVariable Long userId) {
+    @PostMapping("/{userId}/add")
+    public String addFriend(@ApiParam(value = "Email of the friend to be added", required = true) @RequestBody Map<String, String> requestBody, @ApiParam(value = "User ID", required = true) @PathVariable Long userId) {
             String friendEmail = requestBody.get("email");
 
             AppUser user = appUserRepository.findById(userId)
@@ -82,8 +92,17 @@ public class FriendsController {
             friendsRepository.save(newFriendship);
             return "{\"message\" : \"success\"}";//ResponseEntity.ok().build();
         }
+
+
+
+
+    @ApiOperation(value = "Get a list of friend emails")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Friends list retrieved successfully"),
+            @ApiResponse(code = 404, message = "User not found")
+    })
     @GetMapping("/{userId}/friends")
-    public ResponseEntity<List<String>> getFriends(@PathVariable Long userId) {
+    public ResponseEntity<List<String>> getFriends(@ApiParam(value = "User ID", required = true) @PathVariable Long userId)  {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + userId));
         List<Long> friendIds2 = friendsRepository.findFriendIdsByFriendId(user.getId());

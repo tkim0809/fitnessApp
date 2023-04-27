@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * Recycler adapter class that is used to view lists of all the leaderboard progress.
+ */
 public class leaderboard_recycler_adapter extends RecyclerView.Adapter<leaderboard_recycler_adapter.MyViewHolder>{
 
     ArrayList<leaderboardModel> leaderboardModels;
