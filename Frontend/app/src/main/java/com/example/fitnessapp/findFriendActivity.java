@@ -43,6 +43,9 @@ public class findFriendActivity extends AppCompatActivity {
         EditText emailEditText = findViewById(R.id.friendEmail);
         Button addFriendButton = findViewById(R.id.addFriendButton);
         Button backToMenuBtn = findViewById(R.id.backToMenu);
+        Button addGymsBtn = findViewById(R.id.addgymsButton);
+
+
 
         /**
          * when "back" button is pressed
@@ -53,6 +56,16 @@ public class findFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(findFriendActivity.this, NewUserMenu.class);
+                startActivity(i);
+            }
+        });
+
+        addGymsBtn.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(findFriendActivity.this, addgymsPage.class);
                 startActivity(i);
             }
         });

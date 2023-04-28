@@ -62,6 +62,19 @@
 
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addgymsButton"
+        android:layout_below = "@id/backToMenu"
+        android:text="add gyms"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_margin = "20dp"
+
+        />
+
 
 
 </RelativeLayout>

@@ -15,6 +15,11 @@
         android:theme="@style/Theme.FitnessApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity android:name=".addgymsPage"
+            android:exported="true" />
+        <activity
+            android:name=".gymsListPage"
+            android:exported="false" />
         <activity
             android:name=".chat_function.ChatList"
             android:exported="true" />
