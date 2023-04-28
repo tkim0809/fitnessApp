@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessapp.R;
-import com.example.fitnessapp.chat_function.ChatItem_RecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -52,9 +51,9 @@ public class workoutItem_RecyclerViewAdapter extends RecyclerView.Adapter<workou
         TextView workoutName,sets,weight,reps;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            workoutName = itemView.findViewById(R.id.workoutItemName);
-            sets = itemView.findViewById(R.id.workoutItemSets);
-            weight = itemView.findViewById(R.id.workoutItemWeight);
+            workoutName = itemView.findViewById(R.id.foodItemName);
+            sets = itemView.findViewById(R.id.foodItemMeal);
+            weight = itemView.findViewById(R.id.foodItemCal);
             reps = itemView.findViewById(R.id.workoutItemReps);
         }
     }

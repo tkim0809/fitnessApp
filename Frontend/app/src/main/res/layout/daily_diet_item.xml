@@ -15,7 +15,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="100dp"
             android:background="@drawable/workout_item_bg">
 
             <TextView
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Bench"
+                android:text="red lobster"
                 android:textColor="@color/Ivory"
                 android:textSize="26dp"
                 android:textStyle="bold"
@@ -35,38 +35,27 @@
                 android:id="@+id/foodItemCal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="15dp"
-                android:textStyle="bold"
-                android:text="200lb"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="32dp"
+                android:text="200Cal"
                 android:textColor="@color/Ivory"
-                android:textSize="25dp"
-                app:layout_constraintStart_toEndOf="@+id/foodItemName"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/foodItemMeal"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/foodItemMeal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp"
-                android:text="4 sets"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="32dp"
+                android:text="Breakfast"
+                android:textStyle="bold"
                 android:textColor="@color/Ivory"
-                android:textSize="18dp"
+                android:textSize="22dp"
                 app:layout_constraintStart_toEndOf="@+id/foodItemName"
-                app:layout_constraintTop_toBottomOf="@+id/foodItemCal" />
-
-            <TextView
-                android:id="@+id/workoutItemReps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="15dp"
-                android:text="10 reps each"
-                android:textColor="@color/Ivory"
-                android:textSize="18dp"
-                app:layout_constraintStart_toEndOf="@+id/foodItemMeal"
-                app:layout_constraintTop_toBottomOf="@+id/foodItemCal" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

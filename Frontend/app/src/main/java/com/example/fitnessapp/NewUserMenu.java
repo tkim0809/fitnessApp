@@ -116,6 +116,7 @@ public class NewUserMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(NewUserMenu.this,milestone.class);
+                startActivity(i);
             }
         });
         DailyCal = findViewById(R.id.dailyCalTxt);
@@ -241,7 +242,7 @@ public class NewUserMenu extends AppCompatActivity {
 
                         try {
                             progressBar.setProgress(calculatePctInt(totalIn, response.getInt("dietGoalValue")));
-                            dayPct.setText("You have reached"+calculatePct(totalIn, response.getInt("dietGoalValue")) + "of daily plan");
+                            dayPct.setText("You have reached"+calculatePct(totalIn, response.getInt("dietGoalValue")) + " of daily plan");
                             System.out.println("Pct request" + "succeed");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
