@@ -12,11 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * Recycler adapter class that is used to view lists of friends
+ */
 public class friendListRecyclerAdapter extends RecyclerView.Adapter<friendListRecyclerAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<friendModel> friendModels;
 
+    /**
+     * recycler adapter constructor for friend list.
+     * @param context
+     * @param friendModels
+     */
     public friendListRecyclerAdapter(Context context, ArrayList<friendModel> friendModels) {
 
         this.context = context;
@@ -42,11 +50,17 @@ public class friendListRecyclerAdapter extends RecyclerView.Adapter<friendListRe
 
     }
 
+    /**
+     * @return the size of friendModels(arrayList)
+     */
     @Override
     public int getItemCount() {
         return friendModels.size();
     }
 
+    /**
+     * view holder class
+     */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
     TextView email, userName;

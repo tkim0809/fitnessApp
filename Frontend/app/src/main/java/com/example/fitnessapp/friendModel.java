@@ -1,5 +1,8 @@
 package com.example.fitnessapp;
 
+/**
+ * This class is used to construct friendModel and getters method
+ */
 public class friendModel {
 
     String email;
