@@ -2,6 +2,8 @@ package com.example.demo.AddFriends;
 
 import java.sql.SQLException;
 
+import com.example.demo.ProfilePage.Profile;
+import com.example.demo.ProfilePage.ProfileRepository;
 import com.example.demo.StatPage.StatController;
 import com.example.demo.StatPage.Stats;
 import org.slf4j.Logger;
@@ -62,6 +64,8 @@ public class FriendsController {
 
     private final FriendsRepository friendsRepository;
     private final AppUserRepository appUserRepository;
+    //@Autowired
+    private ProfileRepository profileRepository;
 
     public FriendsController(FriendsRepository friendRepository, AppUserRepository appUserRepository) {
         this.friendsRepository = friendRepository;
@@ -111,6 +115,18 @@ public class FriendsController {
         List<AppUser> friends = appUserRepository.findByIdIn(friendIds1);
         List<String> friendEmails = friends.stream().map(AppUser::getEmail).collect(Collectors.toList());
         return ResponseEntity.ok(friendEmails);
+    }
+
+    @ApiOperation(value = "Get friend profile")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Profile retrieved successfully")
+    })
+    @GetMapping("/view/{userId}")
+    public Profile getFriendProfile(
+            @ApiParam(value = "User ID", required = true)
+            @PathVariable Long userId
+    ) {
+        return profileRepository.findByUser_Id(userId);
     }
 
 
