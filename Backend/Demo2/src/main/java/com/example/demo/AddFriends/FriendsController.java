@@ -47,23 +47,26 @@ public class FriendsController {
 
     @PostMapping("/{userId}/add")
     public String addFriend(@ApiParam(value = "Email of the friend to be added", required = true) @RequestBody Map<String, String> requestBody, @ApiParam(value = "User ID", required = true) @PathVariable Long userId) {
-            String friendEmail = requestBody.get("email");
+        String friendEmail = requestBody.get("email");
 
-            AppUser user = appUserRepository.findById(userId)
-                    .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with id: " + userId));
-            if (user.getEmail().equals(friendEmail)) {
-                return "{\"message\" : \"failed\"}";//ResponseEntity.badRequest().body("You cannot add yourself as a friend.");
-            }
-            if (friendsRepository.existsByEmailAndFriendId(user.getEmail(), userId)) {
-                return "{\"message\" : \"failed\"}";//ResponseEntity.badRequest().body("You are already friends with this user.");
-            }
-            AppUser friend = appUserRepository.findByEmail(friendEmail)
-                    .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with email: " + friendEmail));
-            Friends newFriendship = new Friends(user, friend.getId());
-            friendsRepository.save(newFriendship);
-            return "{\"message\" : \"success\"}";//ResponseEntity.ok().build();
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with id: " + userId));
+        if (user.getEmail().equals(friendEmail)) {
+            return "{\"message\" : \"failed\"}";
         }
+        if (friendsRepository.existsByEmailAndFriendId(user.getEmail(), userId)) {
+            return "{\"message\" : \"failed\"}";
+        }
+        AppUser friend = appUserRepository.findByEmail(friendEmail)
+                .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with email: " + friendEmail));
+        Friends newFriendship = new Friends(user, friend.getId());
+        friendsRepository.save(newFriendship);
 
+        // Send a notification to the new friend
+        webSocketServer.sendMessageToPArticularUser(friend.getId().toString(), "User with ID: " + userId + " added you as a friend.");
+
+        return "{\"message\" : \"success\"}";
+    }
 
 
 
