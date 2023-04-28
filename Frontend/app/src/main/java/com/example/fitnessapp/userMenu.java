@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.fitnessapp.Logic.layoutLogic;
+import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
 
 public class userMenu extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class userMenu extends AppCompatActivity {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toRecord = new Intent(userMenu.this, statsPage.class);
+                Intent toRecord = new Intent(userMenu.this, workoutHistoryPage.class);
                 startActivity(toRecord);
             }
         });

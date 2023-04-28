@@ -20,6 +20,10 @@ public class DateLogic {
     }
 
     int day;
+
+    /**
+     * constructor
+     */
     public DateLogic() {
         calendar = Calendar.getInstance();
         day = calendar.get(Calendar.DAY_OF_WEEK);
@@ -28,6 +32,10 @@ public class DateLogic {
             future[i]=true;
         }
     }
+
+    /**
+     * @return Boolean array which shows if each day of the week is in the future.
+     */
     public Boolean[] getFuture() {
         for (int i = day;i<7;i++){
             future[i] = true;
@@ -35,9 +43,16 @@ public class DateLogic {
         return future;
     }
 
+    /**
+     * @return String today's day of the week.
+     */
     public String getCurrentDay() {
         return currentDay;
     }
+
+    /**
+     * @return Date of today in year/month/day format
+     */
     public String getCurrentDate(){
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
@@ -45,6 +60,10 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+
+    /**
+     * @return Date of this Sunday in year/month/day format
+     */
     public String DateSunday(){
         Calendar c = Calendar.getInstance();
         switch (currentDay){
@@ -73,6 +92,9 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+    /**
+     * @return Date of this Monday in year/month/day format
+     */
     public String DateMonday(){
         Calendar c = Calendar.getInstance();
 
@@ -103,6 +125,9 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+    /**
+     * @return Date of this Tuesday in year/month/day format
+     */
     public String DateTuesday(){
         Calendar c = Calendar.getInstance();
         switch (day-1){
@@ -131,6 +156,9 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+    /**
+     * @return Date of this Wednesday in year/month/day format
+     */
     public String DateWednesday(){
         Calendar c = Calendar.getInstance();
         switch (day-1){
@@ -159,6 +187,9 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+    /**
+     * @return Date of this Thursday in year/month/day format
+     */
     public String DateThursday(){
         Calendar c = Calendar.getInstance();
         switch (day-1){
@@ -187,6 +218,9 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+    /**
+     * @return Date of this Friday in year/month/day format
+     */
     public String DateFriday(){
         Calendar c = Calendar.getInstance();
         switch (day-1){
@@ -215,6 +249,9 @@ public class DateLogic {
         String out = year+"/"+month+"/"+dayOfMonth;
         return out;
     }
+    /**
+     * @return Date of this Saturday in year/month/day format
+     */
     public String DateSaturday(){
         Calendar c = Calendar.getInstance();
         switch (day-1){

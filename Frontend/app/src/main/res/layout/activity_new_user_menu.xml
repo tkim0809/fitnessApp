@@ -57,7 +57,7 @@
         <ImageButton
             android:id="@+id/profileBtn"
             android:layout_width="99dp"
-            android:layout_height="94dp"
+            android:layout_height="99dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
@@ -115,7 +115,7 @@
             android:background="@drawable/circle_shap"
             android:indeterminate="false"
             android:progress="1"
-            android:progressDrawable="@drawable/circle_pb"
+            android:progressDrawable="@drawable/circle_percentage_bar"
             android:textAlignment="center" />
 
         <TextView
@@ -126,6 +126,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="34dp"
             android:layout_marginBottom="18dp"
+            android:textSize="16dp"
             android:text="TextView" />
 
         <TextView

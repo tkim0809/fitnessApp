@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,11 +15,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
+import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * User Menu UI class
+ */
 public class NewUserMenu extends AppCompatActivity {
     TextView DailyCal;
     TextView TodayPct;
@@ -42,7 +45,7 @@ public class NewUserMenu extends AppCompatActivity {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toRecord = new Intent(NewUserMenu.this, statsPage.class);
+                Intent toRecord = new Intent(NewUserMenu.this, workoutHistoryPage.class);
                 startActivity(toRecord);
             }
         });
@@ -165,6 +168,13 @@ public class NewUserMenu extends AppCompatActivity {
 
 
     }
+
+    /**
+     * get and display the diet percentage of today
+     * @param todayPct diet percentage reached
+     * @param date
+     * @throws JSONException
+     */
     public void getDataForDay(TextView todayPct,String date) throws JSONException {
         String url = "http://coms-309-004.class.las.iastate.edu:8080/diet?date="+date+"&userId="+UserInfo.getUserID();
         /**
@@ -208,6 +218,12 @@ public class NewUserMenu extends AppCompatActivity {
 
     }
 
+    /**
+     * get diet intake of the day and calculate percentage from the total.
+     * @param dayPct view to display
+     * @param totalIn total intake
+     * @throws JSONException
+     */
     public void getPctForDay(TextView dayPct, int totalIn) throws JSONException {
         String url = "http://coms-309-004.class.las.iastate.edu:8080/dietgoal/"+UserInfo.getUserID();
         /**
@@ -244,6 +260,12 @@ public class NewUserMenu extends AppCompatActivity {
 
     }
 
+    /**
+     * calculate percentage a/b
+     * @param a
+     * @param b
+     * @return String exp: "10.1%"
+     */
     public String calculatePct(int a, int b) {
         float i = (float) a;
         float j = (float) b;
@@ -253,6 +275,13 @@ public class NewUserMenu extends AppCompatActivity {
         return formatted +"%";
 
     }
+
+    /**
+     * calculate percentage a/b
+     * @param a
+     * @param b
+     * @return integer
+     */
     public int calculatePctInt(int a, int b) {
         float i = (float) a;
         float j = (float) b;

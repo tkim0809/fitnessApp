@@ -18,6 +18,12 @@ import org.json.JSONException;
 public class updateRequests implements IServerRequest {
     private IVolleyListener l;
 
+    /**
+     * This method uses http request to send JSON request to the server
+     * @param url
+     * @param jsObject
+     * @param method
+     */
     @Override
     public void sendToServer(String url, JSONObject jsObject, String method) {
         int meth;

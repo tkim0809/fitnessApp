@@ -1,5 +1,8 @@
 package com.example.fitnessapp;
 
+/**
+ * This class is used to set leaderboardModel and getters methods to use for recycler view
+ */
 public class leaderboardModel {
 
     String userName;

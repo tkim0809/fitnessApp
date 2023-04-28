@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.example.fitnessapp"},{"l":"com.example.fitnessapp.chat_function"},{"l":"com.example.fitnessapp.diet_function"},{"l":"com.example.fitnessapp.Logic"},{"l":"com.example.fitnessapp.Network"}]

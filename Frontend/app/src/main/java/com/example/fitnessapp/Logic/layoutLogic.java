@@ -11,6 +11,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class layoutLogic {
+    /**
+     * This method changed the background and text of all the buttons in the layout
+     * @param rootView layout view
+     * @param BGColor background color
+     * @param TxtColor text color
+     */
     public  static void changeAllBGCForBtns(ViewGroup rootView, int BGColor, int TxtColor){
         for (int i = 0; i < rootView.getChildCount(); i++) {
             View child = rootView.getChildAt(i);
@@ -22,6 +28,12 @@ public class layoutLogic {
         }
 
     }
+
+    /**
+     * set all text color in the layout
+     * @param rootView layout view
+     * @param color text color
+     */
     public static void setAllTxtColor(ViewGroup rootView,int color){
         for (int i = 0; i < rootView.getChildCount(); i++) {
             View view = rootView.getChildAt(i);
@@ -34,9 +46,15 @@ public class layoutLogic {
             }
         }
     }
+
+    /**
+     * set default colors for all buttons in the lay out
+     * @param rootView layout view
+     */
     public static void defBtnColor(ViewGroup rootView){
         changeAllBGCForBtns(rootView,Color.WHITE,Color.BLACK);
     }
+
     public  static void changeAllBGCForBtns(ScrollView rootView, int BGColor, int TxtColor){
         for (int i = 0; i < rootView.getChildCount(); i++) {
             View child = rootView.getChildAt(i);
@@ -63,6 +81,7 @@ public class layoutLogic {
     public static void defBtnColor(ScrollView rootView){
         changeAllBGCForBtns(rootView,Color.WHITE,Color.BLACK);
     }
+
     public  static void changeAllBGCForBtns(LinearLayout rootView, int BGColor, int TxtColor){
         for (int i = 0; i < rootView.getChildCount(); i++) {
             View child = rootView.getChildAt(i);
