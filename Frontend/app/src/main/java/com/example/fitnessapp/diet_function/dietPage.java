@@ -149,16 +149,12 @@ public class dietPage extends AppCompatActivity {
 
 
         Boolean[] isFuture = dateLogic.getFuture();
-        if (UserInfo.getHasUpDatedDiet()) {
             try {
                 getDataForDay(todayInfo, dateLogic.getCurrentDate(),TodayPct);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
-        } else {
-            todayInfo.setText("    0Cal");
-            TodayPct.setText("0%");
-        }
+
 
         try {
             if (isFuture[1]) {
@@ -263,13 +259,7 @@ public class dietPage extends AppCompatActivity {
                 startActivity(toDietGoal);
             }
         });
-        ViewGroup rootView = findViewById(R.id.dietOL);
-        LinearLayout LL = findViewById(R.id.LinearLayout);
-        layoutLogic.setAllTxtColor(LL, Color.WHITE);
-        layoutLogic.defBtnColor(LL);
-        layoutLogic.setAllTxtColor(rootView, Color.WHITE);
-        layoutLogic.defBtnColor(rootView);
-        TodayBtn.setBackgroundColor(Color.WHITE);
+
 
 
     }
@@ -335,7 +325,7 @@ public class dietPage extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            dayPct.setText(calculatePct(totalIn, response.getInt("dietGoalValue")) + "% of daily plan");
+                            dayPct.setText(calculatePct(totalIn, response.getInt("dietGoalValue")) + "% of plan");
                             System.out.println("Pct request" + "succeed");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

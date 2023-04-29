@@ -32,7 +32,7 @@ import java.util.ArrayList;
  * This class is the UI of chat function
  */
 public class chatPage extends AppCompatActivity {
-    String opponentUserName;
+    String opponentUserName = "39";
     Button sendBtn,backBtn;
     TextView chatName;
     EditText message;
@@ -61,8 +61,8 @@ public class chatPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
         Intent i = this.getIntent();
-        opponentUserName = i.getStringExtra("userName");
-        chatName.setText(opponentUserName);
+        //opponentUserName = i.getStringExtra("userName");
+        //chatName.setText(opponentUserName);
         //websocket
         Draft[] drafts = {
                 new Draft_6455()
@@ -77,16 +77,37 @@ public class chatPage extends AppCompatActivity {
                     Log.d("", "run() returned: " + message);
                     //String s = t1.getText().toString();
                     //t1.setText(s + "\nServer:" + message);
-                    String received;
+
+                    String[] messageArray;
                     try {
-                        JSONObject messageObj = new JSONObject(message);
-                        received = messageObj.getString("message");
-                    } catch (JSONException e) {
+                        messageArray = message.split(":");
+                        System.out.println("sender:"+messageArray[0]);
+                        if (messageArray[0].equals("[DM] "+opponentUserName)) {
+                            addMessageToArray(messageArray[1], false);
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    // Update UI here
+                                    adapter.setChatMessages(chatMessagesArray);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            });
+
+                        }else if (messageArray[0].equals("[DM] "+UserInfo.getUserID())){
+                            addMessageToArray(messageArray[1], true);
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    // Update UI here
+                                    adapter.setChatMessages(chatMessagesArray);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            });
+                        }
+
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                    addMessageToArray(received,false);
-                    adapter.setChatMessages(chatMessagesArray);
-                    recyclerView.setAdapter(adapter);
+
+
                 }
 
                 @Override
@@ -114,18 +135,16 @@ public class chatPage extends AppCompatActivity {
             public void onClick(View view) {
                 JSONObject messageObj = new JSONObject();
                 try {
-                    messageObj.put("sender",UserInfo.getUserID());
-                    messageObj.put("message",message.getText());
-                    messageObj.put("receiver",opponentUserName);
-                    cc.send(messageObj.toString());
+                    System.out.println(message.getText());
+                    cc.send("@"+opponentUserName+" "+message.getText().toString());
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                     Toast.makeText(chatPage.this, "Your message did not sent.", Toast.LENGTH_SHORT).show();
                 }
 
-                addMessageToArray(message.getText().toString(),true);
-                adapter.setChatMessages(chatMessagesArray);
-                recyclerView.setAdapter(adapter);
+                //addMessageToArray(message.getText().toString(),true);
+                //adapter.setChatMessages(chatMessagesArray);
+                //recyclerView.setAdapter(adapter);
             }
         });
     }

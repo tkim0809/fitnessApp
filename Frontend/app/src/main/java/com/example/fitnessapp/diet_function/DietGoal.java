@@ -74,7 +74,7 @@ public class DietGoal extends AppCompatActivity implements IView {
             }
         });
         ViewGroup rootView = findViewById(R.id.dietGoalLO);
-        layoutLogic.setAllTxtColor(rootView, Color.WHITE);
+
         layoutLogic.defBtnColor(rootView);
 
 
