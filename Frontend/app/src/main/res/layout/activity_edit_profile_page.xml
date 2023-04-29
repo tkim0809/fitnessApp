@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/barb"
+    android:background="@color/Gold"
     tools:context=".editProfilePage">
 
     <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_height="55dp"
                 android:layout_weight="1"
                 android:text="User Name"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/edUNTxt"
@@ -39,7 +39,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +53,7 @@
                 android:layout_height="55dp"
                 android:layout_weight="1"
                 android:text="Gender"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/edGenderTxt"
@@ -63,7 +63,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -78,7 +78,7 @@
                 android:layout_height="54dp"
                 android:layout_weight="1"
                 android:text="Age"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/edAgeTxt"
@@ -88,7 +88,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -103,7 +103,7 @@
                 android:layout_height="57dp"
                 android:layout_weight="1"
                 android:text="Weight"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/edWeightTxt"
@@ -113,7 +113,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -128,7 +128,7 @@
                 android:layout_height="53dp"
                 android:layout_weight="1"
                 android:text="Email"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/edEmailTxt"
@@ -138,7 +138,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
