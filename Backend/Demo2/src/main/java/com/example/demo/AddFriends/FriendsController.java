@@ -59,14 +59,17 @@ public class FriendsController {
         }
         AppUser friend = appUserRepository.findByEmail(friendEmail)
                 .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with email: " + friendEmail));
-        Friends newFriendship = new Friends(user, friend.getId());
-        friendsRepository.save(newFriendship);
+        Friends newFriendship1 = new Friends(user, friend.getId()); // Current user to friend relationship
+        Friends newFriendship2 = new Friends(friend, user.getId()); // Friend to current user relationship
+        friendsRepository.save(newFriendship1);
+        friendsRepository.save(newFriendship2);
 
         // Send a notification to the new friend
         webSocketServer.sendMessageToPArticularUser(friend.getId().toString(), "User with ID: " + userId + " added you as a friend.");
 
         return "{\"message\" : \"success\"}";
     }
+
 
 
 
