@@ -15,6 +15,9 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 @ServerEndpoint("/websocket/{userId}")
 @Component
@@ -43,9 +46,19 @@ public class WebSocketServer {
         logger.info("Entered into Message: Got Message:" + message);
         String userId = sessionUserIdMap.get(session);
 
+        // Construct the JSON message
+        JSONObject jsonMessage = new JSONObject();
+        try {
+            jsonMessage.put("type", "friend_added");
+            jsonMessage.put("email", message);
+        } catch (JSONException e) {
+            logger.error("Error creating JSON message", e);
+        }
+
         // Message to all users
-        broadcast("Notification from User " + userId + ": " + message);
+        broadcast(jsonMessage.toString());
     }
+
 
     @OnClose
     public void onClose(Session session) throws IOException {
