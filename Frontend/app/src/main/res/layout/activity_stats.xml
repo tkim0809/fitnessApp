@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/workoutHistory_page"
     tools:context=".workoutHistory_function.workoutHistoryPage"
     android:background="@color/Gold">
 
