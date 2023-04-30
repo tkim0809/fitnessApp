@@ -1,6 +1,6 @@
 package com.example.demo.AddFriends;
-import com.example.demo.AddFriends.Friends;
 
+import com.example.demo.AddFriends.Friends;
 import com.example.demo.AddFriends.FriendsRepository;
 import com.example.demo.appuser.AppUser;
 import com.example.demo.appuser.AppUserRepository;
@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import com.example.demo.Notification.WebSocketServer;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,8 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @Api(tags = "Friends")
 @RestController
@@ -44,7 +48,6 @@ public class FriendsController {
             @ApiResponse(code = 200, message = "Friend added successfully"),
             @ApiResponse(code = 400, message = "Invalid input or friend already added")
     })
-
     @PostMapping("/{userId}/add")
     public String addFriend(@ApiParam(value = "Email of the friend to be added", required = true) @RequestBody Map<String, String> requestBody, @ApiParam(value = "User ID", required = true) @PathVariable Long userId) {
         String friendEmail = requestBody.get("email");
@@ -63,12 +66,17 @@ public class FriendsController {
         friendsRepository.save(newFriendship);
 
         // Send a notification to the new friend
-        webSocketServer.sendMessageToPArticularUser(friend.getId().toString(), "User with ID: " + userId + " added you as a friend.");
+        JSONObject notificationJson = new JSONObject();
+        try {
+            notificationJson.put("type", "friend_added");
+            notificationJson.put("email", user.getEmail());
+        } catch (JSONException e) {
+            return "{\"message\" : \"failed\"}";
+        }
+        webSocketServer.sendMessageToParticularUser(friend.getId().toString(), notificationJson.toString());
 
         return "{\"message\" : \"success\"}";
     }
-
-
 
     @ApiOperation(value = "Get a list of friend emails")
     @ApiResponses(value = {
