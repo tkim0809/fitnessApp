@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class UserInfo {
     //test for user id 39
-    static String userID = "39";
+    static String userID = "45";
     static String userEmail = null;
     static String date = null;
     static Boolean hasUpDatedDiet = false;
