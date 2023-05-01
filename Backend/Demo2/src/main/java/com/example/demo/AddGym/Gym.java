@@ -30,6 +30,8 @@ public class Gym {
     @ManyToMany(mappedBy = "dislikedGyms")
     private List<AppUser> dislikedByUsers;
 
+    private Long user_id;
+
     // Constructor
 
     public Long getId() {
@@ -110,5 +112,13 @@ public class Gym {
 
     public void setDislikedByUsers(List<AppUser> dislikedByUsers) {
         this.dislikedByUsers = dislikedByUsers;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }
