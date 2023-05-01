@@ -40,10 +40,10 @@ public class ProfileTest {
         } catch (InterruptedException e) {
         }
         onView(withId(R.id.savePFBtn)).perform(click());
-        onView(withId(R.id.userNameTxt)).check(matches(withText(endsWith(username))));
-        onView(withId(R.id.genderTxt)).check(matches(withText(endsWith(gender))));
-        onView(withId(R.id.ageTxt)).check(matches(withText(endsWith(age))));
-        onView(withId(R.id.weightTxt)).check(matches(withText(endsWith(weight))));
-        onView(withId(R.id.emailTxt)).check(matches(withText(endsWith(email))));
+        onView(withId(R.id.userNameTxt)).check(matches(withText(username)));
+        onView(withId(R.id.genderTxt)).check(matches(withText(gender)));
+        onView(withId(R.id.ageTxt)).check(matches(withText(age)));
+        onView(withId(R.id.weightTxt)).check(matches(withText(weight)));
+        onView(withId(R.id.emailTxt)).check(matches(withText(email)));
     }
 }

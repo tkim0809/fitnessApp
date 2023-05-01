@@ -46,7 +46,7 @@ public class DietFunctionTest {
         } catch (InterruptedException e) {
         }
         onView(withId(R.id.BackBtn)).perform(click());
-        onView(withId(R.id.dailyCalTxt)).check(matches(withText(endsWith(goal))));
+        onView(withId(R.id.dailyCalTxt)).check(matches(withText(goal+"Cal")));
     }
     @Test
     public void addMealTest(){
@@ -56,7 +56,6 @@ public class DietFunctionTest {
 
         // Run the test on a background thread
         scenario.onActivity(activity -> {
-            InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
                 onView(withId(R.id.TodayBtn)).perform(click());
                 // Perform checks or actions on the RecyclerView here
                 RecyclerView recyclerView = activity.findViewById(R.id.dailyDietRV);
@@ -78,7 +77,7 @@ public class DietFunctionTest {
                 RecyclerView resultRecyclerView = activity.findViewById(R.id.dailyDietRV);
                 int resultItemCount = recyclerView.getAdapter().getItemCount();
                 assertEquals(initialItemCount,resultItemCount);
-            });
+
         });
     }
 
