@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.fitnessapp.AppController;
 import com.example.fitnessapp.IView;
+import com.example.fitnessapp.NewUserMenu;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.chat_function.ChatItem_RecyclerViewAdapter;
 import com.example.fitnessapp.chat_function.chatItemModel;
@@ -46,6 +47,14 @@ public class workoutHistoryPage extends AppCompatActivity implements IView {
             public void onClick(View view) {
                 Intent toEdit = new Intent(workoutHistoryPage.this, workoutHistoryAdd.class);
                 startActivity(toEdit);
+            }
+        });
+        Button back = findViewById(R.id.WHBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(workoutHistoryPage.this, NewUserMenu.class);
+                startActivity(intent);
             }
         });
 

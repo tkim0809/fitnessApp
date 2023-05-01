@@ -2,6 +2,7 @@ package com.example.fitnessapp.workoutHistory_function;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +52,16 @@ public class workoutHistoryAdd extends AppCompatActivity implements IView {
                 }catch (JSONException e){
                     statsLogic.onError();
                 }
-
+                Intent intent = new Intent(workoutHistoryAdd.this,workoutHistoryPage.class);
+                startActivity(intent);
+            }
+        });
+        Button back = findViewById(R.id.WHAddBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(workoutHistoryAdd.this,workoutHistoryPage.class);
+                startActivity(intent);
             }
         });
     }
