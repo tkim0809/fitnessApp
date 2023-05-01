@@ -29,6 +29,8 @@ public class ChatList extends AppCompatActivity implements RecyclerViewInterface
     public void onItemClick(int position) {
         Intent toChat = new Intent(ChatList.this,chatPage.class);
         toChat.putExtra("userName",chatItemModelArrayList.get(position).getUserName());
+        //missing methods to get friend's ID
+        toChat.putExtra("userId","37");
         startActivity(toChat);
     }
 }

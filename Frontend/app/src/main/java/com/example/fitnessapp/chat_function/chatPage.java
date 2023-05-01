@@ -21,7 +21,6 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
  * This class is the UI of chat function
  */
 public class chatPage extends AppCompatActivity {
-    String opponentUserName = "39";
+    String opponentUserID;
     Button sendBtn,backBtn;
     TextView chatName;
     EditText message;
@@ -61,9 +60,10 @@ public class chatPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
         Intent i = this.getIntent();
-        //opponentUserName = i.getStringExtra("userName");
-        //chatName.setText(opponentUserName);
-        //websocket
+        String opponentUserName = i.getStringExtra("userName");
+        opponentUserID = i.getStringExtra("userId");
+        chatName.setText(opponentUserName);
+        //websocketServer provided in tutorial
         Draft[] drafts = {
                 new Draft_6455()
         };
@@ -82,7 +82,7 @@ public class chatPage extends AppCompatActivity {
                     try {
                         messageArray = message.split(":");
                         System.out.println("sender:"+messageArray[0]);
-                        if (messageArray[0].equals("[DM] "+opponentUserName)) {
+                        if (messageArray[0].equals("[DM] "+ opponentUserID)) {
                             addMessageToArray(messageArray[1], false);
                             runOnUiThread(new Runnable() {
                                 public void run() {
@@ -136,7 +136,7 @@ public class chatPage extends AppCompatActivity {
                 JSONObject messageObj = new JSONObject();
                 try {
                     System.out.println(message.getText());
-                    cc.send("@"+opponentUserName+" "+message.getText().toString());
+                    cc.send("@"+ opponentUserID +" "+message.getText().toString());
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                     Toast.makeText(chatPage.this, "Your message did not sent.", Toast.LENGTH_SHORT).show();
