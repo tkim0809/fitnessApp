@@ -1,5 +1,6 @@
 package com.example.demo.appuser;
 
+import com.example.demo.AddGym.Gym;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,32 +21,38 @@ import java.util.Collections;
 @Entity
 public class AppUser implements UserDetails {
 
-
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
+
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String firstName,
-                   String lastName,
-                   String email,
-                   String password,
-                   AppUserRole appUserRole) {
+    @ManyToMany
+    @JoinTable(
+            name = "user_gym_like",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "gym_id")
+    )
+    private List<Gym> likedGyms;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_gym_dislike",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "gym_id")
+    )
+    private List<Gym> dislikedGyms;
+
+    public AppUser(String firstName, String lastName, String email, String password, AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -97,4 +105,19 @@ public class AppUser implements UserDetails {
         return enabled;
     }
 
+    public List<Gym> getLikedGyms() {
+        return likedGyms;
+    }
+
+    public void setLikedGyms(List<Gym> likedGyms) {
+        this.likedGyms = likedGyms;
+    }
+
+    public List<Gym> getDislikedGyms() {
+        return dislikedGyms;
+    }
+
+    public void setDislikedGyms(List<Gym> dislikedGyms) {
+        this.dislikedGyms = dislikedGyms;
+    }
 }

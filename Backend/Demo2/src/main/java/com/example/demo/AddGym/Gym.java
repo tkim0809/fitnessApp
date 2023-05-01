@@ -1,10 +1,10 @@
 package com.example.demo.AddGym;
 
+import com.example.demo.appuser.AppUser;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
@@ -25,10 +25,10 @@ public class Gym {
     private String hoursOfOperation;
 
     @ManyToMany(mappedBy = "likedGyms")
-    private List<User> likedByUsers;
+    private List<AppUser> likedByUsers;
 
     @ManyToMany(mappedBy = "dislikedGyms")
-    private List<User> dislikedByUsers;
+    private List<AppUser> dislikedByUsers;
 
     // Constructor
 
@@ -96,19 +96,19 @@ public class Gym {
         this.hoursOfOperation = hoursOfOperation;
     }
 
-    public List<User> getLikedByUsers() {
+    public List<AppUser> getLikedByUsers() {
         return likedByUsers;
     }
 
-    public void setLikedByUsers(List<User> likedByUsers) {
+    public void setLikedByUsers(List<AppUser> likedByUsers) {
         this.likedByUsers = likedByUsers;
     }
 
-    public List<User> getDislikedByUsers() {
+    public List<AppUser> getDislikedByUsers() {
         return dislikedByUsers;
     }
 
-    public void setDislikedByUsers(List<User> dislikedByUsers) {
+    public void setDislikedByUsers(List<AppUser> dislikedByUsers) {
         this.dislikedByUsers = dislikedByUsers;
     }
 }

@@ -1,15 +1,16 @@
 package com.example.demo.AddGym;
 
-
-import com.example.demo.AddGym.Gym;
-import com.example.demo.AddGym.GymRepository;
-import com.example.demo.AddGym.UserRepository;
+import com.example.demo.appuser.AppUser;
+import com.example.demo.appuser.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("/gyms")
@@ -19,7 +20,7 @@ public class GymController {
     private GymRepository gymRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private AppUserService appUserService;
 
     // GET all gyms
     @GetMapping("/")
@@ -86,5 +87,53 @@ public class GymController {
             return ResponseEntity.notFound().build();
         }
     }
-}
 
+    // POST a new like for a gym
+    @PostMapping("/{id}/like")
+    public ResponseEntity<String> addLikeForGym(@PathVariable(value = "id") Long gymId, @RequestBody AppUser appUser) {
+        Optional<Gym> gym = gymRepository.findById(gymId);
+
+        if (gym.isPresent()) {
+            Gym gymToUpdate = gym.get();
+            gymToUpdate.getLikedByUsers().add(appUser);
+            gymRepository.save(gymToUpdate);
+
+            return ResponseEntity.ok("Like added successfully!");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // POST a new dislike for a gym
+    @PostMapping("/{id}/dislike")
+    public ResponseEntity<String> addDislikeForGym(@PathVariable(value = "id") Long gymId, @RequestBody AppUser appUser) {
+        Optional<Gym> gym = gymRepository.findById(gymId);
+
+        if (gym.isPresent()) {
+            Gym gymToUpdate = gym.get();
+            gymToUpdate.getDislikedByUsers().add(appUser);
+            gymRepository.save(gymToUpdate);
+
+            return ResponseEntity.ok("Dislike added successfully!");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // GET users who liked/disliked a gym
+    @GetMapping("/{id}/users")
+    public ResponseEntity<List<AppUser>> getUsersForGym(@PathVariable(value = "id") Long gymId, @RequestParam(value = "type") String type) {
+        List<AppUser> users;
+
+        try {
+            users = appUserService.getUsersForGym(gymId, type);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(users);
+    }
+
+}
