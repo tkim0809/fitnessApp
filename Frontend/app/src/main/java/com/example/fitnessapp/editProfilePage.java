@@ -63,6 +63,8 @@ public class editProfilePage extends AppCompatActivity implements IView{
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
+                Intent intent = new Intent(editProfilePage.this,profilePage.class);
+                startActivity(intent);
             }
         });
     }

@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
+import com.example.fitnessapp.chat_function.ChatList;
 import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
 import com.example.fitnessapp.workoutHistory_function.workoutHistoryPage;
@@ -83,7 +84,7 @@ public class NewUserMenu extends AppCompatActivity {
         chatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toChat = new Intent(NewUserMenu.this, chatPage.class);
+                Intent toChat = new Intent(NewUserMenu.this, ChatList.class);
                 startActivity(toChat);
             }
         });
