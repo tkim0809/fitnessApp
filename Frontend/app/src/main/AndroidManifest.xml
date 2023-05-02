@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".connectingID"
+            android:exported="false" />
+        <activity
             android:name=".chat_function.ChatList"
             android:exported="true" />
         <activity

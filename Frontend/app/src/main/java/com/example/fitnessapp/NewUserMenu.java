@@ -26,7 +26,7 @@ import org.json.JSONObject;
  */
 public class NewUserMenu extends AppCompatActivity {
     TextView DailyCal;
-    TextView TodayPct;
+    TextView TodayPct, userName;
     ProgressBar progressBar;
 
     @Override
@@ -34,6 +34,8 @@ public class NewUserMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user_menu);
         Button logOutBtn = findViewById(R.id.logOutBtn);
+        userName =findViewById(R.id.textUserName);
+
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

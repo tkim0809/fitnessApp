@@ -31,6 +31,7 @@ import java.util.ArrayList;
  * This class is the UI of chat function
  */
 public class chatPage extends AppCompatActivity {
+    String userID = UserInfo.getUserID();
     String opponentUserID;
     Button sendBtn,backBtn;
     TextView chatName;
@@ -67,7 +68,7 @@ public class chatPage extends AppCompatActivity {
         Draft[] drafts = {
                 new Draft_6455()
         };
-        String w = "ws://10.0.2.2:8080/websocket/" + UserInfo.getUserID();
+        String w = "ws://10.0.2.2:8080/websocket/" + userID;
 
         try {
             Log.d("Socket:", "connecting");
