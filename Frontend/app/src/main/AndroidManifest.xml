@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".gymsListPage"
+            android:exported="false" />
+        <activity
+            android:name=".addgymsPage"
+            android:exported="false" />
+        <activity
             android:name=".JoinCommunityWithId"
             android:exported="false" />
         <activity
