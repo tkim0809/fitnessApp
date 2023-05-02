@@ -93,6 +93,17 @@ public class NewUserMenu extends AppCompatActivity {
         });
         Button friendButton = findViewById(R.id.findFriendButton);
         Button friendListButton = findViewById(R.id.FriendListButtonXML);
+        Button moreButton = findViewById(R.id.moreBtn);
+
+        moreButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NewUserMenu.this, addgymsPage.class);
+                startActivity(i);
+            }
+        });
         friendButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -304,4 +315,6 @@ public class NewUserMenu extends AppCompatActivity {
         return intValue;
 
     }
+
+
 }
