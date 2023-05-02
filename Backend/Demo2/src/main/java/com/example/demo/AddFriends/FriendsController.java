@@ -66,32 +66,17 @@ public class FriendsController {
         friendsRepository.save(newFriendship);
 
         // Send a notification to the new friend
-
         JSONObject notificationJson = new JSONObject();
         try {
             notificationJson.put("type", "friend_added");
             notificationJson.put("email", user.getEmail());
-            notificationJson.put("isSender", false);
         } catch (JSONException e) {
             return "{\"message\" : \"failed\"}";
         }
         webSocketServer.sendMessageToParticularUser(friend.getId().toString(), notificationJson.toString());
 
-// Send a notification to the user who added the friend
-        JSONObject userNotificationJson = new JSONObject();
-        try {
-            userNotificationJson.put("type", "friend_added");
-            userNotificationJson.put("email", friend.getEmail());
-            userNotificationJson.put("isSender", true);
-        } catch (JSONException e) {
-            return "{\"message\" : \"failed\"}";
-        }
-        webSocketServer.sendMessageToParticularUser(user.getId().toString(), userNotificationJson.toString());
-
         return "{\"message\" : \"success\"}";
-
     }
-
 
     @ApiOperation(value = "Get a list of friend emails")
     @ApiResponses(value = {
@@ -112,4 +97,3 @@ public class FriendsController {
 
 
 }
-
