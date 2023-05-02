@@ -22,6 +22,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * This class is used to check if login information is valid
+ */
 public class LoginPage extends AppCompatActivity {
 
     public static String userName = "";
@@ -41,6 +44,9 @@ public class LoginPage extends AppCompatActivity {
         signUp = findViewById(R.id.signUpButton);
 
 
+        /**
+         * When "sign up" button is pressed, moves to sign up screen
+         */
         signUp.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -50,14 +56,18 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
+        /**
+         * when "log in" button is pressed.
+         */
         logIn.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
 
-                String email = Email.getText().toString();
-                String pw = password.getText().toString();
+
+                String email = Email.getText().toString(); // user text for email address
+                String pw = password.getText().toString(); // user text for password
                 //userName = name;
                 String url="http://coms-309-004.class.las.iastate.edu:8080/login";
                 RequestQueue queue = Volley.newRequestQueue(LoginPage.this);
@@ -75,6 +85,10 @@ public class LoginPage extends AppCompatActivity {
 
                 }
 
+                /**
+                 * sends json POST method request with 2 json objects, "email" and "password"
+                 * And if given email and password is valid, gets response as "result"
+                 */
                 JsonObjectRequest jsonArr = new JsonObjectRequest(Request.Method.POST, url,
                         obj,
                         new Response.Listener<JSONObject>() {

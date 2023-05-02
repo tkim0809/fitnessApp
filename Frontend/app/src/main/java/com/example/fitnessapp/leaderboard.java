@@ -20,6 +20,9 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to list all leaderboards progress of all users
+ */
 public class leaderboard extends AppCompatActivity {
 
     ArrayList<leaderboardModel> leaderboardModels = new ArrayList<>();
@@ -37,6 +40,9 @@ public class leaderboard extends AppCompatActivity {
         String url = "http://coms-309-004.class.las.iastate.edu:8080/leaderboards";
         Button addpushupsButton = findViewById(R.id.addpushupsButton);
 
+        /**
+         * sends json GET method, gets response as json array of username and number of pushups and lists on the screen
+         */
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
             //response.getJSONObject(0).get("").toString();

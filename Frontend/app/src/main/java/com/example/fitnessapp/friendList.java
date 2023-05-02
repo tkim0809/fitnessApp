@@ -17,6 +17,10 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+
+/**
+ * This class is used to list all the user's friends
+ */
 public class friendList extends AppCompatActivity {
 
     ArrayList<friendModel> friendModels = new ArrayList<>();
@@ -31,6 +35,9 @@ public class friendList extends AppCompatActivity {
         String url = "http://coms-309-004.class.las.iastate.edu:8080/friendList";
 
 
+        /**
+         * sends json GET method and gets response as json array to lists all the user's friends
+         */
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
             //response.getJSONObject(0).get("").toString();

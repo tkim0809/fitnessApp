@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
 import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
+import com.example.fitnessapp.workoutHistory_function.workoutHistoryPage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -117,6 +118,7 @@ public class NewUserMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(NewUserMenu.this,milestone.class);
+                startActivity(i);
             }
         });
         DailyCal = findViewById(R.id.dailyCalTxt);
@@ -242,7 +244,7 @@ public class NewUserMenu extends AppCompatActivity {
 
                         try {
                             progressBar.setProgress(calculatePctInt(totalIn, response.getInt("dietGoalValue")));
-                            dayPct.setText("You have reached"+calculatePct(totalIn, response.getInt("dietGoalValue")) + "of daily plan");
+                            dayPct.setText("You have reached"+calculatePct(totalIn, response.getInt("dietGoalValue")) + " of daily plan");
                             System.out.println("Pct request" + "succeed");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

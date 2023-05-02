@@ -21,6 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+/**
+ * This class is used to add milestone progress of each user
+ */
 public class milestone extends AppCompatActivity {
 
 
@@ -38,6 +41,9 @@ public class milestone extends AppCompatActivity {
         Button progressButton = findViewById(R.id.progressButton);
 
 
+        /**
+         * When "add" button is pressed
+         */
         addButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -72,6 +78,10 @@ public class milestone extends AppCompatActivity {
 
                 }
 
+                /**
+                 * sends json POST method request to the server with 5 json objects, "milestoneName", "milestoneReps", "milestoneSets", "milestoneWeight", "userId"
+                 * gets response as "success" if valid.
+                 */
                 JsonObjectRequest jsonArr = new JsonObjectRequest(Request.Method.POST, url,
                         obj,
                         new Response.Listener<JSONObject>() {

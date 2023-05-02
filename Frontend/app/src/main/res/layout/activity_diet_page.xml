@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/barb"
+    android:background="@color/Gold"
     android:id="@+id/dietOL"
     tools:context=".diet_function.dietPage">
 
@@ -26,135 +26,306 @@
             android:orientation="vertical">
 
 
-            <Button
-                android:id="@+id/SundayBtn"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="sunday" />
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            <TextView
-                android:id="@+id/SundayCal"
+                <Button
+                    android:id="@+id/SundayBtn"
+                    android:text="sunday"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/SundayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/SundayBtn"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/SundayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text="TextView"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/SundayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/SundayCal" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            <TextView
-                android:id="@+id/SundayPct"
+                <Button
+                    android:id="@+id/MondayBtn"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:text="monday"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </Button>
+
+                <TextView
+                    android:id="@+id/MondayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/MondayBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="75dp" />
+
+                <TextView
+                    android:id="@+id/MondayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text="TextView"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/MondayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/MondayCal"
+                    tools:layout_editor_absoluteY="109dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            <Button
-                android:id="@+id/MondayBtn"
+                <Button
+                    android:id="@+id/TuesdayBtn"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="tuesday" />
+
+                <TextView
+                    android:id="@+id/TuesdayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/TuesdayBtn"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/TuesdayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="TextView"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/TuesdayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/TuesdayCal"
+                    tools:layout_editor_absoluteY="75dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="monday">
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            </Button>
+                <Button
+                    android:id="@+id/WednesdayBtn"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="wednesday" />
 
-            <TextView
-                android:id="@+id/MondayCal"
+                <TextView
+                    android:id="@+id/WednesdayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/WednesdayBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="75dp" />
+
+                <TextView
+                    android:id="@+id/WednesdayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="TextView"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/WednesdayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/WednesdayCal"
+                    tools:layout_editor_absoluteY="110dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            <TextView
-                android:id="@+id/MondayPct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <Button
+                    android:id="@+id/ThursdayBtn"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
 
-            <Button
-                android:id="@+id/TuesdayBtn"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="tuesday" />
+                    android:text="thursday" />
 
-            <TextView
-                android:id="@+id/TuesdayCal"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/ThursdayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/ThursdayBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="76dp" />
 
-            <TextView
-                android:id="@+id/TuesdayPct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/ThursdayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="TextView"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/ThursdayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/ThursdayCal"
+                    tools:layout_editor_absoluteY="111dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/WednesdayBtn"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="wednesday" />
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            <TextView
-                android:id="@+id/WednesdayCal"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
+                <Button
+                    android:id="@+id/FridayBtn"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="friday" />
 
-            <TextView
-                android:id="@+id/WednesdayPct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/FridayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/FridayBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="75dp" />
 
-            <Button
-                android:id="@+id/ThursdayBtn"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="thursday" />
+                <TextView
+                    android:id="@+id/FridayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="TextView"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/FridayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/FridayCal"
+                    tools:layout_editor_absoluteY="109dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/ThursdayCal"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:background="@drawable/workout_item_bg">
 
-            <TextView
-                android:id="@+id/ThursdayPct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <Button
+                    android:id="@+id/SaturdayBtn"
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/midnight_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="saturday" />
 
-            <Button
-                android:id="@+id/FridayBtn"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="friday" />
+                <TextView
+                    android:id="@+id/SaturdayCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/SaturdayBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="75dp" />
 
-            <TextView
-                android:id="@+id/FridayCal"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/FridayPct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <Button
-                android:id="@+id/SaturdayBtn"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="saturday" />
-
-            <TextView
-                android:id="@+id/SaturdayCal"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/SaturdayPct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/SaturdayPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="TextView"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Ivory"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/SaturdayBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/SaturdayCal"
+                    tools:layout_editor_absoluteY="110dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
@@ -167,6 +338,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:text="Add Meal"
+        android:backgroundTint="@color/Ivory"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/setGoalBtn"
         app:layout_constraintHorizontal_bias="0.0"
@@ -176,23 +349,23 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="331dp"
+        android:layout_width="330dp"
         android:layout_height="58dp"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="45dp"
-        android:layout_marginEnd="38dp"
+        android:layout_marginEnd="33dp"
         android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
         <Button
             android:id="@+id/TodayBtn"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="today"
@@ -205,15 +378,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="TextView"
-            android:textColor="@color/white" />
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/todayPct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <Button
@@ -222,6 +397,8 @@
         android:layout_height="51dp"
         android:layout_marginBottom="7dp"
         android:text="set goal"
+        android:backgroundTint="@color/Ivory"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
@@ -235,6 +412,9 @@
         android:layout_height="52dp"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="24dp"
+        android:text="back"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Ivory"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintStart_toStartOf="parent" />
 

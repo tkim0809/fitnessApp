@@ -66,8 +66,7 @@ public class addDietPage extends AppCompatActivity implements IView {
                 startActivity(back);
             }
         });
-        ViewGroup rootView = findViewById(R.id.addDietLO);
-        layoutLogic.defBtnColor(rootView);
+
 
     }
 
