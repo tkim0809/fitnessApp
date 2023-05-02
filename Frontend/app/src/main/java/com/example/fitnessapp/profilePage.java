@@ -21,7 +21,7 @@ import org.json.JSONObject;
  * Profile UI class
  */
 public class profilePage extends AppCompatActivity {
-    Button edit;
+    Button edit,back;
     TextView gender;
     TextView age;
     TextView email;
@@ -37,7 +37,14 @@ public class profilePage extends AppCompatActivity {
         email = findViewById(R.id.emailTxt);
         weight = findViewById(R.id.weightTxt);
         username =findViewById(R.id.userNameTxt);
-
+        back =findViewById(R.id.backButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(profilePage.this,NewUserMenu.class);
+                startActivity(i);
+            }
+        });
         makeJsonObjReq();
         edit = findViewById(R.id.editPBtn);
         edit.setOnClickListener(new View.OnClickListener() {
