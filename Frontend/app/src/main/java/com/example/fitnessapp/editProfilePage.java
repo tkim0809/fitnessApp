@@ -16,6 +16,12 @@ import com.example.fitnessapp.Network.updateRequests;
 import org.json.JSONException;
 
 public class editProfilePage extends AppCompatActivity implements IView{
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    String userId = UserInfo.getUserID();
+
     Button back;
     Button save;
     EditText username;
@@ -58,7 +64,7 @@ public class editProfilePage extends AppCompatActivity implements IView{
                 String inputUsername = username.getText().toString();
 
                 try {
-                    logic.editProfile(inputUsername,inputGender,inputAge,inputWeight,inputEmail);
+                    logic.editProfile(inputUsername,inputGender,inputAge,inputWeight,inputEmail,userId);
                     logic.onSuccess();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
