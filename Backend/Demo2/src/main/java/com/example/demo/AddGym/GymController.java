@@ -17,6 +17,7 @@ import java.util.Map;
 
 
 
+
 @RestController
 @RequestMapping("/gyms")
 public class GymController {
@@ -96,13 +97,18 @@ public class GymController {
         }
     }
 
-    // POST a new like for a gym
 // POST a new like for a gym
     @PostMapping("/{id}/like/{userId}")
-    public ResponseEntity<String> addLikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<Map<String, Object>> addLikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
         try {
             appUserService.likeGym(userId, gymId);
-            return ResponseEntity.ok("Like added successfully!");
+
+            // Create a response map with success message
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Like added successfully!");
+
+            // Return the response map in the response body
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -111,33 +117,39 @@ public class GymController {
 
     // POST a new dislike for a gym
     @PostMapping("/{id}/dislike/{userId}")
-    public ResponseEntity<String> addDislikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<Map<String, Object>> addDislikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
         try {
             appUserService.dislikeGym(userId, gymId);
-            return ResponseEntity.ok("Dislike added successfully!");
+
+            // Create a response map with success message
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Dislike added successfully!");
+
+            // Return the response map in the response body
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
 
-    // GET emails of users who liked/disliked a gym
-    @GetMapping("/{id}/users")
-    public ResponseEntity<List<String>> getUsersForGym(@PathVariable(value = "id") Long gymId, @RequestParam(value = "type") String type) {
-        Set<AppUser> users;
+        // GET emails of users who liked/disliked a gym
+        @GetMapping("/{id}/users")
+        public ResponseEntity<List<String>> getUsersForGym (@PathVariable(value = "id") Long
+        gymId, @RequestParam(value = "type") String type){
+            Set<AppUser> users;
 
-        try {
-            users = appUserService.getUsersForGym(gymId, type);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
+            try {
+                users = appUserService.getUsersForGym(gymId, type);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().build();
+            } catch (EntityNotFoundException e) {
+                return ResponseEntity.notFound().build();
+            }
+
+            // Create a new list of emails from the AppUser objects
+            List<String> userEmails = users.stream().map(AppUser::getEmail).collect(Collectors.toList());
+
+            return ResponseEntity.ok(userEmails);
         }
-
-        // Create a new list of emails from the AppUser objects
-        List<String> userEmails = users.stream().map(AppUser::getEmail).collect(Collectors.toList());
-
-        return ResponseEntity.ok(userEmails);
     }
-
-}
