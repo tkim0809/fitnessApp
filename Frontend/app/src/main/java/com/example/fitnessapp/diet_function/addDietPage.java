@@ -57,13 +57,13 @@ public class addDietPage extends AppCompatActivity implements IView {
 
                 try {
                     logic.addDiet(food,calories,date,meal);
-
+                    Intent back = new Intent(addDietPage.this,dietPage.class);
+                    startActivity(back);
                 } catch (JSONException e) {
 
                     throw new RuntimeException(e);
                 }
-                Intent back = new Intent(addDietPage.this,dietPage.class);
-                startActivity(back);
+
             }
         });
 
