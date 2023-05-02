@@ -19,6 +19,12 @@ public class PostsController {
     @Autowired
     CommentsRepository commentsRepository;
 
+    @Autowired
+    PostVoteRepository postVoteRepository;
+
+    @Autowired
+    CommentVoteRepository commentVoteRepository;
+
     private final Logger logger = LoggerFactory.getLogger(PostsController.class);
 
     @PostMapping("/Posts")
@@ -110,40 +116,40 @@ public class PostsController {
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/Post/{postId}/upvote")
-    public Posts upvotePostById(@PathVariable("postId") int id) {
+    public PostVote upvotePostById(@PathVariable("postId") int id) {
         logger.info("Entered into Controller Layer");
-        Posts result = postsRepository.findById(id).get();
-        result.setVotes(result.getVotes() + 1);
-        postsRepository.save(result);
+        PostVote result = postVoteRepository.findById(id).get();
+        result.upvote();
+        postVoteRepository.save(result);
         logger.info("Post Upvoted:" + result.getId());
         return result;
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/Post/{postId}/downvote")
-    public Posts downvotePostById(@PathVariable("postId") int id) {
+    public PostVote downvotePostById(@PathVariable("postId") int id) {
         logger.info("Entered into Controller Layer");
-        Posts result = postsRepository.findById(id).get();
-        result.setVotes(result.getVotes() - 1);
-        postsRepository.save(result);
+        PostVote result = postVoteRepository.findById(id).get();
+        result.downvote();
+        postVoteRepository.save(result);
         logger.info("Post Downvoted:" + result.getId());
         return result;
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/Post/{postId}/withdrawvote")
-    public Posts withdrawvotePostById(@PathVariable("postId") int id) {
+    public PostVote withdrawvotePostById(@PathVariable("postId") int id) {
         logger.info("Entered into Controller Layer");
-        Posts result = postsRepository.findById(id).get();
-        result.setVotes(result.getVotes() - 1);
-        postsRepository.save(result);
+        PostVote result = postVoteRepository.findById(id).get();
+        result.removeVote();
+        postVoteRepository.save(result);
         logger.info("Post Downvoted:" + result.getId());
         return result;
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/Post/{postId}/comment/{commentId}/upvote")
-    public Comments upvoteCommentById(@PathVariable("postId") int id, @PathVariable("commentId") int commentId) {
+    public CommentVotes upvoteCommentById(@PathVariable("postId") int id, @PathVariable("commentId") int commentId) {
         logger.info("Entered into Controller Layer");
         Posts post = postsRepository.findById(id).get();
         List<Comments> results = commentsRepository.findByPost(post);
@@ -153,15 +159,17 @@ public class PostsController {
                 result = c;
             }
         }
-        result.setVotes(result.getVotes() + 1);
-        commentsRepository.save(result);
+        CommentVotes commentVotes = new CommentVotes();
+        commentVotes.setComment(result);
+        commentVotes.upvote();
+        commentVoteRepository.save(commentVotes);
         logger.info("Comment Upvoted:" + result.getId());
-        return result;
+        return commentVotes;
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/Post/{postId}/comment/{commentId}/downvote")
-    public Comments downvoteCommentById(@PathVariable("postId") int id, @PathVariable("commentId") int commentId) {
+    public CommentVotes downvoteCommentById(@PathVariable("postId") int id, @PathVariable("commentId") int commentId) {
         logger.info("Entered into Controller Layer");
         Posts post = postsRepository.findById(id).get();
         List<Comments> results = commentsRepository.findByPost(post);
@@ -171,15 +179,17 @@ public class PostsController {
                 result = c;
             }
         }
-        result.setVotes(result.getVotes() - 1);
-        commentsRepository.save(result);
-        logger.info("Comment Downvoted:" + result.getId());
-        return result;
+        CommentVotes commentVotes = new CommentVotes();
+        commentVotes.setComment(result);
+        commentVotes.downvote();
+        commentVoteRepository.save(commentVotes);
+        logger.info("Comment Upvoted:" + result.getId());
+        return commentVotes;
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/Post/{postId}/comment/{commentId}/withdrawvote")
-    public Comments withdrawvoteCommentById(@PathVariable("postId") int id, @PathVariable("commentId") int commentId) {
+    public CommentVotes withdrawvoteCommentById(@PathVariable("postId") int id, @PathVariable("commentId") int commentId) {
         logger.info("Entered into Controller Layer");
         Posts post = postsRepository.findById(id).get();
         List<Comments> results = commentsRepository.findByPost(post);
@@ -189,19 +199,29 @@ public class PostsController {
                 result = c;
             }
         }
-        result.setVotes(result.getVotes() - 1);
-        commentsRepository.save(result);
-        logger.info("Comment Downvoted:" + result.getId());
-        return result;
+        CommentVotes commentVotes = new CommentVotes();
+        commentVotes.setComment(result);
+        commentVotes.removeVote();
+        commentVoteRepository.save(commentVotes);
+        logger.info("Comment Upvoted:" + result.getId());
+        return commentVotes;
     }
 
+
+//    @RequestMapping(method = RequestMethod.GET, path = "/Post/{postId}/votes")
+//    public int getVotesPosts(@PathVariable("postId") int id) {
+//        logger.info("Entered into Controller Layer");
+//        Posts result = postsRepository.findById(id).get();
+//        logger.info("Votes Fetched:" + result.getVotes());
+//        return result.getVotes();
+//    }
 
     @RequestMapping(method = RequestMethod.GET, path = "/Post/{postId}/votes")
     public int getVotesPosts(@PathVariable("postId") int id) {
         logger.info("Entered into Controller Layer");
-        Posts result = postsRepository.findById(id).get();
-        logger.info("Votes Fetched:" + result.getVotes());
-        return result.getVotes();
+        PostVote result = postVoteRepository.findById(id).get();
+        logger.info("Votes Fetched:" + result.getVote());
+        return result.getVote();
     }
 
 
@@ -216,8 +236,10 @@ public class PostsController {
                 result = c;
             }
         }
-        logger.info("Votes Fetched:" + result.getVotes());
-        return result.getVotes();
+        CommentVotes commentVotes = commentVoteRepository.findByComment(result);
+
+        logger.info("Votes Fetched:" + commentVotes.getVotes());
+        return commentVotes.getVotes();
     }
 
 

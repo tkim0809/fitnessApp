@@ -48,6 +48,10 @@ public class CommentVotes {
     public void removeVote() {
         this.vote = 0;
     }
+
+    public int getVotes() {
+        return vote;
+    }
 }
 
 

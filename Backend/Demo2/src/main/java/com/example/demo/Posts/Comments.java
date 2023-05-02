@@ -20,38 +20,64 @@ public class Comments {
         @ManyToOne(fetch = FetchType.LAZY)
         private AppUser user;
 
-        private int votes;
+        //private int votes;
 
         @ManyToOne(fetch = FetchType.LAZY)
         private Posts post;
 
         public Comments(String body, Posts post, AppUser user) {
             this.body = body;
+            this.post = post;
             this.user = user;
-            this.votes = 0;
+            //this.votes = 0;
         }
 
-        public void upvote() {
-            this.votes++;
-        }
+//        public void upvote() {
+//            this.votes++;
+//        }
+//
+//        public void downvote() {
+//            this.votes--;
+//        }
+//
+//        public void removeVote() {
+//            this.votes = 0;
+//        }
+//
+//        public String setComment(String body) {
+//            return this.body = body;
+//        }
+//
+//        public String getComment() {
+//            return body;
+//        }
 
-        public void downvote() {
-            this.votes--;
-        }
-
-        public void removeVote() {
-            this.votes = 0;
-        }
-
-        public String setComment(String body) {
-            return this.body = body;
-        }
-
-        public String getComment() {
+        // getter for body
+        public String getBody() {
             return body;
         }
 
+        // setter for body
+        public void setBody(String body) {
+            this.body = body;
+        }
 
+        // getter for user
+        public AppUser getUser() {
+            return user;
+        }
+
+        // setter for user
+        public void setUser(AppUser user) {
+            this.user = user;
+        }
+
+        // getter for post
+        public Posts getPost() {
+            return post;
+        }
+
+        // setter for post
         public void setPost(Posts post) {
             this.post = post;
         }

@@ -48,4 +48,12 @@ public class PostVote {
     public void removeVote() {
         this.vote = 0;
     }
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
 }
