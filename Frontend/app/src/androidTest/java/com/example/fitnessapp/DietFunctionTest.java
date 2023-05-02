@@ -73,6 +73,10 @@ public class DietFunctionTest {
                 item.perform(click());
                 onView(withId(R.id.addBtn)).perform(click());
                 onView(withId(R.id.TodayBtn)).perform(click());
+            try {
+                Thread.sleep(SIMULATED_DELAY_MS);
+            } catch (InterruptedException e) {
+            }
                 // Perform checks or actions on the RecyclerView here
                 RecyclerView resultRecyclerView = activity.findViewById(R.id.dailyDietRV);
                 int resultItemCount = recyclerView.getAdapter().getItemCount();

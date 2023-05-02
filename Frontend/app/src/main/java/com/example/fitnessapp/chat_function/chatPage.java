@@ -21,7 +21,6 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
@@ -52,7 +51,7 @@ public class chatPage extends AppCompatActivity {
         backBtn = findViewById(R.id.chatBackBtn);
         message = findViewById(R.id.chatingMessage);
         chatName = findViewById(R.id.chatName);
-        RecyclerView recyclerView = findViewById(R.id.chatListRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.chatRecyclerView);
         Chat_RecyclerViewAdapter adapter = new Chat_RecyclerViewAdapter(this,chatMessagesArray);
         recyclerView.setAdapter(adapter);
 
