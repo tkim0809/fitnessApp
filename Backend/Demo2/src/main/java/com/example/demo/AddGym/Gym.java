@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+
 
 @Entity
 public class Gym {
@@ -24,13 +30,24 @@ public class Gym {
     private String phoneNumber;
     private String hoursOfOperation;
 
-    @ManyToMany(mappedBy = "likedGyms")
-    private List<AppUser> likedByUsers;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "user_gym_likes",
+            joinColumns = @JoinColumn(name = "gym_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<AppUser> likedByUsers = new HashSet<>();
 
-    @ManyToMany(mappedBy = "dislikedGyms")
-    private List<AppUser> dislikedByUsers;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "user_gym_dislikes",
+            joinColumns = @JoinColumn(name = "gym_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<AppUser> dislikedByUsers = new HashSet<>();
 
-    private Long user_id;
+
+//    private Long user_id;
 
     // Constructor
 
@@ -98,28 +115,20 @@ public class Gym {
         this.hoursOfOperation = hoursOfOperation;
     }
 
-    public List<AppUser> getLikedByUsers() {
+    public Set<AppUser> getLikedByUsers() {
         return likedByUsers;
     }
 
-    public void setLikedByUsers(List<AppUser> likedByUsers) {
+    public void setLikedByUsers(Set<AppUser> likedByUsers) {
         this.likedByUsers = likedByUsers;
     }
 
-    public List<AppUser> getDislikedByUsers() {
+    public Set<AppUser> getDislikedByUsers() {
         return dislikedByUsers;
     }
 
-    public void setDislikedByUsers(List<AppUser> dislikedByUsers) {
+    public void setDislikedByUsers(Set<AppUser> dislikedByUsers) {
         this.dislikedByUsers = dislikedByUsers;
-    }
-
-    public Long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
     }
 
 }

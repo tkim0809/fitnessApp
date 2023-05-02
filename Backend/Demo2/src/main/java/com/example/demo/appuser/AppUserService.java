@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -52,15 +53,15 @@ public class AppUserService implements UserDetailsService {
         appUserRepository.save(appUser);
     }
 
-    public List<AppUser> getUsersForGym(Long gymId, String type) {
+    public Set<AppUser> getUsersForGym(Long gymId, String type) {
         Optional<Gym> gym = gymRepository.findById(gymId);
 
         if (gym.isPresent()) {
             if (type.equals("like")) {
-                List<AppUser> likedByUsers = gym.get().getLikedByUsers();
+                Set<AppUser> likedByUsers = gym.get().getLikedByUsers();
                 return likedByUsers;
             } else if (type.equals("dislike")) {
-                List<AppUser> dislikedByUsers = gym.get().getDislikedByUsers();
+                Set<AppUser> dislikedByUsers = gym.get().getDislikedByUsers();
                 return dislikedByUsers;
             } else {
                 throw new IllegalArgumentException("Invalid type");
@@ -70,8 +71,8 @@ public class AppUserService implements UserDetailsService {
         }
     }
 
-    public void likeGym(String email, Long gymId) {
-        Optional<AppUser> user = appUserRepository.findByEmail(email);
+    public void likeGym(Long userId, Long gymId) {
+        Optional<AppUser> user = appUserRepository.findById(userId);
         Optional<Gym> gym = gymRepository.findById(gymId);
 
         if (user.isPresent() && gym.isPresent()) {
@@ -85,8 +86,8 @@ public class AppUserService implements UserDetailsService {
         }
     }
 
-    public void dislikeGym(String email, Long gymId) {
-        Optional<AppUser> user = appUserRepository.findByEmail(email);
+    public void dislikeGym(Long userId, Long gymId) {
+        Optional<AppUser> user = appUserRepository.findById(userId);
         Optional<Gym> gym = gymRepository.findById(gymId);
 
         if (user.isPresent() && gym.isPresent()) {

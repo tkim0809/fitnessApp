@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.Set;
+
 
 
 
@@ -89,17 +92,13 @@ public class GymController {
     }
 
     // POST a new like for a gym
+// POST a new like for a gym
     @PostMapping("/{id}/like")
     public ResponseEntity<String> addLikeForGym(@PathVariable(value = "id") Long gymId, @RequestBody AppUser appUser) {
-        Optional<Gym> gym = gymRepository.findById(gymId);
-
-        if (gym.isPresent()) {
-            Gym gymToUpdate = gym.get();
-            gymToUpdate.getLikedByUsers().add(appUser);
-            gymRepository.save(gymToUpdate);
-
+        try {
+            appUserService.likeGym(appUser.getId(), gymId);
             return ResponseEntity.ok("Like added successfully!");
-        } else {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -107,23 +106,19 @@ public class GymController {
     // POST a new dislike for a gym
     @PostMapping("/{id}/dislike")
     public ResponseEntity<String> addDislikeForGym(@PathVariable(value = "id") Long gymId, @RequestBody AppUser appUser) {
-        Optional<Gym> gym = gymRepository.findById(gymId);
-
-        if (gym.isPresent()) {
-            Gym gymToUpdate = gym.get();
-            gymToUpdate.getDislikedByUsers().add(appUser);
-            gymRepository.save(gymToUpdate);
-
+        try {
+            appUserService.dislikeGym(appUser.getId(), gymId);
             return ResponseEntity.ok("Dislike added successfully!");
-        } else {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    // GET users who liked/disliked a gym
+
+    // GET emails of users who liked/disliked a gym
     @GetMapping("/{id}/users")
-    public ResponseEntity<List<AppUser>> getUsersForGym(@PathVariable(value = "id") Long gymId, @RequestParam(value = "type") String type) {
-        List<AppUser> users;
+    public ResponseEntity<List<String>> getUsersForGym(@PathVariable(value = "id") Long gymId, @RequestParam(value = "type") String type) {
+        Set<AppUser> users;
 
         try {
             users = appUserService.getUsersForGym(gymId, type);
@@ -133,7 +128,10 @@ public class GymController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(users);
+        // Create a new list of emails from the AppUser objects
+        List<String> userEmails = users.stream().map(AppUser::getEmail).collect(Collectors.toList());
+
+        return ResponseEntity.ok(userEmails);
     }
 
 }
