@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/chat_list"
     tools:context=".chat_function.ChatList">
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,13 +25,25 @@
                     android:layout_height="30dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginStart="76dp"
                     android:layout_marginTop="40dp"
-                    android:layout_toEndOf="@+id/chatBackBtn"
                     android:text="CHATS"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/chatListBackBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:backgroundTint="@color/Ivory"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Back" />
             </RelativeLayout>
 
 
