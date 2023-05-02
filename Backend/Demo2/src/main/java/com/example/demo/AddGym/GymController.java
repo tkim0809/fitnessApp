@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -45,14 +47,17 @@ public class GymController {
 
     // POST a new gym
     @PostMapping("/addGym")
-    public ResponseEntity<Gym> addGym(@RequestBody Gym gym) {
+    public ResponseEntity<Map<String, String>> addGym(@RequestBody Gym gym) {
         // Save the gym to the database
         Gym savedGym = gymRepository.save(gym);
 
-        // Return the saved gym in the response body
-        return ResponseEntity.ok(savedGym);
-    }
+        // Create a response object with a success status
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
 
+        // Return the response object as JSON in the response body
+        return ResponseEntity.ok(response);
+    }
     // UPDATE an existing gym
     @PutMapping("/{id}")
     public ResponseEntity<Gym> updateGym(@PathVariable(value = "id") Long gymId, @RequestBody Gym gym) {
