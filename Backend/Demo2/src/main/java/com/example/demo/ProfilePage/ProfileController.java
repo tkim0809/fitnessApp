@@ -78,8 +78,11 @@ public class ProfileController {
             profile.setEmail(updatedProfile.getEmail());
         }
 
+        if (updatedProfile.getUserName() != null) {
+            profile.setUserName((updatedProfile.getUserName()));
+        }
+
         return profileRepository.save(profile);
     }
-
 
 }

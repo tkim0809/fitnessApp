@@ -15,6 +15,9 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 @ServerEndpoint("/websocket/{userId}")
 @Component
@@ -32,9 +35,6 @@ public class WebSocketServer {
 
         sessionUserIdMap.put(session, userId);
         userIdSessionMap.put(userId, session);
-
-        String notification = "User with ID:" + userId + " has joined the notification service.";
-        broadcast(notification);
     }
 
     @OnMessage
@@ -43,8 +43,14 @@ public class WebSocketServer {
         logger.info("Entered into Message: Got Message:" + message);
         String userId = sessionUserIdMap.get(session);
 
-        // Message to all users
-        broadcast("Notification from User " + userId + ": " + message);
+        try {
+            JSONObject jsonMessage = new JSONObject(message);
+            String targetUserId = jsonMessage.getString("targetUserId");
+            String notification = jsonMessage.getString("notification");
+            sendMessageToParticularUser(targetUserId, notification);
+        } catch (JSONException e) {
+            logger.error("Error parsing received JSON message", e);
+        }
     }
 
     @OnClose
@@ -54,9 +60,6 @@ public class WebSocketServer {
         String userId = sessionUserIdMap.get(session);
         sessionUserIdMap.remove(session);
         userIdSessionMap.remove(userId);
-
-        String notification = "User with ID:" + userId + " has left the notification service.";
-        broadcast(notification);
     }
 
     @OnError
@@ -65,18 +68,7 @@ public class WebSocketServer {
         logger.info("Entered into Error");
     }
 
-    private void broadcast(String notification) {
-        sessionUserIdMap.forEach((session, userId) -> {
-            try {
-                session.getBasicRemote().sendText(notification);
-            } catch (IOException e) {
-                logger.info("Exception: " + e.getMessage().toString());
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void sendMessageToPArticularUser(String userId, String message) {
+    public void sendMessageToParticularUser(String userId, String message) {
         Session session = userIdSessionMap.get(userId);
         if (session != null) {
             try {

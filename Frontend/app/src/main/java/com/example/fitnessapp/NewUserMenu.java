@@ -15,8 +15,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
+import com.example.fitnessapp.chat_function.ChatList;
 import com.example.fitnessapp.chat_function.chatPage;
+import com.example.fitnessapp.chat_function.connectingID;
 import com.example.fitnessapp.diet_function.dietPage;
+import com.example.fitnessapp.workoutHistory_function.workoutHistoryPage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +29,7 @@ import org.json.JSONObject;
  */
 public class NewUserMenu extends AppCompatActivity {
     TextView DailyCal;
-    TextView TodayPct;
+    TextView TodayPct, userName;
     ProgressBar progressBar;
 
     @Override
@@ -34,6 +37,8 @@ public class NewUserMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user_menu);
         Button logOutBtn = findViewById(R.id.logOutBtn);
+        userName =findViewById(R.id.textUserName);
+        userName.setText(UserInfo.getUserID());
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +87,7 @@ public class NewUserMenu extends AppCompatActivity {
         chatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toChat = new Intent(NewUserMenu.this, chatPage.class);
+                Intent toChat = new Intent(NewUserMenu.this, connectingID.class);
                 startActivity(toChat);
             }
         });
@@ -115,6 +120,15 @@ public class NewUserMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(NewUserMenu.this,milestone.class);
+                startActivity(i);
+            }
+        });
+        Button communityBtn = findViewById(R.id.communityBtn);
+        communityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NewUserMenu.this,JoinCommunityWithId.class);
+                startActivity(i);
             }
         });
         DailyCal = findViewById(R.id.dailyCalTxt);
@@ -240,7 +254,7 @@ public class NewUserMenu extends AppCompatActivity {
 
                         try {
                             progressBar.setProgress(calculatePctInt(totalIn, response.getInt("dietGoalValue")));
-                            dayPct.setText("You have reached"+calculatePct(totalIn, response.getInt("dietGoalValue")) + "of daily plan");
+                            dayPct.setText("You have reached"+calculatePct(totalIn, response.getInt("dietGoalValue")) + " of daily plan");
                             System.out.println("Pct request" + "succeed");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

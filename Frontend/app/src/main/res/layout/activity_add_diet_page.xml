@@ -5,7 +5,7 @@
     android:id="@+id/addDietLO"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/barb"
+    android:background="@drawable/yellow_background"
     tools:context=".diet_function.addDietPage">
 
     <LinearLayout
@@ -16,7 +16,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="107dp"
         android:layout_marginBottom="34dp"
-        android:background="@color/white"
+
+
         android:orientation="vertical">
 
         <LinearLayout
@@ -29,6 +30,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="18dp"
                 android:text="Date:" />
 
             <EditText
@@ -51,6 +54,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="18dp"
                 android:text="Food:" />
 
             <EditText
@@ -73,6 +78,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="18dp"
                 android:text="Calories:" />
 
             <EditText
@@ -95,6 +102,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="18dp"
                 android:text="Meal:" />
 
             <Spinner
@@ -113,6 +122,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Ivory"
         android:text="Add" />
 
 </RelativeLayout>

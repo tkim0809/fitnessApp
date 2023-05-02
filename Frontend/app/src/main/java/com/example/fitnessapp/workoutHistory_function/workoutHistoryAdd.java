@@ -1,15 +1,18 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.workoutHistory_function;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.fitnessapp.IView;
 import com.example.fitnessapp.Logic.workoutHistoryUpdateLogic;
 import com.example.fitnessapp.Network.updateRequests;
+import com.example.fitnessapp.R;
 
 import org.json.JSONException;
 
@@ -17,7 +20,7 @@ import org.json.JSONException;
  * Adding work out history UI class.
  */
 //Edit the exercises "name", "rep" and "max" and send it to the backend.
-public class workoutHistoryAdd extends AppCompatActivity implements IView{
+public class workoutHistoryAdd extends AppCompatActivity implements IView {
     EditText exName;
     EditText exRep;
     EditText exMax;
@@ -49,7 +52,16 @@ public class workoutHistoryAdd extends AppCompatActivity implements IView{
                 }catch (JSONException e){
                     statsLogic.onError();
                 }
-
+                Intent intent = new Intent(workoutHistoryAdd.this,workoutHistoryPage.class);
+                startActivity(intent);
+            }
+        });
+        Button back = findViewById(R.id.WHAddBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(workoutHistoryAdd.this,workoutHistoryPage.class);
+                startActivity(intent);
             }
         });
     }

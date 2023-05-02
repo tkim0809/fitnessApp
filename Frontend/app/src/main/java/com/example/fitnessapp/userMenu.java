@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.fitnessapp.Logic.layoutLogic;
 import com.example.fitnessapp.chat_function.chatPage;
 import com.example.fitnessapp.diet_function.dietPage;
+import com.example.fitnessapp.workoutHistory_function.workoutHistoryPage;
 
 public class userMenu extends AppCompatActivity {
 
