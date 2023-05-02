@@ -27,7 +27,7 @@ public class gymsListPage extends AppCompatActivity {
         setContentView(R.layout.activity_gyms_list_page);
 
         RecyclerView recyclerView = findViewById(R.id.gymsListRecyclerView);
-        String url = "";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/gyms/";
 
         JsonArrayRequest jsonArr = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 

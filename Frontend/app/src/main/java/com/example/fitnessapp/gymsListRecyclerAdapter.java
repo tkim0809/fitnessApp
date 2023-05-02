@@ -1,6 +1,7 @@
 package com.example.fitnessapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,10 +45,24 @@ public class gymsListRecyclerAdapter extends RecyclerView.Adapter<gymsListRecycl
         holder.gymPhoneNumber.setText(gymsModel.get(position).getGymPhoneNumber());
         holder.gymHours.setText(gymsModel.get(position).getGymHours());
 
+
         holder.liked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(context, likedGymsPage.class);
+                //intent.putExtra("gym_id", gymsModel.get(position).getGymId());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.disliked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, dislikedGymsPage.class);
+                //intent.putExtra("gym_id", gymsModel.get(position).getGymId());
+                context.startActivity(intent);
             }
         });
 
@@ -56,7 +71,7 @@ public class gymsListRecyclerAdapter extends RecyclerView.Adapter<gymsListRecycl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return gymsModel.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

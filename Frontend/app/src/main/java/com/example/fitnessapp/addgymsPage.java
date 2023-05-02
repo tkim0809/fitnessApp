@@ -35,11 +35,11 @@ public class addgymsPage extends AppCompatActivity {
 
 
 
-        String gymName = ((EditText)findViewById(R.id.gym_name)).getText().toString();
-        String gymDescription = ((EditText)findViewById(R.id.gym_description)).getText().toString();
-        String gymLocation = ((EditText)findViewById(R.id.gym_location)).getText().toString();
-        String gymPhoneNumber = ((EditText)findViewById(R.id.gym_phoneNumber)).getText().toString();
-        String gymHours = ((EditText)findViewById(R.id.gym_hours)).getText().toString();
+        EditText gymNameEdit = findViewById(R.id.gym_name);
+        EditText gymDescriptionEdit = findViewById(R.id.gym_description);
+        EditText gymLocationEdit = findViewById(R.id.gym_location);
+        EditText gymPhoneNumberEdit = findViewById(R.id.gym_phoneNumber);
+        EditText gymHoursEdit = findViewById(R.id.gym_hours);
 
         Button addgymsBtn = findViewById(R.id.addgymsBtn);
         Button addgymsListBtn = findViewById(R.id.addgyms_list);
@@ -61,6 +61,13 @@ public class addgymsPage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                String gymName = gymNameEdit.getText().toString();
+                String gymDescription = gymDescriptionEdit.getText().toString();
+                String gymLocation = gymLocationEdit.getText().toString();
+                String gymPhoneNumber = gymPhoneNumberEdit.getText().toString();
+                String gymHours = gymHoursEdit.getText().toString();
+
 
                 String url = "http://coms-309-004.class.las.iastate.edu:8080/gyms/addGym";
                 RequestQueue queue = Volley.newRequestQueue(addgymsPage.this);
@@ -95,6 +102,7 @@ public class addgymsPage extends AppCompatActivity {
                                 try {
 
                                     String toCompare = response.get("status").toString();
+                                    System.out.println("To compare: " + toCompare);
 
                                     if (toCompare.equals("success")) {
 

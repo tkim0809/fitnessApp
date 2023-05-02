@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/addgyms_list"
         android:layout_below = "@id/addgymsBtn"
-        android:text="add"
+        android:text="view gyms"
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
         android:layout_centerHorizontal="true"
