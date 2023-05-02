@@ -105,7 +105,7 @@ public class GymController {
 
 
     // POST a new dislike for a gym
-    @PostMapping("/{id}/dislike")
+    @PostMapping("/{id}/dislike/{userId}")
     public ResponseEntity<String> addDislikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
         try {
             appUserService.dislikeGym(userId, gymId);
