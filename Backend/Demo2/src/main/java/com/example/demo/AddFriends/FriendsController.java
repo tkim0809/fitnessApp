@@ -66,14 +66,16 @@ public class FriendsController {
         friendsRepository.save(newFriendship);
 
         // Send a notification to the new friend
+        // Send a notification to the new friend
         JSONObject notificationJson = new JSONObject();
         try {
-            notificationJson.put("type", "friend_added");
+            notificationJson.put("type", "friend_request_received");
             notificationJson.put("email", user.getEmail());
         } catch (JSONException e) {
             return "{\"message\" : \"failed\"}";
         }
         webSocketServer.sendMessageToParticularUser(friend.getId().toString(), notificationJson.toString());
+
 
         // Send a notification to the user who added the friend
         JSONObject userNotificationJson = new JSONObject();
