@@ -1,43 +1,10 @@
 package com.example.demo.AddFriends;
-
-import java.sql.SQLException;
-
-import com.example.demo.StatPage.StatController;
-import com.example.demo.StatPage.Stats;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-import com.example.demo.appuser.AppUser;
-import com.example.demo.appuser.AppUserRepository;
-import java.util.Optional;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.ResponseEntity;
-import java.util.HashMap;
-
-import com.example.demo.appuser.AppUser;
-import com.example.demo.appuser.AppUserRepository;
-
 import com.example.demo.AddFriends.Friends;
+
 import com.example.demo.AddFriends.FriendsRepository;
-
-
 import com.example.demo.appuser.AppUser;
 import com.example.demo.appuser.AppUserRepository;
+import com.example.demo.Notification.WebSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import io.swagger.annotations.Api;
@@ -62,6 +30,9 @@ public class FriendsController {
 
     private final FriendsRepository friendsRepository;
     private final AppUserRepository appUserRepository;
+
+    @Autowired
+    private WebSocketServer webSocketServer;
 
     public FriendsController(FriendsRepository friendRepository, AppUserRepository appUserRepository) {
         this.friendsRepository = friendRepository;
@@ -112,8 +83,6 @@ public class FriendsController {
         List<String> friendEmails = friends.stream().map(AppUser::getEmail).collect(Collectors.toList());
         return ResponseEntity.ok(friendEmails);
     }
-
-
 
 }
 

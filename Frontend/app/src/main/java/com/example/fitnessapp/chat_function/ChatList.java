@@ -6,18 +6,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.example.fitnessapp.NewUserMenu;
 import com.example.fitnessapp.R;
 
 import java.util.ArrayList;
 
 public class ChatList extends AppCompatActivity implements RecyclerViewInterface{
+    Button back;
     ArrayList<chatItemModel> chatItemModelArrayList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
+        back = findViewById(R.id.chatListBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ChatList.this, NewUserMenu.class);
+                startActivity(i);
+            }
+        });
         RecyclerView recyclerView = findViewById(R.id.chatListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         chatItemModelArrayList.add(new chatItemModel("eddy",1));

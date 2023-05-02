@@ -5,18 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,7 +23,6 @@ import com.example.fitnessapp.R;
 import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
@@ -47,7 +39,7 @@ public class DailyDiet extends AppCompatActivity implements IView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_diet);
-        Button back = findViewById(R.id.backBtn);
+        Button back = findViewById(R.id.backToDietBtn);
         back.setText("\u2190back");
         recyclerView = findViewById(R.id.dailyDietRV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

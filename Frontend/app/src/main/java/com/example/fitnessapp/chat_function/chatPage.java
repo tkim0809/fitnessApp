@@ -52,7 +52,7 @@ public class chatPage extends AppCompatActivity {
         backBtn = findViewById(R.id.chatBackBtn);
         message = findViewById(R.id.chatingMessage);
         chatName = findViewById(R.id.chatName);
-        RecyclerView recyclerView = findViewById(R.id.chatListRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.chatRecyclerView);
         Chat_RecyclerViewAdapter adapter = new Chat_RecyclerViewAdapter(this,chatMessagesArray);
         recyclerView.setAdapter(adapter);
 
