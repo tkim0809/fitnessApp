@@ -75,8 +75,19 @@ public class FriendsController {
         }
         webSocketServer.sendMessageToParticularUser(friend.getId().toString(), notificationJson.toString());
 
+        // Send a notification to the user who added the friend
+        JSONObject userNotificationJson = new JSONObject();
+        try {
+            userNotificationJson.put("type", "friend_added");
+            userNotificationJson.put("email", friend.getEmail());
+        } catch (JSONException e) {
+            return "{\"message\" : \"failed\"}";
+        }
+        webSocketServer.sendMessageToParticularUser(user.getId().toString(), userNotificationJson.toString());
+
         return "{\"message\" : \"success\"}";
     }
+
 
     @ApiOperation(value = "Get a list of friend emails")
     @ApiResponses(value = {
