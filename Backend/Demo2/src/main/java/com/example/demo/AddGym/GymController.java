@@ -93,21 +93,22 @@ public class GymController {
 
     // POST a new like for a gym
 // POST a new like for a gym
-    @PostMapping("/{id}/like")
-    public ResponseEntity<String> addLikeForGym(@PathVariable(value = "id") Long gymId, @RequestBody AppUser appUser) {
+    @PostMapping("/{id}/like/{userId}")
+    public ResponseEntity<String> addLikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
         try {
-            appUserService.likeGym(appUser.getId(), gymId);
+            appUserService.likeGym(userId, gymId);
             return ResponseEntity.ok("Like added successfully!");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
+
     // POST a new dislike for a gym
     @PostMapping("/{id}/dislike")
-    public ResponseEntity<String> addDislikeForGym(@PathVariable(value = "id") Long gymId, @RequestBody AppUser appUser) {
+    public ResponseEntity<String> addDislikeForGym(@PathVariable(value = "id") Long gymId, @PathVariable(value = "userId") Long userId) {
         try {
-            appUserService.dislikeGym(appUser.getId(), gymId);
+            appUserService.dislikeGym(userId, gymId);
             return ResponseEntity.ok("Dislike added successfully!");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
