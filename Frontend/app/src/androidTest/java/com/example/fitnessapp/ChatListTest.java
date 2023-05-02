@@ -25,7 +25,7 @@ public class ChatListTest {
     @Test
     public void clickOnItemTest(){
         onView(withId(R.id.chatListRecyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
-        onView(withId(R.id.chatRecyclerView)).check(matches(isDisplayed()));
+        onView(withId(R.id.CchatRecyclerView)).check(matches(isDisplayed()));
 
     }
 }

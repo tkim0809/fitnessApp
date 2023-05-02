@@ -1,4 +1,4 @@
-package com.example.fitnessapp.chat_function;
+package com.example.fitnessapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,25 +8,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.fitnessapp.R;
-import com.example.fitnessapp.UserInfo;
+import com.example.fitnessapp.chat_function.ChatList;
+import com.example.fitnessapp.chat_function.connectingID;
 
-public class connectingID extends AppCompatActivity {
+public class JoinCommunityWithId extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connecting_id);
-        EditText id = findViewById(R.id.ConnectIdEdit);
-        Button next = findViewById(R.id.nextBtn);
+        setContentView(R.layout.activity_join_community_with_id);
+        EditText id = findViewById(R.id.CConnectIdEdit);
+        Button next = findViewById(R.id.CnextBtn);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i  = new Intent(connectingID.this,ChatList.class);
+                Intent i  = new Intent(JoinCommunityWithId.this, CommunityChat.class);
                 UserInfo.setUserID(id.getText().toString());
                 System.out.println(id.getText().toString());
                 startActivity(i);
             }
         });
     }
-}
+    }

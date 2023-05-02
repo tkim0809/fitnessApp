@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class ChatList extends AppCompatActivity implements RecyclerViewInterface{
     Button back;
+    String myId;
     ArrayList<chatItemModel> chatItemModelArrayList = new ArrayList<>();
 
 
@@ -24,6 +25,8 @@ public class ChatList extends AppCompatActivity implements RecyclerViewInterface
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
+        Intent i = this.getIntent();
+
         back = findViewById(R.id.chatListBackBtn);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,7 @@ public class ChatList extends AppCompatActivity implements RecyclerViewInterface
         toChat.putExtra("userName",chatItemModelArrayList.get(position).getUserName());
         //missing methods to get friend's ID
         toChat.putExtra("userId","37");
+        toChat.putExtra("myId",myId);
         startActivity(toChat);
     }
 }

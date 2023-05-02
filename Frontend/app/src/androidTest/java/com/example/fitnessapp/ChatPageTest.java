@@ -1,24 +1,17 @@
 package com.example.fitnessapp;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.action.TypeTextAction;
-import androidx.test.espresso.contrib.RecyclerViewActions;
 
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -38,7 +31,7 @@ public class ChatPageTest {
 
     @Before
     public void setUp() {
-        onView(withId(R.id.chatingMessage)).perform(typeText("Hi"), closeSoftKeyboard());
+        onView(withId(R.id.CchatingMessage)).perform(typeText("Hi"), closeSoftKeyboard());
     }
 
     @Test
@@ -48,10 +41,10 @@ public class ChatPageTest {
 
         // Run the test on a background thread
         scenario.onActivity(activity -> {
-            RecyclerView recyclerView = activity.findViewById(R.id.chatRecyclerView);
+            RecyclerView recyclerView = activity.findViewById(R.id.CchatRecyclerView);
             int initialItemCount = recyclerView.getAdapter().getItemCount();
 
-            onView(withId(R.id.sendChatBtn)).perform(click());
+            onView(withId(R.id.CsendChatBtn)).perform(click());
 
             try {
                 Thread.sleep(SIMULATED_DELAY_MS);
@@ -59,7 +52,7 @@ public class ChatPageTest {
                 e.printStackTrace();
             }
 
-            RecyclerView resultRecyclerView = activity.findViewById(R.id.chatRecyclerView);
+            RecyclerView resultRecyclerView = activity.findViewById(R.id.CchatRecyclerView);
             int resultItemCount = resultRecyclerView.getAdapter().getItemCount();
             assertEquals(initialItemCount, resultItemCount);
         });
