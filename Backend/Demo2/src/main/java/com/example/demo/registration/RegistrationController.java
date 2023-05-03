@@ -50,6 +50,7 @@ public class RegistrationController {
                 request.getFirstName(),
                 request.getLastName()
         );
+
         return ResponseEntity.status(HttpStatus.OK).body("Profile updated successfully");
     }
 }
