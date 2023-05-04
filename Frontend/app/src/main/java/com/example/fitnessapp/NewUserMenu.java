@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.util.Log;
+
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -119,6 +121,7 @@ public class NewUserMenu extends AppCompatActivity {
 
         });
 
+
         friendListButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -160,6 +163,18 @@ public class NewUserMenu extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+
+        Button locateBtn = findViewById(R.id.locateBtn);
+        locateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("NewUserMenu", "locateBtn clicked");
+                Intent toMap = new Intent(NewUserMenu.this, MapsActivity.class);
+                startActivity(toMap);
+            }
+        });
+
+
 
     }
     public void getDailyCalGoal() throws JSONException {

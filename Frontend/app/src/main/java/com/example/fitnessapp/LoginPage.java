@@ -104,6 +104,7 @@ public class LoginPage extends AppCompatActivity {
                                     if (response.getBoolean("result")) {
 
                                         userId = response.getString("user_id");
+                                        UserInfo.setUserID(userId);
 
                                         Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
 
