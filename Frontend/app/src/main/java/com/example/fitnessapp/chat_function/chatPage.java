@@ -99,7 +99,7 @@ public class chatPage extends AppCompatActivity {
                         messageArray = message.split(":");
                         System.out.println("sender:"+messageArray[0]);
                         if (messageArray[0].equals("[DM] "+userID)){
-                            addMessageToArray(messageArray[1], true);
+                            addMessageToArray(deleteAt(messageArray[1]), true);
                             runOnUiThread(new Runnable() {
                                 public void run() {
                                     // Update UI here
@@ -108,7 +108,7 @@ public class chatPage extends AppCompatActivity {
                                 }
                             });
                         }else if(messageArray[0].startsWith("[DM]")){
-                            addMessageToArray(messageArray[1], false);
+                            addMessageToArray(deleteAt(messageArray[1]), false);
                             runOnUiThread(new Runnable() {
                                 public void run() {
                                     // Update UI here
@@ -172,5 +172,14 @@ public class chatPage extends AppCompatActivity {
      */
     private void addMessageToArray(String message,Boolean Isent){
         chatMessagesArray.add(0,new chatMessageModel(message,Isent));
+    }
+    public String deleteAt(String message){
+
+        String[]array =message.split(" ");
+        String result = array[1];
+        for (int i  = 2; i<array.length;++i){
+            result = result+" "+ array[i];
+        }
+        return result;
     }
 }
