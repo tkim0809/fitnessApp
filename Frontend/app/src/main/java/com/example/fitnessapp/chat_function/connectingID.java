@@ -19,6 +19,7 @@ public class connectingID extends AppCompatActivity {
         setContentView(R.layout.activity_connecting_id);
         EditText id = findViewById(R.id.ConnectIdEdit);
         Button next = findViewById(R.id.nextBtn);
+        id.setText(UserInfo.getUserID());
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
