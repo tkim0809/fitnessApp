@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.w3c.dom.Text;
 import org.json.JSONObject;
 
@@ -30,6 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class signUpActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +123,10 @@ public class signUpActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
+
+
+
+
                         Toast.makeText(signUpActivity.this, "Successful", Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {

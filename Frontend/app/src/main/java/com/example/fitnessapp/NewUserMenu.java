@@ -36,6 +36,8 @@ public class NewUserMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user_menu);
+
+        //System.out.println("User id: " + UserInfo.getUserID());
         Button logOutBtn = findViewById(R.id.logOutBtn);
         userName =findViewById(R.id.textUserName);
         userName.setText(UserInfo.getUserID());
