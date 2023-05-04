@@ -41,7 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        Button backBtn = findViewById(R.id.backButton);
+        Button backBtn = (Button)findViewById(R.id.backButton);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
 
