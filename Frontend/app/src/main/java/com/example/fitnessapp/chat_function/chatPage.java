@@ -29,7 +29,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /**
- * This class is the UI of chat function
+ * This class is the UI of chat function.
  */
 public class chatPage extends AppCompatActivity {
     public void setUserID(String userID) {
