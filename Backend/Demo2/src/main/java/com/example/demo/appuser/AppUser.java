@@ -72,6 +72,11 @@ public class AppUser implements UserDetails {
         return password;
     }
 
+    public Long getUserId() {
+        return id;
+    }
+
+
     @Override
     public String getUsername() {
         return email;
