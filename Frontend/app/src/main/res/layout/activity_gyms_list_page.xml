@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/yellow_background"
-    android:id="@+id/friend_list"
-    tools:context=".friendList">
+    tools:context=".gymsListPage">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/friendlistRecyclerV"
+        android:id="@+id/gymsListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="@color/white"
@@ -22,4 +20,5 @@
         app:layout_constraintVertical_bias="0.0"
 
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
