@@ -30,6 +30,7 @@ public class LoginPage extends AppCompatActivity {
     public static String userName = "";
     //public static String email = "";
 
+    public static String userId;
     private EditText Email, password;
     private Button logIn;
     private Button signUp, backToLogin;
@@ -42,6 +43,8 @@ public class LoginPage extends AppCompatActivity {
         password = findViewById(R.id.password);
         logIn = findViewById(R.id.loginButton);
         signUp = findViewById(R.id.signUpButton);
+
+        System.out.println(UserInfo.getUserID());
 
 
         /**
@@ -99,6 +102,8 @@ public class LoginPage extends AppCompatActivity {
 
                                 try {
                                     if (response.getBoolean("result")) {
+
+                                        userId = response.getString("user_id");
 
                                         Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
 
