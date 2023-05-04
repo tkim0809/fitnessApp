@@ -41,5 +41,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.3' // Add this line
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core:1.6.0'
 }
 
