@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fitnessapp.NewUserMenu;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.UserInfo;
 
@@ -21,7 +22,6 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
@@ -29,10 +29,15 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /**
- * This class is the UI of chat function
+ * This class is the UI of chat function.
  */
 public class chatPage extends AppCompatActivity {
-    String opponentUserName;
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    String userID = UserInfo.getUserID();
+    String opponentUserID;
     Button sendBtn,backBtn;
     TextView chatName;
     EditText message;
@@ -52,7 +57,15 @@ public class chatPage extends AppCompatActivity {
         backBtn = findViewById(R.id.chatBackBtn);
         message = findViewById(R.id.chatingMessage);
         chatName = findViewById(R.id.chatName);
-        RecyclerView recyclerView = findViewById(R.id.chatListRecyclerView);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(chatPage.this, NewUserMenu.class);
+                UserInfo.setUserID("39");
+                startActivity(i);
+            }
+        });
+        RecyclerView recyclerView = findViewById(R.id.chatRecyclerView);
         Chat_RecyclerViewAdapter adapter = new Chat_RecyclerViewAdapter(this,chatMessagesArray);
         recyclerView.setAdapter(adapter);
 
@@ -61,13 +74,16 @@ public class chatPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
         Intent i = this.getIntent();
-        opponentUserName = i.getStringExtra("userName");
+        String opponentUserName = i.getStringExtra("userName");
+        //opponentUserID = i.getStringExtra("userId");
+        opponentUserID = "37";
         chatName.setText(opponentUserName);
-        //websocket
+        //websocketServer provided in tutorial
         Draft[] drafts = {
                 new Draft_6455()
         };
-        String w = "ws://10.0.2.2:8080/websocket/" + UserInfo.getUserID();
+        String w = "ws://10.0.2.2:8080/websocket/"+userID;
+        System.out.println(w);
 
         try {
             Log.d("Socket:", "connecting");
@@ -77,16 +93,36 @@ public class chatPage extends AppCompatActivity {
                     Log.d("", "run() returned: " + message);
                     //String s = t1.getText().toString();
                     //t1.setText(s + "\nServer:" + message);
-                    String received;
+
+                    String[] messageArray;
                     try {
-                        JSONObject messageObj = new JSONObject(message);
-                        received = messageObj.getString("message");
-                    } catch (JSONException e) {
+                        messageArray = message.split(":");
+                        System.out.println("sender:"+messageArray[0]);
+                        if (messageArray[0].equals("[DM] "+userID)){
+                            addMessageToArray(deleteAt(messageArray[1]), true);
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    // Update UI here
+                                    adapter.setChatMessages(chatMessagesArray);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            });
+                        }else if(messageArray[0].startsWith("[DM]")){
+                            addMessageToArray(deleteAt(messageArray[1]), false);
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    // Update UI here
+                                    adapter.setChatMessages(chatMessagesArray);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            });
+                        }
+
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                    addMessageToArray(received,false);
-                    adapter.setChatMessages(chatMessagesArray);
-                    recyclerView.setAdapter(adapter);
+
+
                 }
 
                 @Override
@@ -114,21 +150,20 @@ public class chatPage extends AppCompatActivity {
             public void onClick(View view) {
                 JSONObject messageObj = new JSONObject();
                 try {
-                    messageObj.put("sender",UserInfo.getUserID());
-                    messageObj.put("message",message.getText());
-                    messageObj.put("receiver",opponentUserName);
-                    cc.send(messageObj.toString());
+                    System.out.println(message.getText());
+                    cc.send("@37 "+message.getText().toString());
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                     Toast.makeText(chatPage.this, "Your message did not sent.", Toast.LENGTH_SHORT).show();
                 }
 
-                addMessageToArray(message.getText().toString(),true);
-                adapter.setChatMessages(chatMessagesArray);
-                recyclerView.setAdapter(adapter);
+                //addMessageToArray(message.getText().toString(),true);
+                //adapter.setChatMessages(chatMessagesArray);
+                //recyclerView.setAdapter(adapter);
             }
         });
     }
+
 
     /**
      * This method is used to add message to the message array which is used to display the message.
@@ -137,5 +172,14 @@ public class chatPage extends AppCompatActivity {
      */
     private void addMessageToArray(String message,Boolean Isent){
         chatMessagesArray.add(0,new chatMessageModel(message,Isent));
+    }
+    public String deleteAt(String message){
+
+        String[]array =message.split(" ");
+        String result = array[1];
+        for (int i  = 2; i<array.length;++i){
+            result = result+" "+ array[i];
+        }
+        return result;
     }
 }

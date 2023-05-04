@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/barb"
+    android:background="@drawable/yellow_background"
+    android:id="@+id/login_page"
     tools:context=".LoginPage">
 
     <TextView
@@ -18,7 +19,7 @@
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="Sign in"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="40dp" />
 
     <EditText
@@ -32,19 +33,22 @@
         android:layout_marginBottom="10dp"
         android:hint="Username"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:layout_below = "@id/username"
+        android:layout_below="@id/username"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:hint="Password"
-        android:textColorHint = "@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:padding="20dp"/>
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <Button
 
@@ -52,10 +56,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
-        android:layout_marginTop="52dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="60dp"
+
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/white"
-
         android:text="Log in"
         android:textColor="@color/black" />
 
@@ -63,13 +70,12 @@
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
+
         android:layout_below="@id/password"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="@color/white"
         android:text="Sign up"
         android:textColor="@color/black" />
 

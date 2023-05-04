@@ -32,8 +32,8 @@ public class profileEditLogic implements IVolleyListener{
      * @param email
      * @throws JSONException
      */
-    public void editProfile(String username,String gender, String age, String weight, String email) throws JSONException {
-        final String url = "http://coms-309-004.class.las.iastate.edu:8080/profile/37";
+    public void editProfile(String username,String gender, String age, String weight, String email,String userId) throws JSONException {
+        final String url = "http://coms-309-004.class.las.iastate.edu:8080/profile/"+userId;
         String meth;
         if (UserInfo.getHasProfile()){
             meth = "Put";

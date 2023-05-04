@@ -1,20 +1,15 @@
 package com.example.fitnessapp.diet_function;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,23 +23,26 @@ import com.example.fitnessapp.R;
 import com.example.fitnessapp.UserInfo;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class DailyDiet extends AppCompatActivity implements IView {
     LinearLayout layout;
-    JSONArray requestArray = new JSONArray();
+    ArrayList<dietFoodItemModel> items = new ArrayList<>();
+    RecyclerView recyclerView;
     String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_diet);
-        Button back = findViewById(R.id.backBtn);
+        Button back = findViewById(R.id.backToDietBtn);
         back.setText("\u2190back");
+        recyclerView = findViewById(R.id.dailyDietRV);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,17 +50,10 @@ public class DailyDiet extends AppCompatActivity implements IView {
                 startActivity(back);
             }
         });
-        layout = (LinearLayout) findViewById(R.id.layoutV);
-        JSONObject object = new JSONObject();
-        Intent intent = getIntent();
+        Intent intent = this.getIntent();
         date = intent.getStringExtra("message");
-        try {
-            object.put("date",date);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
         System.out.println(date);
-        requestArray.put(object);
+
         try {
             date = changFormat(date);
         } catch (ParseException e) {
@@ -99,32 +90,13 @@ public class DailyDiet extends AppCompatActivity implements IView {
                         String food = object.get("name").toString();
                         String calories = object.get("calories").toString();
                         String meal = object.get("meal").toString();
-                        String text = " "+food+"       "+calories+"       "+meal;
-                        TextView textView = new TextView(DailyDiet.this);
-                        textView.setText(text);
-                        textView.setTextSize(20);
-                        //set height for textView
-                        int heightInPixels = 200;
-                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                heightInPixels
-                        );
-                        textView.setLayoutParams(layoutParams);
-                        ShapeDrawable shapeDrawable = new ShapeDrawable();
-                        shapeDrawable.setShape(new RectShape());
-                        shapeDrawable.getPaint().setColor(Color.WHITE);
-                        shapeDrawable.getPaint().setStyle(Paint.Style.STROKE);
-                        shapeDrawable.getPaint().setStrokeWidth(10);
-                        textView.setBackground(shapeDrawable);
-                        textView.setGravity(Gravity.CENTER);
-                        textView.setTextSize(16);
-                        textView.setTextColor(Color.WHITE);
-                        layout.addView(textView);
-
+                        items.add(new dietFoodItemModel(food,meal,calories));
                     }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                dailyDiet_Adapter adapter = new dailyDiet_Adapter(items,DailyDiet.this);
+                recyclerView.setAdapter(adapter);
 
 
             }

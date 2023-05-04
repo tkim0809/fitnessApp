@@ -1,6 +1,5 @@
 package com.example.demo.login;
 
-
 import com.example.demo.appuser.AppUser;
 import com.example.demo.appuser.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +10,16 @@ import java.util.Optional;
 @Service
 public class LoginService {
 
-
-
     @Autowired
-    private  AppUserRepository appUserRepository;
+    private AppUserRepository appUserRepository;
 
-    public boolean validateUser(LoginRequest loginRequest){
-
+    public Long validateUser(LoginRequest loginRequest) {
         System.out.println(loginRequest.toString());
 
+        Optional<AppUser> appUserOptional = appUserRepository.findAppUserByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
+        Long userId = appUserOptional.map(AppUser::getUserId).orElse(-1L);
 
-
-        boolean result = appUserRepository.findAppUserByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword()).isPresent();
-
-        System.out.println(result);
-
-
-        return result;
+        System.out.println(userId != -1L);
+        return userId;
     }
 }

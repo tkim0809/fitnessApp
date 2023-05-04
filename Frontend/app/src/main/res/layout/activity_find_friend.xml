@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/barb"
+    android:background="@drawable/yellow_background"
+    android:id="@+id/find_friend"
     tools:context=".findFriendActivity">
 
     <TextView
@@ -18,7 +19,7 @@
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="Find friend"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="40dp" />
 
     <EditText
@@ -32,9 +33,9 @@
         android:layout_marginBottom="10dp"
         android:hint="Email"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:background="@color/black"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:background="@drawable/white_box"
+        android:textColorHint="@color/black" />
 
     <Button
         android:layout_width="wrap_content"
