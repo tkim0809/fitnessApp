@@ -37,11 +37,12 @@ public class LoginController {
             @ApiParam(value = "Login request object containing username and password", required = true)
             @RequestBody LoginRequest loginRequest
     ) {
-        boolean isValidUser = loginService.validateUser(loginRequest);
+        Long userId = loginService.validateUser(loginRequest);
 
-        // create a Map object with a key-value pair representing the boolean result
-        Map<String, Boolean> resultMap = new HashMap<>();
-        resultMap.put("result", isValidUser);
+        // create a Map object with a key-value pairs representing the result and user_id
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("result", userId != -1L);
+        resultMap.put("user_id", userId);
 
         // create JSON response
         ObjectMapper mapper = new ObjectMapper();
