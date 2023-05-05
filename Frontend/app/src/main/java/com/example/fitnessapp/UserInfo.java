@@ -36,7 +36,7 @@ public class UserInfo {
     }
 
     public static void setUserID(String userID) {
-
+        UserInfo.userID = userID;
     }
 
     public static String getUserEmail() {
