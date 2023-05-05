@@ -153,4 +153,5 @@ public class GymController {
 
             return ResponseEntity.ok(userEmails);
         }
-    }
+
+}
