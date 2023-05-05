@@ -1,65 +1,7 @@
-//package com.example.demo.Messages;
-//
-//import java.io.IOException;
-//import java.util.Collections;
-//import java.util.HashSet;
-//import java.util.Set;
-//
-//import javax.websocket.OnClose;
-//import javax.websocket.OnError;
-//import javax.websocket.OnMessage;
-//import javax.websocket.OnOpen;
-//import javax.websocket.Session;
-//import javax.websocket.server.ServerEndpoint;
-//
-//@ServerEndpoint("/chat")
-//public class WebSocketServer {
-//
-//    private static Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
-//
-//    @OnOpen
-//    public void onOpen(Session session) {
-//        sessions.add(session);
-//        System.out.println("Session " + session.getId() + " has opened a connection");
-//    }
-//
-//    @OnMessage
-//    public void onMessage(Session session, String message) {
-//        System.out.println("Message received: " + message);
-//        for (Session s : sessions) {
-//            if (s.isOpen()) {
-//                try {
-//                    s.getBasicRemote().sendText(message);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-//
-//    @OnClose
-//    public void onClose(Session session) {
-//        sessions.remove(session);
-//        System.out.println("Session " + session.getId() + " has closed a connection");
-//    }
-//
-//    @OnError
-//    public void onError(Session session, Throwable throwable) {
-//        System.out.println("Error on session " + session.getId());
-//        throwable.printStackTrace();
-//    }
-//
-//}
-
-
-
-
-
 package com.example.demo.Messages;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 import javax.websocket.OnClose;
@@ -67,71 +9,90 @@ import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/chat")
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+
+@ServerEndpoint("/websocket/{username}")
+@Component
 public class WebSocketServer {
 
-    private static Map<String, Session> sessions = Collections.synchronizedMap(new HashMap<>());
+    // Store all socket session and their corresponding username.
+    private static Map < Session, String > sessionUsernameMap = new Hashtable < > ();
+    private static Map < String, Session > usernameSessionMap = new Hashtable < > ();
+
+    private final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
 
     @OnOpen
-    public void onOpen(Session session) {
-        String username = session.getRequestParameterMap().get("username").get(0);
-        sessions.put(username, session);
-        System.out.println("Session " + session.getId() + " has opened a connection for user " + username);
+    public void onOpen(Session session, @PathParam("username") String username)
+            throws IOException {
+        logger.info("Entered into Open");
+
+        sessionUsernameMap.put(session, username);
+        usernameSessionMap.put(username, session);
+
+        String message = "User:" + username + " has Joined the Chat";
+        broadcast(message);
     }
 
     @OnMessage
-    public void onMessage(Session senderSession, String message) {
-        String senderUsername = getUsernameFromSession(senderSession);
-        int colonIndex = message.indexOf(':');
-        if (colonIndex != -1) {
-            String recipientUsername = message.substring(0, colonIndex).trim();
-            Session recipientSession = sessions.get(recipientUsername);
-            if (recipientSession != null && recipientSession.isOpen()) {
-                String privateMessage = message.substring(colonIndex + 1).trim();
-                try {
-                    recipientSession.getBasicRemote().sendText(senderUsername + ": " + privateMessage);
-                    senderSession.getBasicRemote().sendText(senderUsername + ": " + privateMessage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                try {
-                    senderSession.getBasicRemote().sendText("User " + recipientUsername + " is not online");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            try {
-                senderSession.getBasicRemote().sendText("Invalid message format. Please use 'recipient: message'");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void onMessage(Session session, String message) throws IOException {
+        // Handle new messages
+        logger.info("Entered into Message: Got Message:" + message);
+        String username = sessionUsernameMap.get(session);
+
+        if (message.startsWith("@")) // Direct message to a user using the format "@username <message>"
+        {
+            String destUsername = message.split(" ")[0].substring(1);
+            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
+            sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
+        } else // Message to whole chat
+        {
+            broadcast(username + ": " + message);
         }
     }
 
     @OnClose
-    public void onClose(Session session) {
-        String username = getUsernameFromSession(session);
-        sessions.remove(username);
-        System.out.println("Session " + session.getId() + " has closed a connection for user " + username);
+    public void onClose(Session session) throws IOException {
+        logger.info("Entered into Close");
+
+        String username = sessionUsernameMap.get(session);
+        sessionUsernameMap.remove(session);
+        usernameSessionMap.remove(username);
+
+        String message = username + " disconnected";
+        broadcast(message);
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) {
-        System.out.println("Error on session " + session.getId());
-        throwable.printStackTrace();
+        // Do error handling here
+        logger.info("Entered into Error");
     }
 
-    private String getUsernameFromSession(Session session) {
-        for (Map.Entry<String, Session> entry : sessions.entrySet()) {
-            if (entry.getValue().equals(session)) {
-                return entry.getKey();
-            }
+    private void sendMessageToPArticularUser(String username, String message) {
+        try {
+            usernameSessionMap.get(username).getBasicRemote().sendText(message);
+        } catch (IOException e) {
+            logger.info("Exception: " + e.getMessage().toString());
+            e.printStackTrace();
         }
-        return null;
     }
 
+    private void broadcast(String message) {
+        sessionUsernameMap.forEach((session, username) -> {
+            try {
+                session.getBasicRemote().sendText(message);
+            } catch (IOException e) {
+                logger.info("Exception: " + e.getMessage().toString());
+                e.printStackTrace();
+            }
+
+        });
+
+    }
 }
