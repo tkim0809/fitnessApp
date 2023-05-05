@@ -95,5 +95,18 @@ public class FriendsController {
         return ResponseEntity.ok(friendEmails);
     }
 
+    //remove friend
+    @GetMapping("/{userId}/remove")
+    public String removeFriend(@ApiParam(value = "User ID", required = true) @PathVariable Long userId, @ApiParam(value = "Email of the friend to be removed", required = true) @RequestBody Map<String, String> requestBody) {
+        String friendEmail = requestBody.get("email");
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with id: " + userId));
+        AppUser friend = appUserRepository.findByEmail(friendEmail)
+                .orElseThrow(() -> new org.springframework.security.core.userdetails.UsernameNotFoundException("User not found with email: " + friendEmail));
+        friendsRepository.deleteByUserIdAndFriendId(user.getId(), friend.getId());
+        friendsRepository.deleteByUserIdAndFriendId(friend.getId(), user.getId());
+        return "{\"message\" : \"success\"}";
+    }
+
 
 }
