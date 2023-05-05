@@ -89,6 +89,7 @@ public class MilestonesController {
             milestonesRepository.deleteById(id);
             return ResponseEntity.ok().build();
         } else {
+
             return ResponseEntity.notFound().build();
         }
     }

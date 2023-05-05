@@ -19,6 +19,7 @@ public class JoinCommunityWithId extends AppCompatActivity {
         setContentView(R.layout.activity_join_community_with_id);
         EditText id = findViewById(R.id.CConnectIdEdit);
         Button next = findViewById(R.id.CnextBtn);
+        id.setText(UserInfo.getUserID());
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
