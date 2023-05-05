@@ -30,7 +30,7 @@ public class UserInfo {
     }
 
     public static String getUserID() {
-        return userID;
+        return LoginPage.userId;
     }
 
     public static void setUserID(String userID) {
