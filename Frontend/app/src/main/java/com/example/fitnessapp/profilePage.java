@@ -21,6 +21,11 @@ import org.json.JSONObject;
  * Profile UI class
  */
 public class profilePage extends AppCompatActivity {
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    String userId = UserInfo.getUserID();
     Button edit,back;
     TextView gender;
     TextView age;
@@ -63,7 +68,7 @@ public class profilePage extends AppCompatActivity {
     private void makeJsonObjReq() {
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "http://coms-309-004.class.las.iastate.edu:8080/profile/37", null,
+                "http://coms-309-004.class.las.iastate.edu:8080/profile/"+userId, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override

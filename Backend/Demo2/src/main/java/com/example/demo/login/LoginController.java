@@ -57,4 +57,3 @@ public class LoginController {
         return ResponseEntity.ok(jsonPayload);
     }
 }
-

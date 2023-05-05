@@ -9,13 +9,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.util.Log;
+
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapp.Logic.DateLogic;
+import com.example.fitnessapp.chat_function.ChatList;
 import com.example.fitnessapp.chat_function.chatPage;
+import com.example.fitnessapp.chat_function.connectingID;
 import com.example.fitnessapp.diet_function.dietPage;
 import com.example.fitnessapp.workoutHistory_function.workoutHistoryPage;
 
@@ -27,14 +31,18 @@ import org.json.JSONObject;
  */
 public class NewUserMenu extends AppCompatActivity {
     TextView DailyCal;
-    TextView TodayPct;
+    TextView TodayPct, userName;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user_menu);
+
+        //System.out.println("User id: " + UserInfo.getUserID());
         Button logOutBtn = findViewById(R.id.logOutBtn);
+        userName =findViewById(R.id.textUserName);
+        userName.setText(UserInfo.getUserID());
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,12 +91,23 @@ public class NewUserMenu extends AppCompatActivity {
         chatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toChat = new Intent(NewUserMenu.this, chatPage.class);
+                Intent toChat = new Intent(NewUserMenu.this, connectingID.class);
                 startActivity(toChat);
             }
         });
         Button friendButton = findViewById(R.id.findFriendButton);
         Button friendListButton = findViewById(R.id.FriendListButtonXML);
+        Button moreButton = findViewById(R.id.moreBtn);
+
+        moreButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NewUserMenu.this, addgymsPage.class);
+                startActivity(i);
+            }
+        });
         friendButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -101,6 +120,7 @@ public class NewUserMenu extends AppCompatActivity {
             }
 
         });
+
 
         friendListButton.setOnClickListener(new View.OnClickListener() {
 
@@ -116,6 +136,14 @@ public class NewUserMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(NewUserMenu.this,milestone.class);
+                startActivity(i);
+            }
+        });
+        Button communityBtn = findViewById(R.id.communityBtn);
+        communityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NewUserMenu.this,JoinCommunityWithId.class);
                 startActivity(i);
             }
         });
@@ -135,6 +163,18 @@ public class NewUserMenu extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+
+        Button locateBtn = findViewById(R.id.locateBtn);
+        locateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("NewUserMenu", "locateBtn clicked");
+                Intent toMap = new Intent(NewUserMenu.this, MapsActivity.class);
+                startActivity(toMap);
+            }
+        });
+
+
 
     }
     public void getDailyCalGoal() throws JSONException {
@@ -292,4 +332,6 @@ public class NewUserMenu extends AppCompatActivity {
         return intValue;
 
     }
+
+
 }
