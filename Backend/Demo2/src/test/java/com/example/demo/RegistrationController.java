@@ -29,7 +29,7 @@ public class RegistrationController {
 
     @Test
     public void registerTest() {
-        String testEmail = "tescdt456965ss5579@example.com";
+        String testEmail = "tescdt784569hgugukg65ss5579@example.com";
 
         JSONObject registrationRequest = new JSONObject();
         try {

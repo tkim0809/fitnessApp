@@ -99,7 +99,7 @@ public class DietController {
 
     @Test
     public void deleteDietTest() {
-        long dietId = 58L;
+        long dietId = 63L;
 
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
