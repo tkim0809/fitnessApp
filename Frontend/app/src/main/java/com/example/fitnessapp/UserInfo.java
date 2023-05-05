@@ -29,6 +29,8 @@ public class UserInfo {
         UserInfo.hasSetDietGoal = hasSetDietGoal;
     }
 
+    public static String getUserIdFromLogin() {return LoginPage.userId;}
+
     public static String getUserID() {
         return userID;
     }

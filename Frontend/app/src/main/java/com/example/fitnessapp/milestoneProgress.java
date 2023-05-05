@@ -40,8 +40,6 @@ public class milestoneProgress extends AppCompatActivity {
 
                 try {
 
-                    Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-
                     for(int i = 0; i < response.length(); i++) {
 
                         milestoneModels.add(new milestoneModel(response.getJSONObject(i).get("milestoneName").toString(), response.getJSONObject(i).get("milestoneWeight").toString(),
