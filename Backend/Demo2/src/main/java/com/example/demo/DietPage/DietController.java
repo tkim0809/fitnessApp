@@ -245,6 +245,7 @@ public class DietController {
         DecimalFormat df = new DecimalFormat("#.#");
         achievedPercentage = Double.parseDouble(df.format(achievedPercentage));
 
+
         return new DietSummary(targetDiet, totalCalories, achievedPercentage, diets);
     }
 

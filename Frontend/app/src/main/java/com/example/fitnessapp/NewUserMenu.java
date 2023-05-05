@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.util.Log;
+
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -36,6 +38,8 @@ public class NewUserMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user_menu);
+
+        //System.out.println("User id: " + UserInfo.getUserID());
         Button logOutBtn = findViewById(R.id.logOutBtn);
         userName =findViewById(R.id.textUserName);
         userName.setText(UserInfo.getUserID());
@@ -93,6 +97,17 @@ public class NewUserMenu extends AppCompatActivity {
         });
         Button friendButton = findViewById(R.id.findFriendButton);
         Button friendListButton = findViewById(R.id.FriendListButtonXML);
+        Button moreButton = findViewById(R.id.moreBtn);
+
+        moreButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NewUserMenu.this, addgymsPage.class);
+                startActivity(i);
+            }
+        });
         friendButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -105,6 +120,7 @@ public class NewUserMenu extends AppCompatActivity {
             }
 
         });
+
 
         friendListButton.setOnClickListener(new View.OnClickListener() {
 
@@ -147,6 +163,18 @@ public class NewUserMenu extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+
+        Button locateBtn = findViewById(R.id.locateBtn);
+        locateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("NewUserMenu", "locateBtn clicked");
+                Intent toMap = new Intent(NewUserMenu.this, MapsActivity.class);
+                startActivity(toMap);
+            }
+        });
+
+
 
     }
     public void getDailyCalGoal() throws JSONException {
@@ -304,4 +332,6 @@ public class NewUserMenu extends AppCompatActivity {
         return intValue;
 
     }
+
+
 }

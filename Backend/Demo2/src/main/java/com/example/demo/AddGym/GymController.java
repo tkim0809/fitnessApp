@@ -150,6 +150,8 @@ public class GymController {
             // Create a new list of emails from the AppUser objects
             List<String> userEmails = users.stream().map(AppUser::getEmail).collect(Collectors.toList());
 
+
             return ResponseEntity.ok(userEmails);
         }
-    }
+
+}

@@ -37,7 +37,7 @@ public class ChatList extends AppCompatActivity implements RecyclerViewInterface
         });
         RecyclerView recyclerView = findViewById(R.id.chatListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        chatItemModelArrayList.add(new chatItemModel("eddy",1));
+        chatItemModelArrayList.add(new chatItemModel("Team-FitQuest",1));
         ChatItem_RecyclerViewAdapter adapter = new ChatItem_RecyclerViewAdapter(chatItemModelArrayList,this,this);
         recyclerView.setAdapter(adapter);
     }
