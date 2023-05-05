@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class likedGymsRecyclerAdapter extends RecyclerView.Adapter<likedGymsRecyclerAdapter.MyViewHolder>{
+public class dislikedGymsRecyclerAdapter extends RecyclerView.Adapter<dislikedGymsRecyclerAdapter.MyViewHolder>{
     Context context;
-    ArrayList<likedGymsModel> likedGymsModels = new ArrayList<>();
+    ArrayList<dislikedGymsModel> dislikedGymsModels = new ArrayList<>();
 
 
-    public likedGymsRecyclerAdapter(Context context, ArrayList<likedGymsModel> likedGymsModels) {
+    public dislikedGymsRecyclerAdapter(Context context, ArrayList<dislikedGymsModel> dislikedGymsModels) {
 
         this.context = context;
-        this.likedGymsModels = likedGymsModels;
+        this.dislikedGymsModels = dislikedGymsModels;
 
     }
 
@@ -28,7 +28,7 @@ public class likedGymsRecyclerAdapter extends RecyclerView.Adapter<likedGymsRecy
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.likedgyms_recyclerview_row, parent, false);
+        View view = inflater.inflate(R.layout.dislikedgym_recyclerview_row, parent, false);
 
         return new MyViewHolder(view);
     }
@@ -36,13 +36,13 @@ public class likedGymsRecyclerAdapter extends RecyclerView.Adapter<likedGymsRecy
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.email.setText(likedGymsModels.get(position).getUserName());
+        holder.email.setText(dislikedGymsModels.get(position).getUsername());
 
     }
 
     @Override
     public int getItemCount() {
-        return likedGymsModels.size();
+        return dislikedGymsModels.size();
     }
 
 
@@ -51,9 +51,10 @@ public class likedGymsRecyclerAdapter extends RecyclerView.Adapter<likedGymsRecy
         TextView email;
 
         public MyViewHolder(@NonNull View itemView) {
+
             super(itemView);
 
-            email = itemView.findViewById(R.id.likedgyms_username);
+            email = itemView.findViewById(R.id.dislikedgyms_username);
 
         }
     }

@@ -33,7 +33,6 @@ public class leaderboardAdd extends AppCompatActivity {
         Button addpushupsButton = findViewById(R.id.addpushupsBut);
         Button backToLeaderboardBtn = findViewById(R.id.backToLeaderboardBtn);
 
-        String pushups = addpushupsEditText.getText().toString();
         String userName = "";
         userName += UserInfo.getUserEmail();
         String finalUserEmail = userName;
@@ -47,6 +46,9 @@ public class leaderboardAdd extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                int pushups = Integer.parseInt(addpushupsEditText.getText().toString());
+
                 String url = "http://coms-309-004.class.las.iastate.edu:8080/leaderboards/new";
                 RequestQueue queue = Volley.newRequestQueue(leaderboardAdd.this);
                 JSONObject obj = new JSONObject();

@@ -9,6 +9,7 @@ public class likedGymsModel {
         this.userName = userName;
     }
 
+
     public String getUserName() {
         return userName;
     }

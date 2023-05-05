@@ -55,7 +55,6 @@ public class leaderboard extends AppCompatActivity {
 
                         leaderboardModels.add(new leaderboardModel(response.getJSONObject(i).get("username").toString(), response.getJSONObject(i).get("pushups").toString()));
 
-
                     }
 
 
