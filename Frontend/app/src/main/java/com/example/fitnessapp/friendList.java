@@ -32,7 +32,7 @@ public class friendList extends AppCompatActivity {
         setContentView(R.layout.activity_friend_list);
         RecyclerView recyclerView = findViewById(R.id.friendlistRecyclerV);
 
-        String url = "http://coms-309-004.class.las.iastate.edu:8080/friendList";
+        String url = "http://coms-309-004.class.las.iastate.edu:8080/" + "api/friends/" + UserInfo.getUserIdFromLogin() + "/friends";
 
 
         /**
@@ -44,11 +44,13 @@ public class friendList extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
+                String firstName = "";
+
                 try {
 
                     for(int i = 0; i < response.length(); i++) {
 
-                        friendModels.add(new friendModel(response.getJSONObject(i).get("email").toString(), response.getJSONObject(i).get("userName").toString()));
+                        friendModels.add(new friendModel(response.getString(i), firstName));
 
                     }
 

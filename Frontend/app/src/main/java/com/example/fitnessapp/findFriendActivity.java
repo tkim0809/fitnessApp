@@ -69,7 +69,7 @@ public class findFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = emailEditText.getText().toString();
-                String userName = UserInfo.getUserID();
+                String userName = UserInfo.getUserIdFromLogin();
 
                 String url = "http://coms-309-004.class.las.iastate.edu:8080/api/friends/" + userName + "/add";
                 RequestQueue queue = Volley.newRequestQueue(findFriendActivity.this);
