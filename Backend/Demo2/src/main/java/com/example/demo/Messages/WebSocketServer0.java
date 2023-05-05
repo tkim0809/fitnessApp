@@ -19,13 +19,13 @@ import org.springframework.stereotype.Component;
 
 @ServerEndpoint("/websocket/{username}")
 @Component
-public class WebSocketServer {
+public class WebSocketServer0 {
 
     // Store all socket session and their corresponding username.
     private static Map < Session, String > sessionUsernameMap = new Hashtable < > ();
     private static Map < String, Session > usernameSessionMap = new Hashtable < > ();
 
-    private final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+    private final Logger logger = LoggerFactory.getLogger(WebSocketServer0.class);
 
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username)
