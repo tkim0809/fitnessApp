@@ -43,7 +43,7 @@ public class LeaderboardsController {
     public List<Leaderboards> getAllUsers() {
         logger.info("Entered into Controller Layer");
         List<Leaderboards> results = leaderboardsRepository.findAll();
-        results.sort((l1, l2) -> Integer.parseInt(l2.getPushups()) - Integer.parseInt(l1.getPushups()));
+        results.sort((l1, l2) -> l2.getPushups() - l1.getPushups());
         logger.info("Number of People Fetched:" + results.size());
         return results;
     }

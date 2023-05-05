@@ -21,13 +21,13 @@ public class Leaderboards {
 
     @Column(name = "pushups")
     @NotFound(action = NotFoundAction.IGNORE)
-    private String pushups;
+    private Integer pushups;
 
     public Leaderboards() {
 
     }
 
-    public Leaderboards(String username, String pushups) {
+    public Leaderboards(String username, Integer pushups) {
         this.username = username;
         this.pushups = pushups;
     }
@@ -48,11 +48,11 @@ public class Leaderboards {
         this.username = username;
     }
 
-    public String getPushups() {
+    public Integer getPushups() {
         return this.pushups;
     }
 
-    public void setPushups(String pushups) {
+    public void setPushups(Integer pushups) {
         this.pushups = pushups;
     }
 
