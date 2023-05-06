@@ -44,7 +44,6 @@ public class LoginPage extends AppCompatActivity {
         logIn = findViewById(R.id.loginButton);
         signUp = findViewById(R.id.signUpButton);
 
-        System.out.println(UserInfo.getUserID());
 
 
         /**
@@ -71,6 +70,8 @@ public class LoginPage extends AppCompatActivity {
 
                 String email = Email.getText().toString(); // user text for email address
                 String pw = password.getText().toString(); // user text for password
+                String update = Email.getText().toString();
+                UserInfo.setUserEmail(update);
                 //userName = name;
                 String url="http://coms-309-004.class.las.iastate.edu:8080/login";
                 RequestQueue queue = Volley.newRequestQueue(LoginPage.this);
@@ -105,6 +106,7 @@ public class LoginPage extends AppCompatActivity {
 
                                         userId = response.getString("user_id");
                                         UserInfo.setUserID(userId);
+                                        System.out.println(UserInfo.getUserID());
 
                                         Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
 

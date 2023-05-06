@@ -97,7 +97,7 @@ public class NewUserMenu extends AppCompatActivity {
         });
         Button friendButton = findViewById(R.id.findFriendButton);
         Button friendListButton = findViewById(R.id.FriendListButtonXML);
-        Button moreButton = findViewById(R.id.moreBtn);
+        Button moreButton = findViewById(R.id.gymsBtn);
 
         moreButton.setOnClickListener(new View.OnClickListener() {
 

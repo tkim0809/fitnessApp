@@ -68,7 +68,7 @@ public class milestone extends AppCompatActivity {
                     obj.put("userId", 39);
 
 
-                    Toast.makeText(getApplicationContext(), "Successfully added", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Successfully added", Toast.LENGTH_SHORT).show();
 
 
 
@@ -93,7 +93,7 @@ public class milestone extends AppCompatActivity {
 
                                     if(toCompare.equals("success")) {
 
-                                        Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_LONG).show();
 
                                     } else {
 

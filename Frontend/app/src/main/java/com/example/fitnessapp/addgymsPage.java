@@ -106,7 +106,7 @@ public class addgymsPage extends AppCompatActivity {
 
                                     if (toCompare.equals("success")) {
 
-                                        Toast.makeText(addgymsPage.this, "Successful added to friend list", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(addgymsPage.this, "Successful added", Toast.LENGTH_LONG).show();
 
                                     }
 

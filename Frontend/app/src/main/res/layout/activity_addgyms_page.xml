@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Gold"
+    android:id="@+id/add_gyms_id"
     tools:context=".addgymsPage">
 
 
