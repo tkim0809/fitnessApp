@@ -40,7 +40,7 @@ public class UserInfo {
     }
 
     public static String getUserEmail() {
-        return userEmail;
+        return UserInfo.userEmail;
     }
 
     public static void setUserEmail(String userEmail) {

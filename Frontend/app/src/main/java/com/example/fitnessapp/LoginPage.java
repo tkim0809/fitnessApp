@@ -46,7 +46,6 @@ public class LoginPage extends AppCompatActivity {
 
 
 
-
         /**
          * When "sign up" button is pressed, moves to sign up screen
          */
@@ -71,6 +70,8 @@ public class LoginPage extends AppCompatActivity {
 
                 String email = Email.getText().toString(); // user text for email address
                 String pw = password.getText().toString(); // user text for password
+                String update = Email.getText().toString();
+                UserInfo.setUserEmail(update);
                 //userName = name;
                 String url="http://coms-309-004.class.las.iastate.edu:8080/login";
                 RequestQueue queue = Volley.newRequestQueue(LoginPage.this);

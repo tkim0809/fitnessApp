@@ -53,6 +53,8 @@ public class leaderboardAdd extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(leaderboardAdd.this);
                 JSONObject obj = new JSONObject();
 
+                System.out.println(finalUserEmail);
+
                 try {
 
                     obj.put("username", finalUserEmail);
