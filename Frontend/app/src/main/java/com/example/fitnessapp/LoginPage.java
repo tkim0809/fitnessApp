@@ -44,7 +44,7 @@ public class LoginPage extends AppCompatActivity {
         logIn = findViewById(R.id.loginButton);
         signUp = findViewById(R.id.signUpButton);
 
-        System.out.println(UserInfo.getUserID());
+
 
 
         /**
@@ -105,6 +105,7 @@ public class LoginPage extends AppCompatActivity {
 
                                         userId = response.getString("user_id");
                                         UserInfo.setUserID(userId);
+                                        System.out.println(UserInfo.getUserID());
 
                                         Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
 
