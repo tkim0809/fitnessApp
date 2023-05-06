@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/new_user_menu"
     android:layout_height="match_parent"
     tools:context=".NewUserMenu">
 
@@ -33,11 +34,11 @@
             android:layout_weight="1">
         </androidx.appcompat.widget.AppCompatButton>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/moreBtn"
+            android:id="@+id/gymsBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_border"
-            android:text="more..."
+            android:text="Gyms"
             android:layout_weight="1">
         </androidx.appcompat.widget.AppCompatButton>
     </LinearLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/yellow_background"
     android:layout_height="match_parent"
+    android:id="@+id/dislikedGyms_id"
     tools:context=".likedGymsPage">
 
     <TextView
